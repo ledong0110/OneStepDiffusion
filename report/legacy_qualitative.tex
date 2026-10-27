@@ -1,0 +1,22 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage{cvpr}
+\usepackage{times,graphicx,amsmath,booktabs}
+\usepackage[colorlinks]{hyperref}
+\title{Noise-Aware Edge Regularization: Qualitative Supplement}
+\author{Le Duc Dong \quad Nguyen Huu Thuat \quad Pham Viet Hoang \quad La Nguyen Gia Hy\\CE7454 Project 2}
+\begin{document}
+\maketitle
+All images below are native outputs of the recorded checkpoints. Fixed prompts
+and noise are specified before generation. The main report retains its four-page
+limit; this separate gallery is optional supporting material.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/samples_comparison_full.pdf}
+\caption{All six predefined prompts, with methods across columns and prompts down
+rows. Initial noise is shared across methods within each row. Every trained
+student uses one step and one NFE; guided teacher references show their actual
+budgets. Asterisks denote our reduced-budget LoRA adaptations. No images are
+selected by visual quality.}
+\end{figure*}
+\input{generated/extra_qualitative.tex}
+\end{document}

@@ -1,0 +1,33 @@
+{
+  "sample_indices": [
+    2,
+    6
+  ],
+  "selection_policy": "User-selected dog-in-flowers, teddy-bear and lighthouse subjects. Dog and lighthouse use the original preset prompts and noise; teddy bears reuse the saved validation outputs. Every method uses identical row prompts and noise. All 5000 validation images contribute to metrics, independently of this qualitative selection.",
+  "main_comparison_result": "results/sd15/active_one_step/main_comparison.json",
+  "failure_indices": [
+    0,
+    4
+  ],
+  "method_order": [
+    "consistency",
+    "dmd",
+    "swiftbrush_lora",
+    "dmd_perceptual_diversity",
+    "teacher"
+  ],
+  "prompt_control_eval_seed": 12346,
+  "prompt_control_candidate_eval_seeds": [
+    12345,
+    12346,
+    12347,
+    12348
+  ],
+  "prompt_control_selection_policy": "Choose one complete 3-by-4 grid by visual quality and animal/action adherence from four fixed candidate seeds; every displayed cell shares the selected initial noise seed.",
+  "fox_selection_decision": "Excluded: reviewed fox-astronaut candidates did not reliably match the requested species/space-suit appearance.",
+  "interpolation_noise_seeds": [
+    12546,
+    12548
+  ],
+  "goku_selection_decision": "Excluded at user request."
+}

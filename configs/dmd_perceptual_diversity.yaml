@@ -1,0 +1,22 @@
+extends: dmd.yaml
+name: dmd_perceptual_diversity
+output_dir: runs/sd15/dmd_diversity_study/dmd_perceptual_diversity_seed42
+data:
+  train_offset: 50000
+  train_limit: 68287
+  sampling: shuffled_epochs
+  batch_size: 2
+train:
+  updates_per_stage: 18000
+  grad_accumulation: 8
+  dmd_pair_count: 5000
+  dmd_pair_seeds: 2
+  dmd_regression_type: lpips_vgg
+  dmd_diversity_weight: 0.1
+  edge_weight: 0.0
+eval:
+  steps: [1]
+  comparison_steps: 1
+  num_samples: 5000
+  num_real: 5000
+  retain_generated_images: false

@@ -1,0 +1,27 @@
+extends: base.yaml
+output_dir: runs/celebahq/baseline_seed42
+model:
+  source: google/ddpm-celebahq-256
+  revision: cd5c944777ea2668051904ead6cc120739b86c4d
+  use_safetensors: false
+data:
+  dataset: CelebA-HQ
+  image_size: 256
+  root: data/celebahq
+  batch_size: 2
+  repo: korexyz/celeba-hq-256x256
+  revision: 42078a1fb27b6079eaab8cf453efd3d79a8b7bda
+train:
+  updates_per_stage: 1000
+  grad_accumulation: 4
+  learning_rate: 0.00001
+  warmup_steps: 50
+  ema_decay: 0.995
+  save_every: 200
+  log_every: 10
+  preview_every: 1000
+eval:
+  num_samples: 2000
+  num_real: 2000
+  reference_split: validation
+  batch_size: 4

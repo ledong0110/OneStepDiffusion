@@ -1,0 +1,230 @@
+% CVPR 2026 author-kit document setup; camera-ready mode displays all authors.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage{cvpr}
+\input{preamble}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\def\paperID{}
+\def\confName{CVPR}
+\def\confYear{2026}
+\input{generated/active_study/settings.tex}
+\title{Teacher-Calibrated Perceptual Diversity for One-Step Diffusion}
+\author{Le Duc Dong \quad Nguyen Huu Thuat \quad Pham Viet Hoang \quad La Nguyen Gia Hy\\CE7454 Project 2}
+\begin{document}
+\maketitle
+\begin{abstract}
+We investigate direct one-step text-to-image generation with a fixed rank-32
+Stable Diffusion student and a 36,000-step training budget. Our DMD-based
+proposal combines distribution matching, perceptual regression and matching
+the teacher's variation across noise seeds for the same caption. Evaluation
+uses all 5,000 COCO-2017 validation images and matched captions and noise.
+The completed proposal achieves FID \ActiveFID{} and CLIP \ActiveCLIP{} at one denoiser
+evaluation, compared with FID \BaselineDMDFID{} and CLIP \BaselineDMDCLIP{} for our DMD
+baseline. \ActiveAblationNote{} We provide measured baseline
+results, selected qualitative examples and explicit experimental limitations.
+\end{abstract}
+
+\section{Introduction}
+Diffusion models generate detailed images but require repeated denoiser
+evaluations. Distillation transfers a pretrained teacher into a generator
+with a smaller inference budget. Our goal is a practical one-step student
+that preserves visual detail and useful variation under a limited adapter
+budget. A low reconstruction loss alone is insufficient: blurry or repetitive
+images can fit a restrictive target without capturing the teacher distribution.
+
+We study whether perceptual regression and teacher-calibrated within-prompt
+variation help a DMD-based LoRA student. The proposal matches the perceptual
+distance between two student images to the distance between their paired
+teacher outputs. This target avoids rewarding image separation without a
+teacher reference. The contribution is a controlled image-level extension
+under a fixed backbone, student capacity and total training-step budget.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/active_study/selected_samples.pdf}
+\caption{Selected qualitative examples from completed 36,000-step students.
+Each row uses the identical recorded caption and initial evaluation noise
+across methods. All students use one step / one NFE; the teacher is a
+64-step / 128-NFE reference. SwiftBrush uses teacher CFG 4.5 and FP32;
+other students use CFG 7.5 and BF16. The selected subjects are a dog in flowers,
+teddy bears and a lighthouse. Dog/lighthouse use fixed preset prompts;
+the teddy-bear row is a validation example. Full-set metrics
+use all 5,000 validation outputs. Baseline names denote our LoRA adaptations.}
+\label{fig:demo}
+\end{figure*}
+
+\section{Related work}
+Latent diffusion enables high-resolution generation using a pretrained VAE
+and a denoiser operating on compressed image latents~\cite{rombach2022ldm}.
+LoRA reduces the number of trained parameters~\cite{hu2022lora}. Progressive
+distillation repeatedly replaces two teacher transitions with one student
+transition~\cite{salimans2022progressive}. Consistency models learn predictions
+that agree along a probability-flow trajectory~\cite{song2023consistency}.
+InstaFlow uses reflow to straighten noise--image couplings before one-step
+distillation~\cite{liu2024instaflow}. These objectives provide complementary
+baselines for a common one-step inference budget.
+
+DMD combines distribution matching with regression to teacher-generated
+outputs~\cite{yin2024dmd}; SwiftBrush trains a generator using variational
+score distillation~\cite{nguyen2024swiftbrush}. Perceptual regression is
+already part of original DMD. Relational diffusion distillation also studies
+cross-sample information~\cite{feng2024rdd}. We therefore evaluate a specific
+same-caption teacher-distance objective in our restricted setting, without
+claiming the first use of perceptual or relational distillation. Our baseline
+implementations use reduced-capacity adapters and differ from the published
+full-model recipes; their measurements are local experimental results.
+
+\section{Method}
+\paragraph{One-step generator and distribution matching.}
+The student $G_\theta(z,c)$ maps Gaussian noise $z$ and a caption $c$ to a
+clean VAE latent in one conditional U-Net call. Teacher and fake-score
+networks supply clean estimates $\hat x_0^T$ and $\hat x_0^F$ from a noisy
+student latent. The DMD gradient direction is
+\begin{equation}
+g=\frac{\hat x_0^F-\hat x_0^T}
+ {\operatorname{mean}(|G_\theta-\hat x_0^T|)+\epsilon}.
+\end{equation}
+The implementation injects the stopped direction into the generator and
+fits the auxiliary scorer with epsilon denoising on detached student outputs.
+Both generator and scorer use rank-32 adapters. The VAE and text encoder
+remain frozen. Guidance is incorporated during training; student inference
+uses a single conditional branch with no additional CFG pass.
+
+\paragraph{Teacher-calibrated perceptual objective.}
+Let $I_i=D(G_\theta(z_i,c))$ and $J_i=D(T(z_i,c))$, where $D$ is the VAE
+decoder and $T$ denotes a cached teacher trajectory. RGB values are clamped
+to $[-1,1]$ for frozen LPIPS-VGG distance $d$~\cite{zhang2018lpips}. We use
+\begin{align}
+ L_{\mathrm{reg}}&=\tfrac12\sum_{i=1}^{2}d(I_i,J_i),\\
+ L_{\mathrm{div}}&=\big[d(I_1,I_2)-\operatorname{sg}(d(J_1,J_2))\big]^2,\\
+ L&=L_{\mathrm{DMD}}+0.25L_{\mathrm{reg}}+0.1L_{\mathrm{div}}.
+\end{align}
+The two noise seeds are independent, while the caption is shared. Both
+student branches receive gradients. Teacher outputs and LPIPS weights
+are frozen; decoder backpropagation supplies gradients to the student latent.
+Only the student denoiser and decoder are needed at inference.
+
+\paragraph{Controlled ablations.}
+Four variants cross latent-MSE versus LPIPS regression with diversity weight
+$\lambda_d\in\{0,0.1\}$. They share the exact same DMD initialization,
+teacher-pair bank, captions, optimizer state, training seed and effective
+batch size. Each follows a 36,000-step pipeline: the common DMD initialization
+phase accounts for half the budget, followed by the loss-specific phase.
+The grouped latent-MSE control is required to separate changes in the
+anchor protocol from the effects of the proposed losses.
+
+\section{Experimental protocol}
+\paragraph{Data and evaluation coverage.}
+We use SD1.5 with $512\times512$ outputs. COCO-2017 captions are ordered
+by image ID, selecting the lowest-ID caption per image~\cite{chen2015coco}.
+Training uses disjoint pools of 50,000 and 68,287 training-image captions.
+Together these cover the 118,287 available training images. The proposed
+DMD-family objectives use captions, random noise and generated teacher
+anchors, with no ground-truth image supervision in those losses.
+All 5,000 official validation images are held out from student training.
+Reference images use bicubic resize and center crop. Evaluation covers every
+official validation image with its selected caption.
+
+Every final quality evaluation generates one image for each of the 5,000
+validation captions, using the same evaluation noise stream (seed 12345).
+FID and Inception Score (IS) measure distribution-level generation quality.
+CLIP uses ViT-B/32 and reports mean $100\max(\cos(I,c),0)$. These are
+full COCO-2017 validation results under our caption/preprocessing protocol,
+which differs from published COCO-2014 benchmark protocols.
+
+\paragraph{Capacity, updates and compute.}
+All students have rank-32 LoRA generators with 6.38 million trainable
+parameters, effective batch 16, training seed 42, and 36,000
+generator updates. All student comparisons use one step / one NFE.
+Our DMD study uses microbatch two with eight accumulation passes, AdamW,
+generator/scorer learning rates $10^{-4}$, 100 warmup steps, EMA 0.995 and
+one scorer update per generator update. Its shared bank has 5,000 teacher
+images from 2,500 prompts with two noise seeds each. The frozen teacher uses
+64 DDIM steps and CFG 7.5, costing 640,000 denoiser evaluations to create
+the shared bank once. Decoder and LPIPS gradients add training compute;
+equal generator updates do not imply equal total compute.
+
+PD uses the epsilon-backbone progressive schedule; consistency uses a VP
+boundary blend and latent L2. DMD uses normalized score matching with latent
+regression, while InstaFlow uses the VP-to-velocity adaptation and cached
+reflow couplings. SwiftBrush retains a rank-32 student with its recorded
+optimizer/scorer settings, teacher CFG 4.5 and FP32 precision. Other students
+use teacher CFG 7.5 and BF16. All methods appear in one comparison, with
+these recorded settings disclosed. Concurrent GPU workloads prevent controlled latency claims; NFE
+provides the inference-budget comparison.
+
+\paragraph{Diversity and visual selection.}
+Diversity is measured separately on 128 held-out captions with four fixed
+seeds each, averaging the six within-caption LPIPS-Alex distances. AlexNet
+differs from the VGG training metric. This 512-image diversity test is distinct
+from the full 5,000-image quality evaluation. Figure~\ref{fig:demo} uses
+three selected subjects with identical row captions and noise across methods.
+Two use preset prompts; the teddy-bear example comes from validation.
+
+\section{Results and analysis}
+\begin{table}[t]
+\centering\scriptsize
+\resizebox{\linewidth}{!}{\input{generated/active_study/quality.tex}}
+\caption{Full-validation quality: 5,000 generated images and 5,000 real
+references. Student rows use the full 36,000-step budget. Bold marks the best
+student value within this comparison. SwiftBrush uses teacher CFG 4.5/FP32 and other students
+use CFG 7.5/BF16; the teacher has a longer trajectory. All baseline names refer to
+our implementations.}
+\label{tab:quality}
+\end{table}
+\input{generated/active_study/measured.tex}
+
+\begin{table}[t]
+\centering\scriptsize
+\resizebox{\linewidth}{!}{\input{generated/active_study/ablation.tex}}
+\caption{Factorial study with a shared initialization and 36,000 total
+training steps. Diversity is pairwise LPIPS-Alex distance across four seeds
+for each of 128 prompts. Bold marks the lowest ablation FID; a larger
+perceptual distance does not itself imply higher quality.}
+\label{tab:ablation}
+\end{table}
+\input{generated/active_study/prompt_control.tex}
+\input{generated/active_study/interpolation_figure.tex}
+
+\paragraph{Visual findings and failure modes.}
+The selected dog and lighthouse examples illustrate coherent subjects and
+scene structure, rather than typical-case performance. The teddy-bear row
+also exposes limited color variation despite plausible texture.
+Other saved samples expose limitations: the proposal omits the person in a
+dining-room caption, does not reliably separate requested teddy-bear colors,
+and renders a requested upside-down stop sign upright. Distribution-level
+FID and CLIP improvements therefore do not establish reliable counting,
+spatial relations or complete prompt adherence. The teacher reference also
+uses a much larger inference budget.
+
+\section{Limitations and conclusion}
+\paragraph{Resource and training-budget constraints.}
+Available GPU resources and project budget limit each student to 36,000
+generator updates, effective batch 16, rank-32 adapters and one training seed.
+This amounts to 576,000 samples in the generator training stream. Published
+training budgets vary: SwiftBrush reports approximately 65,000 updates at
+batch 64~\cite{nguyen2024swiftbrush}, while the original consistency-model
+experiments use 600,000--1,000,000 iterations across different datasets and
+training variants~\cite{song2023consistency}. These settings differ in model
+capacity, batch size and training task, so raw iteration counts do not equalize
+compute. Our constrained runs may leave both the proposal and baselines
+under-optimized; longer training could change their relative performance.
+The results establish a comparison within our budget, rather than the
+performance ceiling of the published methods.
+
+The completed results support stronger full-validation quality for the
+combined proposal than our DMD baseline at a matched total update
+budget. The factorial study favors perceptual regression alone for FID;
+the added diversity term does not establish a consistent benefit.
+One training seed provides no estimate
+of run-to-run uncertainty. Adapter capacity, teacher-pretraining overlap,
+the restricted regression bank and validation reuse during development limit
+generality. Perceptual distance can increase through artifacts and cannot
+guarantee semantic diversity. Broader claims require additional seeds and controlled
+compute measurements.
+
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{references}
+}
+\end{document}

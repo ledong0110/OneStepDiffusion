@@ -1,0 +1,6 @@
+extends: base.yaml
+name: proposed
+output_dir: runs/proposed_seed42
+train:
+  edge_weight: 0.1
+  edge_schedule: noise_aware

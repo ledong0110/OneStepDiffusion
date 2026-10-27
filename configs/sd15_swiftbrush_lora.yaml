@@ -1,0 +1,20 @@
+# User-selected adaptation: rank-32 G, official SwiftBrush optimizer/scorer recipe.
+# CFG 4.5 differs from the controlled study's 7.5: keep results separate.
+extends: sd15_swiftbrush_source.yaml
+name: swiftbrush_lora
+output_dir: runs/sd15/swiftbrush_lora_seed42
+model:
+  lora_rank: 32
+  lora_alpha: 32
+  lora_targets: [to_q, to_k, to_v, to_out.0]
+  lora_init: gaussian
+train:
+  student_parameterization: lora
+  fake_lora_rank: 64
+  fake_lora_alpha: 108
+  fake_lora_targets: [to_q, to_v]
+eval:
+  batch_size: 2
+wandb:
+  group: sd15-swiftbrush-lora-official-settings
+  tags: [swiftbrush-inspired, lora32-student, source-recipe, cfg4.5]

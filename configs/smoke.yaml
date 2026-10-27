@@ -1,0 +1,27 @@
+extends: proposed.yaml
+name: smoke
+output_dir: runs/smoke_seed42
+device: cpu
+precision: fp32
+wandb:
+  mode: disabled
+model:
+  source: tiny
+data:
+  fake: true
+  batch_size: 2
+train:
+  initial_steps: 8
+  stages: [4, 2, 1]
+  updates_per_stage: 2
+  warmup_steps: 0
+  save_every: 1
+  log_every: 1
+  preview_every: 2
+eval:
+  steps: [8, 4, 2, 1]
+  num_samples: 8
+  num_real: 8
+  batch_size: 2
+  benchmark_repeats: 2
+  benchmark_warmup: 1

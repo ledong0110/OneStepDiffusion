@@ -1,0 +1,5 @@
+extends: sd15_proposed.yaml
+name: edge_weight_low
+output_dir: runs/sd15/edge_weight_low_seed42
+train:
+  edge_weight: 0.03

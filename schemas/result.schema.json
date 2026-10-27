@@ -1,0 +1,716 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Few-step diffusion evaluation result v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "method",
+    "seed",
+    "sampling_steps",
+    "nfe",
+    "dataset",
+    "image_size",
+    "num_samples",
+    "num_real",
+    "reference_split",
+    "eval_seed",
+    "sampler",
+    "precision",
+    "metric_implementation",
+    "training_updates",
+    "effective_batch_size",
+    "teacher_identity",
+    "initial_steps",
+    "fid",
+    "inception_score_mean",
+    "inception_score_std",
+    "latency_ms_per_image",
+    "benchmark_batch_size",
+    "environment",
+    "timesteps",
+    "model_identity"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "smoke",
+        "example"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sampling_steps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "nfe": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "dataset": {
+      "enum": [
+        "CIFAR-10",
+        "CelebA-HQ",
+        "COCO-2017"
+      ]
+    },
+    "image_size": {
+      "enum": [
+        32,
+        256,
+        512
+      ]
+    },
+    "num_samples": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "num_real": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50000
+    },
+    "reference_split": {
+      "enum": [
+        "train",
+        "test",
+        "validation"
+      ]
+    },
+    "eval_seed": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sampler": {
+      "enum": [
+        "DDIM-eta0-unclipped-nested-v1",
+        "SD15-DDIM-eta0-unclipped-nested-v1",
+        "SD15-consistency-boundary-v1",
+        "SD15-rectified-flow-euler-v1",
+        "SD15-epsilon-converted-flow-euler-v1",
+        "SD15-SwiftBrush-source-x0-v1"
+      ]
+    },
+    "precision": {
+      "enum": [
+        "fp32",
+        "bf16"
+      ]
+    },
+    "metric_implementation": {
+      "const": "torch-fidelity-0.3.0"
+    },
+    "training_updates": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "auxiliary_updates": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "training_uses_real_images": {
+      "type": "boolean"
+    },
+    "sample_images_png_base64": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "maxLength": 2097152
+      }
+    },
+    "effective_batch_size": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "initial_steps": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 1000
+    },
+    "teacher_identity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "training_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "fid": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "inception_score_mean": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "inception_score_std": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "latency_ms_per_image": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "benchmark_batch_size": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "environment": {
+      "type": "object",
+      "required": [
+        "hardware"
+      ],
+      "properties": {
+        "hardware": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "timesteps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 999
+      }
+    },
+    "model_identity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "clip_score_mean": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "clip_score_std": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "denoiser_branches_per_step": {
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "guidance_scale": {
+      "type": "number",
+      "minimum": 1
+    },
+    "prompt_protocol": {
+      "const": "coco2017-first-caption-by-id-v1"
+    },
+    "latency_scope": {
+      "const": "prompt-encoding+denoising+VAE-decoding"
+    },
+    "lora_rank": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sample_prompts": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "maxLength": 10000
+      }
+    },
+    "sample_image_ids": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "clip_score_definition": {
+      "const": "100*max(cosine(image,text),0); mean over caption-image pairs"
+    },
+    "clip_model_identity": {
+      "const": "openai/clip-vit-base-patch32@3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268"
+    },
+    "evaluation_prompt_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reference_manifest_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "distillation_prompt_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "teacher_guidance_scale": {
+      "type": "number",
+      "exclusiveMinimum": 1
+    },
+    "student_prediction_type": {
+      "enum": [
+        "epsilon",
+        "consistency-x0",
+        "rectified-flow-velocity",
+        "epsilon-converted-velocity",
+        "swiftbrush-source-x0"
+      ]
+    },
+    "consistency_sigma_data": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "dmd_regression_weight": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "teacher_pair_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "teacher_pair_generation_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "teacher_pair_nfe": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "paired_regression_batch_size": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "comparison_steps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "edge_weight": {
+      "type": "number",
+      "minimum": 0
+    },
+    "edge_schedule": {
+      "enum": [
+        "noise_aware",
+        "constant"
+      ]
+    },
+    "reflow_updates": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "flow_distillation_updates": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reflow_pair_nfe": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "flow_time_mapping": {
+      "enum": [
+        "round(999*(1-progress))",
+        "nearest-VP-SNR"
+      ]
+    },
+    "student_parameterization": {
+      "enum": [
+        "lora",
+        "full-unet",
+        "teacher"
+      ]
+    },
+    "continuation_policy": {
+      "const": "fresh-coco-one-step-v1"
+    },
+    "continuation_only_steps": {
+      "const": 1
+    },
+    "parent_training_prompt_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "parent_training_updates": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "cumulative_training_updates": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "cumulative_training_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "cumulative_auxiliary_updates": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "generated_images_retained": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "continuation": {
+      "type": "object",
+      "required": [
+        "policy",
+        "parent_training_prompt_hash",
+        "parent_training_updates",
+        "parent_training_prompt_count",
+        "fresh_training_prompt_count",
+        "fresh_training_prompt_hash",
+        "combined_unique_training_images",
+        "training_image_overlap",
+        "additional_updates"
+      ]
+    }
+  },
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "dataset": {
+            "const": "COCO-2017"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "clip_score_mean",
+          "clip_score_std",
+          "clip_model_identity",
+          "clip_score_definition",
+          "prompt_protocol",
+          "evaluation_prompt_hash",
+          "reference_manifest_hash",
+          "distillation_prompt_hash",
+          "teacher_guidance_scale",
+          "guidance_scale",
+          "denoiser_branches_per_step",
+          "latency_scope",
+          "lora_rank",
+          "sample_prompts",
+          "sample_image_ids"
+        ],
+        "properties": {
+          "image_size": {
+            "const": 512
+          },
+          "sampler": {
+            "enum": [
+              "SD15-DDIM-eta0-unclipped-nested-v1",
+              "SD15-consistency-boundary-v1",
+              "SD15-rectified-flow-euler-v1",
+              "SD15-epsilon-converted-flow-euler-v1",
+              "SD15-SwiftBrush-source-x0-v1"
+            ]
+          },
+          "reference_split": {
+            "const": "validation"
+          },
+          "num_samples": {
+            "maximum": 5000
+          },
+          "num_real": {
+            "maximum": 5000
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "consistency"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "consistency_sigma_data",
+          "student_prediction_type"
+        ],
+        "properties": {
+          "dataset": {
+            "const": "COCO-2017"
+          },
+          "student_prediction_type": {
+            "const": "consistency-x0"
+          },
+          "sampler": {
+            "const": "SD15-consistency-boundary-v1"
+          },
+          "sampling_steps": {
+            "const": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "enum": [
+              "dmd",
+              "dmd_grouped",
+              "dmd_perceptual",
+              "dmd_diversity",
+              "dmd_perceptual_diversity"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "dmd_regression_weight",
+          "teacher_pair_count",
+          "teacher_pair_nfe",
+          "teacher_pair_generation_seconds",
+          "paired_regression_batch_size"
+        ],
+        "properties": {
+          "dataset": {
+            "const": "COCO-2017"
+          },
+          "sampling_steps": {
+            "const": 1
+          },
+          "teacher_pair_nfe": {
+            "minimum": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "edge_weight_low"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "edge_weight",
+          "edge_schedule"
+        ],
+        "properties": {
+          "dataset": {
+            "const": "COCO-2017"
+          },
+          "edge_weight": {
+            "const": 0.03
+          },
+          "edge_schedule": {
+            "const": "noise_aware"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "edge_weight_high"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "edge_weight",
+          "edge_schedule"
+        ],
+        "properties": {
+          "dataset": {
+            "const": "COCO-2017"
+          },
+          "edge_weight": {
+            "const": 0.3
+          },
+          "edge_schedule": {
+            "const": "noise_aware"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "instaflow"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "student_prediction_type",
+          "teacher_pair_count",
+          "teacher_pair_nfe",
+          "reflow_pair_nfe",
+          "reflow_updates",
+          "flow_distillation_updates",
+          "flow_time_mapping"
+        ],
+        "properties": {
+          "dataset": {
+            "const": "COCO-2017"
+          },
+          "sampling_steps": {
+            "const": 1
+          },
+          "sampler": {
+            "enum": [
+              "SD15-rectified-flow-euler-v1",
+              "SD15-epsilon-converted-flow-euler-v1"
+            ]
+          },
+          "student_prediction_type": {
+            "enum": [
+              "rectified-flow-velocity",
+              "epsilon-converted-velocity"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "required": [
+                "continuation_policy"
+              ]
+            },
+            "then": {
+              "properties": {
+                "reflow_updates": {
+                  "const": 0
+                },
+                "teacher_pair_nfe": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "student_parameterization"
+        ],
+        "properties": {
+          "student_parameterization": {
+            "const": "full-unet"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "source_commit",
+          "terminal_alpha_cumprod",
+          "student_prediction_type"
+        ],
+        "properties": {
+          "lora_rank": {
+            "const": 0
+          },
+          "terminal_alpha_cumprod": {
+            "const": 0.0047
+          },
+          "student_prediction_type": {
+            "const": "swiftbrush-source-x0"
+          }
+        }
+      },
+      "else": {
+        "if": {
+          "required": [
+            "method"
+          ],
+          "properties": {
+            "method": {
+              "const": "teacher"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "lora_rank": {
+              "minimum": 0
+            }
+          }
+        },
+        "else": {
+          "properties": {
+            "lora_rank": {
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "continuation_policy"
+        ]
+      },
+      "then": {
+        "required": [
+          "continuation",
+          "continuation_only_steps",
+          "parent_training_prompt_hash",
+          "parent_training_updates",
+          "cumulative_training_updates"
+        ],
+        "properties": {
+          "dataset": {
+            "const": "COCO-2017"
+          },
+          "sampling_steps": {
+            "const": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "teacher_pair_nfe": {
+            "minimum": 1
+          },
+          "reflow_updates": {
+            "minimum": 1
+          }
+        }
+      }
+    }
+  ]
+}

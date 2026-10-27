@@ -1,0 +1,9 @@
+extends: sd15.yaml
+name: instaflow
+output_dir: runs/sd15/instaflow
+train:
+  mode: instaflow
+  stages: [1]
+  updates_per_stage: 3000
+  instaflow_pair_count: 256
+  edge_weight: 0.0

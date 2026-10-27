@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "few-step-diffusion"
+version = "0.1.0"
+description = "Stable Diffusion LoRA distillation, controlled experiments, and CVPR report pipeline"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "torch==2.8.0", "torchvision==0.23.0", "diffusers==0.35.1",
+  "huggingface-hub==0.34.4", "safetensors==0.6.2", "numpy==2.2.6",
+  "Pillow==11.3.0", "PyYAML==6.0.2", "matplotlib==3.10.5",
+  "torch-fidelity==0.3.0", "jsonschema==4.25.1",
+  "pyarrow==21.0.0", "accelerate==1.10.1",
+  "scipy==1.16.1",
+  "pyparsing==3.2.3",
+  "tqdm==4.70.1", "wandb==0.21.1",
+  "pydantic==2.11.7",
+  "lpips==0.1.4",
+  "transformers==4.55.4", "peft==0.17.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.1", "ruff==0.12.11"]
+
+[project.scripts]
+fsd = "few_step_diffusion.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+

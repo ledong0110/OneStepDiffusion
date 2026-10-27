@@ -1,0 +1,5 @@
+extends: sd15.yaml
+name: proposed
+output_dir: runs/sd15/proposed_seed42
+train:
+  edge_weight: 0.1

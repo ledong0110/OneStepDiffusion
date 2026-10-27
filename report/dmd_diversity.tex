@@ -1,0 +1,108 @@
+% CVPR 2026 author-kit document setup; camera-ready mode displays all authors.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage{cvpr}
+\input{preamble}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\def\paperID{}
+\def\confName{CVPR}
+\def\confYear{2026}
+\input{generated/dmd_diversity/settings.tex}
+\title{Teacher-Guided Diversity Matching for One-Step Diffusion}
+\author{Le Duc Dong \quad Nguyen Huu Thuat \quad Pham Viet Hoang \quad La Nguyen Gia Hy\\CE7454 Project 2}
+\begin{document}
+\maketitle
+\begin{abstract}
+We study direct one-step Stable Diffusion distillation under a fixed low-rank
+student budget. Starting from the same DMD-inspired checkpoint, we compare
+latent and perceptual regression, with and without a teacher-calibrated
+same-prompt diversity objective. Four controlled variants share training
+captions, teacher pairs, generator updates, and evaluation noise. This draft
+imports measured results; one training seed limits the strength of conclusions.
+\end{abstract}
+\section{Motivation and related work}
+Distribution Matching Distillation (DMD) uses real and fake score estimates
+to train a direct one-step generator, with perceptual regression against
+teacher-generated samples~\cite{yin2024dmd}. Our existing implementation uses
+latent MSE and rank-matched LoRA adapters. The question here is whether
+perceptual regression and explicit same-prompt variation matching improve this
+restricted setting. Cross-sample relational distillation is established in
+RDD~\cite{feng2024rdd}; CoDMD studies relational regularization for few-step
+video~\cite{zhang2026codmd}. We evaluate a specific image-level extension rather
+than claim a new divergence or a reproduction of their training recipes.
+\section{Method}
+A rank-\DMDStudentRank{} student maps initial Gaussian noise and a text caption
+to a clean latent in one denoiser evaluation. The frozen VAE supplies RGB images
+for training losses. Teacher and auxiliary score estimates supply the normalized
+DMD gradient; the auxiliary scorer is fitted to student-generated noisy latents.
+Our objective is
+\begin{equation}
+L=L_{\mathrm{DMD}}+0.25L_{\mathrm{reg}}+\lambda_d L_{\mathrm{div}}.
+\end{equation}
+Regression is either latent MSE or LPIPS-VGG~\cite{zhang2018lpips} after decoding
+and clamping RGB to $[-1,1]$. Each cached regression group contains two teacher
+outputs for the same prompt with independent initial noise. Let $G_i$ and $T_i$
+be the student and teacher RGB outputs for the same seed $i$. With frozen
+LPIPS-VGG distance $d$, we use
+\begin{equation}
+L_{\mathrm{div}}=\left[d(G_1,G_2)-\operatorname{sg}(d(T_1,T_2))\right]^2.
+\end{equation}
+Here $\operatorname{sg}$ stops gradients. The teacher specifies the desired
+variation, instead of rewarding unrestricted image separation. Both student
+branches receive gradients; teacher, VAE and LPIPS weights remain frozen.
+Only the student denoiser and VAE are required during inference. No edge loss
+is used in these experiments.
+\section{Controlled protocol}
+All variants continue the same completed \DMDParentUpdates{}-update DMD parent,
+including student/scorer weights, optimizer moments and EMA state. Each receives
+\DMDPhaseUpdates{} additional generator and scorer updates, for
+\DMDCumulativeUpdates{} cumulative generator updates. Seed is \DMDTrainingSeed{}.
+The effective batch is 16, using microbatch two and eight accumulation passes;
+the regression stream also contains 16 images per update, grouped by prompt.
+All loss settings other than the two experimental factors are matched.
+
+The caption pool consists of \DMDTrainingImages{} fresh COCO-2017 training
+images, disjoint from the original 50,000 training images and from validation.
+The shared anchor bank contains \DMDPairImages{} generated images for
+\DMDPairPrompts{} prompts, two noise seeds per prompt. The frozen SD1.5 teacher
+uses 64 DDIM steps and CFG \DMDGuidance{}; pair preprocessing costs
+\DMDPairNFE{} denoiser evaluations, performed once and shared across variants.
+Regenerating this bank independently for each variant would incur that cost
+each time. Generator and scorer learning rates, warmup/cosine G schedule,
+weight decay and EMA settings follow the recorded parent configuration.
+
+Each student uses one step and one NFE. FID, Inception Score and CLIP use
+\DMDEvalImages{} generated images and the same held-out validation captions,
+reference images and evaluation noise. Diversity uses four fixed noise seeds
+for each of 128 held-out prompts, averaging six pairwise LPIPS-Alex distances
+within each prompt. AlexNet is not used by the training objective. GPU timing
+under concurrent workloads is not a controlled speed comparison. LPIPS-VGG
+and VAE backpropagation add training cost despite equal generator updates.
+\section{Measured results}
+\input{generated/dmd_diversity/measured.tex}
+\begin{table*}[t]
+\centering\small
+\input{generated/dmd_diversity/quality.tex}
+\caption{Factorial comparison at one step / one NFE. Diversity is LPIPS-Alex
+distance across seeds, not an image-quality score. Phase hours exclude the
+inherited parent training.}
+\end{table*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.78\textwidth]{generated/dmd_diversity/samples.pdf}
+\caption{The first four consecutive held-out evaluation images. Each row shares
+its caption and initial noise across methods; columns identify the four variants.
+These samples are selected by fixed order, without quality filtering.}
+\end{figure*}
+\section{Limitations}
+This study has one training seed, reduced prompt coverage in its regression
+bank, a rank-32 student and scorer, and a COCO-2017 subset protocol. It does
+not reproduce full-model DMD benchmark settings. Matching one perceptual
+distance cannot guarantee semantic diversity or prevent every collapsed
+solution. A diversity increase may reflect artifacts, so quality and text
+alignment must be examined jointly. More training seeds and a fixed-hardware
+timing study are required for stronger conclusions. The source code and native
+JSON records preserve parent hashes, pair-bank hashes and loss settings.
+\bibliographystyle{ieeenat_fullname}
+\bibliography{references}
+\end{document}

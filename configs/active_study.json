@@ -1,0 +1,72 @@
+{
+  "scope": "direct one-step DMD proposal, factorial ablations and non-edge baselines",
+  "excluded_methods": [
+    "proposed",
+    "edge_constant",
+    "edge_weight_low",
+    "edge_weight_high"
+  ],
+  "target_cumulative_updates": 36000,
+  "student_nfe": 1,
+  "student_lora_rank": 32,
+  "jobs": [
+    {
+      "method": "dmd_perceptual_diversity",
+      "gpu": 3,
+      "run_dir": "runs/sd15/dmd_diversity_study/dmd_perceptual_diversity_seed42",
+      "result_dir": "results/sd15/dmd_diversity_study"
+    },
+    {
+      "method": "dmd_grouped",
+      "gpu": 3,
+      "run_dir": "runs/sd15/dmd_diversity_study/dmd_grouped_seed42",
+      "result_dir": "results/sd15/dmd_diversity_study",
+      "owner_status": "/home/dong/workspace/few_step_diffusion/artifacts/launches/dmd_diversity_20261017_043649/status.json",
+      "owner_key": "dmd_grouped"
+    },
+    {
+      "method": "dmd_perceptual",
+      "gpu": 1,
+      "run_dir": "runs/sd15/dmd_diversity_study/dmd_perceptual_seed42",
+      "result_dir": "results/sd15/dmd_diversity_study"
+    },
+    {
+      "method": "dmd_diversity",
+      "gpu": 2,
+      "run_dir": "runs/sd15/dmd_diversity_study/dmd_diversity_seed42",
+      "result_dir": "results/sd15/dmd_diversity_study"
+    },
+    {
+      "method": "baseline",
+      "gpu": 0,
+      "run_dir": "runs/sd15/fresh68287/baseline_seed42",
+      "result_dir": "results/sd15/fresh68287"
+    },
+    {
+      "method": "dmd",
+      "gpu": 3,
+      "run_dir": "runs/sd15/fresh68287/dmd_seed42",
+      "result_dir": "results/sd15/fresh68287"
+    },
+    {
+      "method": "consistency",
+      "gpu": 2,
+      "run_dir": "runs/sd15/fresh68287/consistency_seed42",
+      "result_dir": "results/sd15/fresh68287"
+    },
+    {
+      "method": "instaflow",
+      "gpu": 3,
+      "run_dir": "runs/sd15/fresh68287/instaflow_seed42",
+      "result_dir": "results/sd15/fresh68287",
+      "owner_status": "/home/dong/workspace/few_step_diffusion/artifacts/launches/sd15_continuation_20261017_031658/status.json",
+      "owner_key": "3"
+    },
+    {
+      "method": "swiftbrush_lora",
+      "gpu": 2,
+      "run_dir": "runs/sd15/fresh68287/swiftbrush_lora_seed42",
+      "result_dir": "results/sd15/fresh68287_swiftbrush_cfg4p5"
+    }
+  ]
+}

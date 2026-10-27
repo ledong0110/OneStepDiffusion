@@ -1,0 +1,49 @@
+name: baseline
+seed: 42
+output_dir: runs/baseline_seed42
+device: cuda
+precision: bf16
+progress_bar: true
+wandb:
+  mode: auto
+  project: few-step-diffusion
+  entity: null
+  group: null
+  name: null
+  tags: []
+  log_images: true
+model:
+  source: google/ddpm-cifar10-32
+  revision: 267b167dc01f0e4e61923ea244e8b988f84deb80
+data:
+  root: data
+  download: true
+  fake: false
+  batch_size: 32
+train:
+  mode: distill
+  initial_steps: 64
+  stages: [32, 16, 8, 4, 2, 1]
+  updates_per_stage: 5000
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  warmup_steps: 200
+  grad_accumulation: 1
+  max_grad_norm: 1.0
+  ema_decay: 0.999
+  min_snr_gamma: 5.0
+  edge_weight: 0.0
+  edge_schedule: noise_aware
+  save_every: 1000
+  log_every: 25
+  preview_every: 1000
+eval:
+  steps: [64, 32, 16, 8, 4, 2, 1]
+  num_samples: 10000
+  batch_size: 64
+  seed: 12345
+  reference_split: test
+  num_real: 10000
+  benchmark_batch_size: 1
+  benchmark_repeats: 20
+  benchmark_warmup: 3

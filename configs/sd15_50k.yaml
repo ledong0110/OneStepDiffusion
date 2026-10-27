@@ -1,0 +1,21 @@
+extends: sd15.yaml
+output_dir: runs/sd15/scale50k/baseline_seed42
+study_seeds: [42]
+data:
+  train_limit: 50000
+train:
+  stages: [32, 16, 8, 4, 2, 1]
+  updates_per_stage: 3000
+  grad_accumulation: 16
+  warmup_steps: 100
+  save_every: 250
+  log_every: 10
+  preview_every: 1000
+  dmd_pair_count: 5000
+  instaflow_pair_count: 50000
+  instaflow_prediction_type: epsilon-converted-velocity
+eval:
+  steps: [64, 1]
+  comparison_steps: 1
+  num_samples: 5000
+  num_real: 5000

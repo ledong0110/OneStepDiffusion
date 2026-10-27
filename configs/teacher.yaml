@@ -1,0 +1,9 @@
+extends: base.yaml
+name: scratch_teacher
+output_dir: runs/scratch_teacher_seed42
+model:
+  source: scratch
+train:
+  mode: teacher
+  updates_per_stage: 100000
+  learning_rate: 0.0001

@@ -1,0 +1,43 @@
+% CVPR 2026 author-kit document setup; camera-ready mode displays all authors.
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage{cvpr}
+\input{preamble}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\def\paperID{}
+\def\confName{CVPR}
+\def\confYear{2026}
+\title{Teacher-Calibrated Perceptual Diversity: Qualitative Gallery}
+\author{Le Duc Dong \quad Nguyen Huu Thuat \quad Pham Viet Hoang \quad La Nguyen Gia Hy\\CE7454 Project 2}
+\begin{document}
+\maketitle
+Additional qualitative comparisons are shown below. Each student has
+completed the full 36,000-step training budget and uses one step / one NFE.
+All rows use the exact same recorded input caption and evaluation noise
+across methods. SwiftBrush uses teacher CFG 4.5 and FP32; other students
+use CFG 7.5 and BF16. SD1.5 is a 64-step / 128-NFE teacher reference.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/active_study/all_samples_first4.pdf}
+\caption{Validation examples 1--4 in their original order.
+These examples include failures and permit checking
+that every selected row shares its caption and initial noise. Quality metrics
+are calculated on all 5,000 generated validation images.}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/active_study/all_samples_last4.pdf}
+\caption{Validation examples 5--8 in their original order, completing the first eight
+evaluation outputs.}
+\end{figure*}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/active_study/failure_samples.pdf}
+\caption{Selected failure cases: a missing person
+in the dining-room scene and incorrect requested color differences between
+teddy bears. These failures remain visible alongside the successful demo.}
+\end{figure*}
+\input{generated/active_study/prompt_control.tex}
+\input{generated/active_study/interpolation_figure.tex}
+\input{generated/active_study/custom_figure.tex}
+\end{document}

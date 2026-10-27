@@ -1,0 +1,5 @@
+extends: dmd_perceptual_diversity.yaml
+name: dmd_diversity
+output_dir: runs/sd15/dmd_diversity_study/dmd_diversity_seed42
+train:
+  dmd_regression_type: latent_mse

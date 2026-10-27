@@ -1,0 +1,298 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage[pagebackref,breaklinks,colorlinks]{hyperref}
+\input{generated/study.tex}
+\title{Noise-Aware Edge Regularization for Few-Step Diffusion Distillation}
+\author{Le Duc Dong \quad Nguyen Huu Thuat \quad Pham Viet Hoang \quad La Nguyen Gia Hy\\CE7454 Project 2}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study the quality--cost trade-off of diffusion distillation using
+\StudyDataset{}. Our proposed loss weights image-gradient supervision by
+signal level. Controlled comparisons include teacher shortcuts, progressive
+distillation, constant-edge supervision, SwiftBrush-inspired VSD, consistency
+distillation, DMD-inspired training, and InstaFlow-inspired reflow. This working draft imports measured
+tables and figures; empirical conclusions remain pending.
+\end{abstract}
+
+\section{Problem and research question}
+Can a few-step student retain more of a teacher's image quality at an identical
+training budget by concentrating edge supervision on lower-noise intervals?
+\ifStudySD
+Our setting is text-to-image generation at $512\times512$ with Stable Diffusion
+1.5~\cite{rombach2022ldm}. Rank-\StudyLoRARank{} LoRA adapters~\cite{hu2022lora}
+reduce training and checkpoint cost. The pretrained backbone, text encoder,
+and variational autoencoder (VAE) remain frozen.
+\else
+Our setting is unconditional generation of $\StudyResolution\times\StudyResolution$ RGB
+\StudyDataset{} images.
+\fi
+We measure quality, denoiser evaluations (NFE), and synchronized latency
+separately to account for hardware and batch effects.
+
+Figure~\ref{fig:samples} presents fixed-noise samples at the indicated inference budgets.
+\input{generated/qualitative_figure.tex}
+
+\section{Related work}
+DDPM learns denoising predictions at multiple noise levels~\cite{ho2020ddpm}.
+DDIM permits deterministic trajectories through selected levels~\cite{song2021ddim}.
+Progressive distillation trains one student transition to reproduce two teacher
+transitions, then repeats the step-count reduction~\cite{salimans2022progressive}.
+Consistency models pursue an alternative endpoint-prediction
+objective~\cite{song2023consistency}. Distribution matching distillation instead
+matches generated and teacher distributions using score
+information~\cite{yin2024dmd}. SwiftBrush uses variational score distillation
+without external training images~\cite{nguyen2024swiftbrush}.
+InstaFlow straightens noise--image couplings with reflow before one-step
+distillation~\cite{liu2024instaflow}. Recent work includes WaDi's low-rank
+weight-direction adapters~\cite{wang2026wadi} and pixel MeanFlow's one-step
+generation without a latent autoencoder~\cite{lu2026pixelmeanflow}. These
+2026 methods provide context rather than measured baselines: their adapter or
+pixel-space model settings differ from our fixed SD1.5/LoRA protocol.
+We evaluate the regularizer as a hypothesis without claiming established novelty.
+
+\section{Method}
+\paragraph{Forward process and deterministic transitions.}
+Let $x_t=\alpha_t x_0+\sigma_t\epsilon$, where
+$\alpha_t^2=\bar\alpha_t$, $\sigma_t^2=1-\bar\alpha_t$, and
+$\epsilon\sim\mathcal N(0,I)$. The network predicts noise, with clean-image
+estimate $\hat x_0=(x_t-\sigma_t\epsilon_\theta(x_t,t))/\alpha_t$.
+An unclipped deterministic DDIM step to $s<t$ is
+\begin{equation}
+ x_s=\alpha_s\hat x_0+\sigma_s\epsilon_\theta(x_t,t).
+\end{equation}
+The clean boundary uses $\alpha=1,\sigma=0$. Student grids take every second
+teacher point, preserving endpoints between training and inference.
+\ifStudySD
+Here $x$ denotes $4\times64\times64$ scaled VAE latents, and denoisers receive
+frozen CLIP text embeddings. The first teacher uses classifier-free guidance
+(CFG) \StudyGuidance{}; later teachers and students use one conditional branch.
+Guidance is incorporated into distillation targets rather than applied again to
+the student. A guided teacher step counts as two NFE even when batched together.
+\fi
+
+\paragraph{Two-to-one distillation.}
+The frozen teacher takes two steps, $t\rightarrow m\rightarrow s$, to produce
+$x_s^T$. Inverting one student step yields a stopped clean-image target
+\begin{equation}
+ \tilde x_0=\frac{x_s^T-(\sigma_s/\sigma_t)x_t}
+ {\alpha_s-(\sigma_s/\sigma_t)\alpha_t}.
+\end{equation}
+Each stage's EMA initializes the next teacher and student. Our baseline adapts
+progressive distillation with pretrained epsilon prediction and clipped-SNR
+weighting, rather than the original parameterization and schedule.
+
+\paragraph{Proposed edge loss.}
+Write $D_x,D_y$ for first-order horizontal and vertical image differences.
+Per image, let $E_\nabla$ be the average squared discrepancy between these
+differences in $\hat x_0$ and $\tilde x_0$. We optimize
+\begin{equation}
+ \mathcal L=\mathbb E\!\left[w_t\left(
+ \|\hat x_0-\tilde x_0\|^2+\lambda g_t E_\nabla\right)\right],
+\end{equation}
+where $w_t=\min(\mathrm{SNR}(t),5)$ and $g_t=\alpha_t^2$.
+Reconstruction and edge terms use mean reductions. \ifStudySD
+The reconstruction term uses latent space; $E_\nabla$ uses decoded RGB
+predictions and targets. The frozen decoder passes gradients to the student,
+with activation checkpointing to limit memory.\fi{}
+The baseline sets $\lambda=0$;
+the constant-edge ablation sets $g_t=1$; the proposed variant uses
+$\lambda=0.1$ and the noise-aware gate, targeting reliable spatial signal.
+Over-sharpening and reduced diversity remain possible.
+
+\paragraph{SwiftBrush-inspired comparison.}
+\ifStudySD
+We adapt score distillation to caption-conditioned SD latents.
+\else
+We adapt score distillation to unconditional \StudyDataset{} pixels.
+\fi
+Let $G_\theta(z)$ be the one-step student's clean estimate. A frozen teacher
+$\epsilon_\phi$ supplies the real score and a trainable auxiliary U-Net
+$\epsilon_\psi$ estimates the current generator's score. For
+$y_t=\alpha_tG_\theta(z)+\sigma_t\epsilon$, we inject the stopped gradient
+$\sigma_t^2(\epsilon_\phi(y_t,t)-\epsilon_\psi(y_t,t))$ into the generator.
+The auxiliary model minimizes $\alpha_t^2\|\epsilon_\psi(y_t,t)-\epsilon\|^2$
+on detached images, alternating one generator and one scorer update.
+\ifStudySD
+Teacher and auxiliary predictions use the same CFG \StudyGuidance{}; the
+auxiliary denoising update drops text conditioning with probability 0.1.
+Both networks use rank-\StudyLoRARank{} adapters, replacing SwiftBrush's full
+generator training. Our optimizer, learning rates, EMA and scorer sample reuse
+also differ from the source recipe; this is \emph{SwiftBrush-inspired VSD}.
+A separate settings variant retains rank-32 students with source Adam rates,
+rank-64 q/v scorers and CFG 4.5; its results are excluded from this shared-CFG table.
+\else
+We replace latent text conditioning, CFG, and LoRA with unconditional pixels
+and a full auxiliary U-Net. This is labelled \emph{SwiftBrush-inspired VSD}.
+\fi
+
+\ifStudySD
+\paragraph{Consistency distillation.}
+We match a student's endpoint prediction at $t$ to a stopped EMA endpoint at
+$s$, after one guided teacher DDIM transition. For $r=\sigma_t/\alpha_t$ and
+$b=0.5$, the endpoint is
+\begin{equation}
+ f_\theta(x_t,t)=\frac{b^2x_t/\alpha_t}{r^2+b^2}
+                  +\frac{r\hat x_0}{\sqrt{r^2+b^2}}.
+\end{equation}
+This enforces $f(x,-1)=x$. Adjacent intervals use the original 64-point grid;
+latent L2 trains one-step inference. This VP/LoRA blend adapts consistency
+distillation~\cite{song2023consistency}, rather than its EDM/LPIPS recipe.
+
+\paragraph{DMD-inspired comparison.}
+We normalize $\hat x_0^{F}-\hat x_0^{T}$ by the per-sample mean absolute residual
+$|G-\hat x_0^{T}|$ and inject the stopped direction into $G$~\cite{yin2024dmd}.
+The teacher uses CFG \StudyGuidance{}; the fake scorer uses CFG 1 and unweighted
+epsilon denoising. A separate paired stream adds $0.25$ times latent L2 to fixed
+noise--teacher-output pairs (\StudyDMDPairs{} per seed). These use 64 guided
+DDIM steps. LoRA and latent L2 replace full-generator training and perceptual
+regression. This is DMD-inspired; pair time and NFE are reported.
+
+\paragraph{InstaFlow-inspired comparison.}
+We cache the same type of noise--teacher-output pairs, then fit a direct
+velocity head on $x_u=(1-u)z+u x_T$, with target $x_T-z$ and uniform $u$.
+The first half of the generator budget trains reflow. Its frozen EMA generates
+a new coupling using 64 Euler steps; the second half fits its endpoint velocity
+at $u=0$. Inference is $x=z+v_\theta(z,0,c)$: one step, one NFE.
+\ifStudyFlowVP
+The velocity is $v_\theta=\hat x_0-\epsilon_\theta$, with normalized input
+$x_u/\sqrt{u^2+(1-u)^2}$ and the nearest pretrained VP signal-to-noise level.
+This conversion preserves the frozen epsilon head's meaning; the nonzero
+terminal signal remains an approximation at $u=0$.
+\else
+The U-Net predicts velocity directly with time labels
+$\operatorname{round}(999(1-u))$.
+\fi
+Rank-matched LoRA and \StudyFlowPairs{} cached pairs per phase adapt
+InstaFlow~\cite{liu2024instaflow}; this is not its released
+full-model training recipe. Both pair-generation passes count toward training
+time and the reported pair NFE.
+\fi
+
+\section{Experimental protocol}
+The default teacher is the public \texttt{\StudyTeacher} checkpoint
+at the pinned revision recorded in the configuration.
+\ifStudySD
+COCO-2017~\cite{chen2015coco} images are sorted by image ID;
+\ifStudyContinuation we skip the original \StudyTrainOffset{} training images and
+use the remaining \StudyTrainCount{} fresh images with shuffled full epochs.
+\else the first \StudyTrainCount{} training images are selected.\fi
+Each image uses its lowest-ID caption. Images use
+bicubic resize and center crop to 512 pixels, with no flips that could contradict
+captions. Evaluation uses the first \StudyReferenceCount{} validation image--caption
+pairs under the same ordering. These are fixed subsets rather than full-dataset
+benchmark results.
+\else
+Progressive training uses only the
+\StudyTrainCount{}-image training split, with random horizontal flips and uniform
+minibatch sampling with replacement. Final quality evaluation uses the official
+\StudyReferenceCount{}-image \StudyReferenceSplit{} split.
+\fi
+Pilot selection must be disclosed before the final sweep. \StudySplitNote{}
+
+\ifStudyContinuation
+Each method resumes its completed one-step student, optimizer, and EMA state
+after \StudyParentUpdates{} generator updates. The continuation uses only
+one-step generation and adds \StudyStageUpdates{} generator updates per method,
+bringing the cumulative budget to \StudyTotalUpdates{}. Effective batch size is
+\StudyBatchSize{} (\StudyMicroBatch{} per microbatch, accumulating
+\StudyAccumulation{} microbatches); optimizer families and loss settings are
+preserved, with a new cosine schedule for AdamW methods. Progressive variants
+retain their frozen two-step teachers. Consistency retains its adjacent teacher
+grid; DMD preserves its scorer and uses fresh regression pairs. InstaFlow
+continues only endpoint distillation with newly coupled prompts from the
+parent's frozen reflow teacher; its reflow optimization phase is not repeated.
+SwiftBrush's CFG-4.5 source-recipe adaptation is evaluated separately from this
+CFG-\StudyGuidance{} cohort. Training seed(s) are \StudySeeds{}; evaluation
+captions and initial noise are shared. Auxiliary updates and pair-generation
+cost are reported separately from generator updates.
+\else
+The configured curriculum starts with \StudyInitialSteps{} teacher steps:
+$\StudyCurriculum$.
+Progressive variants receive \StudyStageUpdates{} generator updates per stage,
+effective batch size \StudyBatchSize{} (\StudyMicroBatch{} per microbatch, accumulating
+\StudyAccumulation{} microbatches), AdamW with learning rate $\StudyLearningRate$,
+and EMA decay \StudyEMADecay{}.
+Training seed(s) are \StudySeeds{}. Every method is evaluated using
+the same initial evaluation noise\ifStudySD{} and captions\fi. The VSD adaptation receives \StudyVSDUpdates{} generator
+updates, matching the cumulative progressive budget at one step, plus \StudyVSDUpdates{}
+auxiliary updates. It consumes no real images during distillation\ifStudySD{}, but uses the same training captions\fi. Generator
+update matching does not equalize compute; scorer updates and time
+are reported separately. \ifStudySD
+Consistency and DMD also receive \StudyVSDUpdates{} generator updates;
+DMD adds \StudyVSDUpdates{} scorer updates and a separate regression stream.
+InstaFlow splits the same total generator updates equally between reflow and
+endpoint distillation and adds two disclosed pair-generation passes.
+EMA tracks adapter weights.\else The optional scratch teacher is separate.\fi
+\fi
+\ifStudySD The matched one-step pilot trains every student through one-step inference;
+teacher rows are references with separately stated NFE. Optional edge-weight
+ablations use $\lambda\in\{0.03,0.1,0.3\}$ with the same seeds and updates,
+alongside no-edge and constant-edge controls.\fi
+
+\paragraph{Imported evaluation settings.}
+\input{generated/protocol.tex}
+FID and Inception Score use the same pinned \texttt{torch-fidelity}
+implementation. \ifStudySD CLIP ViT-B/32 cosine similarity measures text alignment;
+we report $100\max(\cos(I,c),0)$ averaged over image--caption pairs.\fi{}
+Cross-paper FID rankings are not supported by this protocol.
+Latency excludes disk I/O, PNG export, metric extraction, and initial noise
+allocation, includes all denoiser transitions\ifStudySD{}, text encoding, and VAE decoding\fi, and uses warm-up plus device
+synchronization. Runtime rows are separated by hardware and batch size.
+
+\section{Results and analysis}
+\paragraph{Current evidence.}
+\input{generated/result_status.tex}
+\IfFileExists{generated/checkpoint_evidence.tex}{\input{generated/checkpoint_evidence.tex}}{}
+\begin{table}[t]
+ \centering\scriptsize
+ \resizebox{\linewidth}{!}{\input{generated/quality_table.tex}}
+ \caption{One-step student quality and teacher references under the shared protocol. Values with $\pm$ denote
+ variation across training seeds. Single-seed rows do not establish robustness.}
+ \label{tab:quality}
+\end{table}
+\begin{table}[t]
+ \centering\scriptsize
+ \resizebox{\linewidth}{!}{\input{generated/latency_table.tex}}
+ \caption{Synchronized latency, grouped by actual hardware and batch size.
+ Compare speed only within the same hardware and precision setting.}
+ \label{tab:latency}
+\end{table}
+\begin{table}[t]
+ \centering\scriptsize
+ \resizebox{\linewidth}{!}{\input{generated/cost_table.tex}}
+ \caption{Cumulative one-step training cost. G/F count generator/scorer updates;
+ Pair NFE counts guided-teacher and reflow-teacher calls to build cached pairs. Hours include
+ pair generation. Matching G does not match total compute.}
+ \label{tab:cost}
+\end{table}
+
+\input{generated/ablation_section.tex}
+\input{generated/extra_qualitative.tex}
+
+\paragraph{Analysis to complete after training.}
+Assess the gate against both controls across seeds and inference budgets.
+Inspect prompt/noise-matched failures, diversity, stability, memory, and time;
+account for scorer and regression costs. Conclusions require measured evidence.
+
+\section{Limitations and conclusion}
+One teacher and a limited dataset restrict generality.
+\ifStudySD
+Small adapters and training budgets may restrict quality.
+\else
+It cannot establish performance on high-resolution text-to-image generation.
+\fi
+Epsilon parameterization and nonzero terminal signal may limit one-step quality.
+FID depends on sample count and incompletely describes diversity and artifacts.
+The gate is weakest at high noise; one-step negative results are informative.
+This unfinished draft claims no empirical improvement.
+
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{references}
+}
+\end{document}

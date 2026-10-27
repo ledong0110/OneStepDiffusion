@@ -1,0 +1,27 @@
+# Source-aligned training recipe, kept separate from the rank-matched LoRA study.
+# The teacher/prompt corpus and 18k-update budget remain project adaptations.
+extends: sd15_50k.yaml
+name: swiftbrush_source
+output_dir: runs/sd15/swiftbrush_source_seed42
+precision: fp32
+model:
+  guidance_scale: 4.5
+  lora_rank: 64
+  lora_alpha: 108
+  lora_targets: [to_q, to_v]
+train:
+  mode: vsd
+  vsd_recipe: swiftbrush-source-v1
+  stages: [1]
+  updates_per_stage: 18000
+  learning_rate: 0.000001
+  fake_learning_rate: 0.001
+  fake_updates_per_step: 1
+  weight_decay: 0.0
+  warmup_steps: 0
+  ema_decay: 0.9999
+  vsd_t_min: 0.02
+  vsd_t_max: 0.98
+wandb:
+  group: sd15-swiftbrush-source
+  tags: [source-aligned, full-unet, separate-capacity]

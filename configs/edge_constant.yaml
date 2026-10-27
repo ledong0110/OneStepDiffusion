@@ -1,0 +1,5 @@
+extends: proposed.yaml
+name: edge_constant
+output_dir: runs/edge_constant_seed42
+train:
+  edge_schedule: constant

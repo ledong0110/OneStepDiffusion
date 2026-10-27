@@ -1,0 +1,8 @@
+extends: sd15.yaml
+name: consistency
+output_dir: runs/sd15/consistency_seed42
+train:
+  mode: consistency
+  stages: [1]
+  updates_per_stage: 3000
+  consistency_sigma_data: 0.5
