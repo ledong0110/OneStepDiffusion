@@ -89,6 +89,16 @@ def validate(c):
         if not isinstance(section["seed"], int) or section["seed"] < 0:
             raise ValueError("Training and evaluation seeds must be nonnegative integers")
     tr = c["train"]
+    from .dmd_conflict import validate_gradient_mode
+    validate_gradient_mode(c)
+    from .dmd_noise_agreement import validate_score_mode
+    validate_score_mode(c)
+    from .dmd_response import validate_response_mode
+    validate_response_mode(c)
+    from .recent_objectives import validate_recent
+    validate_recent(c)
+    from .independent_response import validate_independent
+    validate_independent(c)
     recipe = tr.get("vsd_recipe", "adapted")
     if recipe not in ("adapted", "swiftbrush-source-v1"):
         raise ValueError("Unknown vsd_recipe")
@@ -132,7 +142,7 @@ def validate(c):
             raise ValueError("Unknown caption sampling policy")
         if c["eval"]["num_samples"] > 5000 or c["eval"]["num_real"] > 5000:
             raise ValueError("COCO validation has 5000 image/caption pairs")
-    if tr["mode"] not in ("teacher", "distill", "vsd", "consistency", "dmd", "instaflow"):
+    if tr["mode"] not in ("teacher", "distill", "vsd", "consistency", "dmd", "instaflow", "dmd2", "f_distill"):
         raise ValueError("Unknown train.mode")
     if tr["mode"] in ("consistency", "dmd", "instaflow") and not is_stable_diffusion(c):
         raise ValueError("Consistency, DMD, and InstaFlow comparisons require the SD15 profile")
@@ -168,7 +178,7 @@ def validate(c):
     if not tr["stages"]:
         raise ValueError("train.stages must not be empty")
     for steps in tr["stages"]:
-        if tr["mode"] in ("vsd", "consistency", "dmd", "instaflow"):
+        if tr["mode"] in ("vsd", "consistency", "dmd", "instaflow", "dmd2", "f_distill"):
             if tr["stages"] != [1]:
                 raise ValueError("One-step methods use train.stages=[1]")
             break

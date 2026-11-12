@@ -1,0 +1,59 @@
+extends: sd15_50k.yaml
+name: dmd2
+output_dir: runs/sd15/recent36k/dmd2_seed42
+precision: bf16
+model:
+  guidance_scale: 1.75
+  lora_rank: 32
+data:
+  train_offset: 0
+  train_limit: 118287
+  batch_size: 2
+train:
+  mode: dmd2
+  stages:
+  - 1
+  updates_per_stage: 36000
+  grad_accumulation: 8
+  learning_rate: 1.0e-05
+  fake_learning_rate: 1.0e-05
+  discriminator_learning_rate: 1.0e-05
+  weight_decay: 0.01
+  warmup_steps: 0
+  ema_decay: 0.995
+  max_grad_norm: 1.0
+  student_update_frequency: 10
+  gan_weight: 0.001
+  dmd_regression_weight: 0.0
+  edge_weight: 0.0
+  save_every: 1000
+  preview_every: 1000
+  log_every: 10
+  checkpoint_eval_samples: 8
+eval:
+  steps:
+  - 1
+  comparison_steps: 1
+  num_samples: 5000
+  num_real: 5000
+  retain_generated_images: false
+recent_baseline:
+  policy: fastgen-sd15-lora32-coco-two-phase-36k-v1
+  source_commit: 3943fd5cfb2a8266ec53e7e541e4b8d2e5b1e94d
+  phase1_limit: 50000
+  phase1_updates: 18000
+  student_updates: 36000
+  auxiliary_updates: 324000
+  student_initialization: pretrained-sd15
+  full_fake_scorer: true
+  real_training_images_for_discriminator: true
+  density_ratio_batch: full-effective-batch-16
+  teacher_cfg: 1.75
+  differences_from_source:
+  - rank-32 student instead of full student
+  - same COCO training pools as project
+  - effective batch 16 instead of 2048
+  - discrete VP time grid
+  - BF16 compute with FP32 optimized parameters
+  - EMA 0.995 and gradient clipping 1 shared with project
+  - 36000 student updates, not outer-loop iterations

@@ -1,6 +1,6 @@
 PYTHON := .venv/bin/python
 
-.PHONY: setup check smoke pilot full report report-watch
+.PHONY: setup check smoke pilot full report report-watch assignment2 recent-baselines recent-status independent-response independent-status
 setup:
 	bash scripts/setup.sh
 check:
@@ -16,3 +16,13 @@ report:
 	bash scripts/build_report.sh $(ARGS)
 report-watch:
 	$(PYTHON) scripts/build_active_report.py --background $(ARGS)
+assignment2:
+	$(PYTHON) scripts/build_assignment2_report.py --group-id 11 --package $(ARGS)
+recent-baselines:
+	$(PYTHON) scripts/launch_recent_baselines.py launch $(ARGS)
+recent-status:
+	$(PYTHON) scripts/launch_recent_baselines.py status
+independent-response:
+	$(PYTHON) scripts/launch_independent_response.py launch
+independent-status:
+	$(PYTHON) scripts/launch_independent_response.py status

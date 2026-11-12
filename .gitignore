@@ -25,3 +25,6 @@ report/build/
 .env.*
 !.env.example
 .DS_Store
+
+# Machine-local checkpoint destination
+/.checkpoint-storage.json

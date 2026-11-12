@@ -31,7 +31,7 @@ def main():
     args = p.parse_args()
     if args.study == "active" or (args.study is None and not args.results_dir and not args.profile
                                   and not args.study_config):
-        from build_active_report import main as active_report
+        from build_ce7454_report import main as active_report
         active_args = ["--max-pages", str(args.max_pages)]
         if args.no_compile:
             active_args.append("--no-compile")

@@ -1,85 +1,82 @@
 # Few-step Stable Diffusion: experiments and CVPR report
 
-The active study uses **Stable Diffusion 1.5 at 512×512**, rank-32 LoRA students
-and **36,000 total training steps**. The proposal combines DMD, perceptual
-regression and teacher-calibrated same-prompt diversity matching. Comparisons
-include progressive distillation (PD), SwiftBrush,
-consistency distillation, DMD and InstaFlow, plus three factorial ablations.
-Historical edge-loss experiments, CIFAR-10 and CelebA-HQ remain
-optional profiles with separate results.
+The study uses **Stable Diffusion 1.5 at 512×512** and rank-32 LoRA students.
+The current proposal adds **direction-only finite-response alignment** to DMD
+with its original LPIPS regression. It is trained independently from pretrained
+SD1.5 with fresh adapters for **36,000 updates**. Full 5,000-image COCO-2017
+validation gives **FID 28.58, IS 33.02 and CLIP 30.91** at one step / one NFE.
+The historical DMD+LPIPS reference has FID 29.94; its initialization history
+and teacher bank differ. The matched independent zero-response control remains
+in progress. The reports include only completed 36,000-update student checkpoints.
+See [the independent training protocol](docs/INDEPENDENT_RESPONSE.md) and
+[the response pilot plan](docs/DMD_RESPONSE_PLAN.md).
+
+The standard comparisons are progressive distillation, consistency distillation,
+DMD+LPIPS, SwiftBrush and InstaFlow. DMD2 and f-distill are additional ongoing
+experiments. Earlier distance, spatial-agreement and edge experiments remain
+archival studies with separate results.
 
 The supplied handout defines CE7454 Project 2: a four-page CVPR report and
 presentation video. See [the rubric evidence plan](docs/PROJECT_CRITERIA.md).
 The proposed improvement is a hypothesis; setup cannot guarantee a grade.
 
-## Current paper and selected demo
+## CE6190 Assignment 2 — Group 11
 
-Run `make report` or `.venv/bin/python scripts/build_active_report.py` to rebuild
-**[main_report.pdf](main_report.pdf)** beside this README and the optional
-**`report/build/qualitative.pdf`** gallery. The LaTeX build copy remains at
-`report/build/main.pdf`. Successful automatic rebuilds refresh the root-level PDF.
-The primary paper uses the active proposal and non-edge baselines.
-All numerical rows require completed **36k-step, one-step / one-NFE** results
-evaluated on **all 5,000 COCO-2017 validation images**. Unfinished experiments
-are marked pending during training. All nine current experiments have finished
-and passed full validation. All baselines appear in one table; the caption
-records SwiftBrush's CFG-4.5/FP32 settings. The full proposal achieves FID 30.40;
-the perceptual-only ablation achieves 29.94, so the final analysis reports the
-diversity term's tradeoff rather than claiming it improves every metric.
+The separate report for `docs/coursework_2026 v2.pdf` is
+**[CE6190_group_11_report_project2.pdf](CE6190_group_11_report_project2.pdf)**. It expands the
+review and comparison of progressive distillation, consistency distillation,
+DMD, SwiftBrush and InstaFlow, including full-validation metrics, a DMD
+component ablation and matched visual examples. The selected direction-alignment
+proposal appears as **Ours** in the main quality table, matched sample figure
+and conditioning examples. Its detailed design, gradient analysis and
+independent training comparison are in the appendix. The **main report is
+limited to eight pages, including references; the appendix has no page limit**.
+The build checks the main-report boundary separately from the total PDF length.
+This is separate from the CE7454 four-page paper below.
 
-`configs/active_study.json` points to the result folders; native teammate JSONs
-can be placed at the expected method/seed filenames there and imported by
-the same command. The builder checks result schemas, config/checkpoint identity,
-caption/reference hashes, total update budget and the official validation IDs.
-`report/generated/active_study/summary.csv` and `manifest.json` record the values
-and provenance behind the paper.
+Run `make assignment2` to validate completed evaluations, refresh the report, and
+create **`group_11_code_project2.zip`**, containing code and report sources,
+without datasets or model weights. Use `make assignment2 ARGS=--compile-only`
+to compile the saved tables and figures without reading checkpoints or results.
+Both submission files are written beside this README. See
+[Assignment 2 requirement coverage](docs/ASSIGNMENT2_REQUIREMENTS.md).
+The team still needs to confirm that these methods were not used in Project 1.
 
-The main comparison uses the user-selected dog-in-flowers, teddy-bear and
-lighthouse subjects. Dog/lighthouse use the original preset prompts and noise;
-the teddy-bear row reuses the saved validation outputs. Every method uses the
-same caption and noise within each row, with checkpoint identity checks.
-`configs/report_selection.json` points to this portable native comparison.
-The generator `scripts/generate_main_comparison.py --gpu 0 --watch` also fills
-in newly evaluated baselines; it uses CPU text/VAE offload and a 4 GiB GPU limit.
-All eight saved validation outputs and selected failure cases remain in the
-gallery; all 5,000 validation outputs contribute to FID/IS/CLIP.
-The 3-by-4 animal/action grid uses the evaluated 36k proposal and one complete
-grid selected from four candidate seeds, with shared noise seed 12546.
-The compact dog-to-cat figure uses **real CLIP hidden-state interpolation** at
-weights 0, .25, .5, .75 and 1, with fixed noise within each row. Two rows are
-selected from three generated seeds. No generated image is edited or blended.
-Change the selection file and rebuild to choose other recorded samples.
+## CE7454 four-page paper
 
-To regenerate native qualitative panels with CPU text/VAE and a memory-limited
-GPU U-Net (using existing completed model weights):
+**[CE7454_main_report.pdf](CE7454_main_report.pdf)** is the current CE7454 Project 2 report:
+**four pages including references**, using the official CVPR template. It
+contains the direction-alignment objective, full-validation comparison,
+gradient geometry and metric trade-offs, native matched samples, animal/action control,
+and dog-to-cat embedding interpolation. All Ours figures use the evaluated
+independent 36,000-update model.
 
 ```bash
-.venv/bin/python scripts/generate_active_qualitative.py --gpu 1 --resume
-.venv/bin/python scripts/generate_prompt_interpolation.py --gpu 1
+make report
+# Recompile the saved tables and figures only:
+.venv/bin/python scripts/build_ce7454_report.py --reuse-assets
+```
+
+The source is `report/ce7454.tex`; the build copy is `report/build/main.pdf`.
+`configs/assignment2_selected_method.json` pins the shared evaluated proposal.
+Completed evaluations trigger both the CE6190 and CE7454 report builds.
+`make assignment2` also imports newly completed result JSONs and refreshes both
+reports and the code archive. The page limits are checked separately.
+
+The main figure keeps the requested dog, teddy-bear and lighthouse examples,
+using identical prompts and noise across methods. Prompt-control and
+interpolation panels use prespecified noise seeds and genuine model outputs.
+To regenerate them from the selected independent checkpoint:
+
+```bash
+.venv/bin/python scripts/generate_response_qualitative.py \
+  --study independent_response_36k --variant response_scratch --gpu 0 --memory-gib 4
 make report
 ```
 
-The active training workers automatically evaluate their final checkpoints on
-all 5,000 validation images. Ablations also run the four-seed diversity check.
-Start or restore the detached report watcher with:
-
-```bash
-make report-watch
-# Equivalent: .venv/bin/python scripts/build_active_report.py --background
-cat report/build/active_report_status.json
-tail -f report/build/active_report_watch.log
-```
-
-The watcher checks every minute and updates tables, comparison figures and both
-PDFs as each final result arrives, without waiting for the whole queue. It also
-imports teammate JSONs placed in the configured result folders. It retries
-temporary file/build errors and reuses an existing watcher if launched twice.
-The watcher uses CPU only and stays running after VS Code closes while the host
-remains on. After a server restart, run `make report-watch` again. Use `--watch`
-instead of `--background` to run it in the foreground.
-The earlier paper is preserved in `report/legacy_edge.tex`; explicit legacy
-`scripts/build_report.py --results-dir ... --profile ...` builds now write
-`report/build/legacy_edge.pdf`, leaving the active paper intact.
+Historical templates remain in `report/active_study.tex` and
+`report/legacy_edge.tex`. Explicit legacy profile/result arguments build the
+corresponding archival paper.
 
 ## Install and download
 
@@ -748,4 +745,98 @@ git push -u origin main
 
 Commit before final experiments so JSONs record the actual revision. Deliberately
 version selected final results with `git add -f` after review; keep weights outside Git.
+## Spatial noise-agreement candidate
+
+The candidate filters the distribution-matching update using local agreement
+between opposite-noise score probes. LPIPS remains inherited stabilization.
+The two ablations use the unfiltered paired mean or spatially shift the
+agreement map. All three use identical two-probe training budgets; inference
+remains one step. This tests a specific mechanism, not a renamed LPIPS loss.
+
+```bash
+.venv/bin/python scripts/launch_dmd_conflict.py --study dmd_noise_agreement --gpus 2 3 0 1 --max-parallel 3 --min-free-gib 16
+cat runs/sd15/dmd_noise_agreement/status.json
+tail -f runs/sd15/dmd_noise_agreement/agreement/train.jsonl
+```
+
+The detached queue starts each arm from the fixed 36k DMD+LPIPS state and
+runs 500 updates, then full 5,000-image FID/IS/CLIP, 128-prompt diversity and
+native matched-prompt samples. It automatically updates
+[DMD_NOISE_AGREEMENT_RESULTS.md](DMD_NOISE_AGREEMENT_RESULTS.md) and the Assignment 2
+PDF/source package. Re-running the command detects a live supervisor and avoids
+duplicate jobs. The [plan](docs/DMD_NOISE_AGREEMENT_PLAN.md) records the mechanism,
+prior art, ablations, compute differences and limits of interpretation.
+
+## Earlier DMD conflict refinement experiment
+
+This earlier experiment projects away the LPIPS gradient component that
+opposes DMD's distribution-matching gradient. It is an asymmetric PCGrad-style
+application, with a norm-matched LPIPS ablation. The existing best completed
+DMD+LPIPS result (FID 29.94 at 36k updates) is the fixed reference; its extra
+training was cancelled at the user's request. LPIPS regression itself comes
+from DMD. The global projection/norm arms measured FID 30.06/30.06, and the
+module projection/norm arms measured 30.16/30.00, versus 29.94 for the fixed
+reference. None improved measured FID. Projection is not the primary candidate.
+
+```bash
+.venv/bin/python scripts/launch_dmd_conflict.py --gpus 2 3 --max-parallel 2
+.venv/bin/python scripts/launch_dmd_conflict.py --study dmd_block_conflict --gpus 0 1 2 3 --max-parallel 2 --min-free-gib 16
+tail -f runs/sd15/dmd_conflict/project/train.jsonl
+cat runs/sd15/dmd_conflict/status.json
+```
+
+The detached queue is safe to invoke again: it detects an existing supervisor
+and resumes saved work after interruption. It uses the completed 36k DMD+LPIPS
+checkpoint, keeps its full generator/scorer/optimizer/EMA/RNG state, and gives
+the proposal and its ablation 500 additional updates (36,500 total). Rank 32, one-step generation,
+the captions and teacher pairs, and all non-gradient settings are matched.
+The second queue applies projection per LoRA module, with its own norm-matched
+ablation and a 15 GiB PyTorch allocation cap. These four proposal variants have
+identical training budgets. The fixed DMD reference stays at
+36k updates, so comparison with it has a 500-update training-budget difference.
+
+After training, each arm automatically receives full 5,000-image FID/IS/CLIP
+evaluation and a 128-prompt, four-seed diversity evaluation. Results refresh
+[DMD_CONFLICT_RESULTS.md](DMD_CONFLICT_RESULTS.md) and the LaTeX table at
+`report/generated/dmd_conflict_results.tex`. These 36,500-update results are
+kept separate from the older 36k table. Module results appear in
+[DMD_BLOCK_CONFLICT_RESULTS.md](DMD_BLOCK_CONFLICT_RESULTS.md). Both queues
+automatically rebuild the Assignment 2 PDF and source ZIP after evaluation.
+See the [method and protocol](docs/DMD_IMPROVEMENT_PLAN.md).
+
+The queue rechecks available memory before each training/evaluation/preview
+process and can move the next phase to another permitted GPU. Moving an
+evaluation does not restart completed training or change its checkpoint.
+
 # OneStepDiffusion
+
+### Additional DMD2 and f-distill baselines
+
+`make recent-baselines` launches a detached queue for the same COCO training
+pools, rank-32 SD1.5 students and **36,000 student updates per method**.
+`make recent-status` shows live status and resource constraints. The queue
+waits for free GPU memory and checkpoint space; it never stops other jobs.
+It runs checkpoint previews, final 5,000-image evaluation and automatic
+Assignment 2 report updates. See [the recipes and source audit](docs/RECENT_BASELINES.md)
+for the additional auxiliary-update budget and differences from published settings.
+
+### Independent proposal training (36,000 updates)
+
+`make independent-response` schedules a fresh rank-32 proposal and its
+zero-response control from pretrained SD1.5, without loading a distilled
+student or optimizer. `make independent-status` reports teacher-target
+preparation, training or resource waits. The direction-alignment loss is
+active from the first student update. See
+[initialization, budget and launch details](docs/INDEPENDENT_RESPONSE.md).
+
+For the independent and recent-baseline queues, checkpoint storage can be set
+with `FSD_CHECKPOINT_ROOT` or the Git-ignored `.checkpoint-storage.json`:
+
+```json
+{"checkpoint_root": "/mnt/ssd2/dong/few_step_diffusion/checkpoints"}
+```
+
+Fresh runs link only `last.pt`, `checkpoints/`, and `stage_1/` into this location.
+Datasets, teacher targets, logs, configs, results, and reports stay in the project.
+Existing training runs keep their current paths; the launcher never relocates
+live checkpoints. The SSD must remain mounted when using these checkpoint links.

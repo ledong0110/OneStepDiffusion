@@ -1,0 +1,90 @@
+{
+  "repository": "https://github.com/NVlabs/FastGen",
+  "commit": "3943fd5cfb2a8266ec53e7e541e4b8d2e5b1e94d",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "b6a7f163fac288469689e90335c3443b02122a6e830add248705a593a39d25de"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "1256bd5382c9a515968d15a0c1bd775cc5d8af1846f3eaf09cf6a12e4420fb56"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "e27d3412810eb8420110b2595aa86a013628e8f441d65cf75f00e14973f051b7"
+    },
+    {
+      "path": "fastgen/configs/experiments/SD15/config_dmd2.py",
+      "sha256": "7f108881a5f39c7daabde0dd36627c209d47cecca2b9dc54830c09a5a53f9671"
+    },
+    {
+      "path": "fastgen/configs/experiments/SD15/config_f_distill.py",
+      "sha256": "eb9c355d2cf67acabb1db110ec1bf9bab74413d5cfe26dbdffd4bdb45839225f"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/dmd2.py",
+      "sha256": "8a4175e18e4ec7d02a78d11569eb36bc1c347c553ae9f859c63a844ff1d81db0"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/f_distill.py",
+      "sha256": "0cf3207c75378b6c46b3e7c258f85db5e266122430304349febcf0ca1392f7f9"
+    },
+    {
+      "path": "setup.py",
+      "sha256": "41abae99747877e75b56410fa24a35fdc7fa3d17fac36ba6514c323f726c76cd"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "1b9f563732d0b93d4bbc3334771dd07b869e2a260479f72b81e4cbad2e0d2baf"
+    },
+    {
+      "path": "fastgen/configs/methods/config_dmd2.py",
+      "sha256": "79554d068c68f4d26d4a13e4d140b45fac10fd81995618aed770d0d3ef06f19b"
+    },
+    {
+      "path": "fastgen/configs/methods/config_f_distill.py",
+      "sha256": "8ed9a7c1c5214c18e0f5d8fcddf9ac37d95294af32fdc40c4cf5cfa20ae88355"
+    },
+    {
+      "path": "fastgen/configs/net.py",
+      "sha256": "3b54a70f9085c6cf0e4c4675c04bd9ee9300b2a2e1bca534b7585455302117d0"
+    },
+    {
+      "path": "fastgen/configs/data.py",
+      "sha256": "333fddb03782c379b743bbed676aa20c58b8d0edece3f61bc647738ff617b55d"
+    },
+    {
+      "path": "fastgen/networks/SD15/network.py",
+      "sha256": "fdc042873e56e431b40e8262e3048b355464fe95bcb12ec27358e2388353ec54"
+    },
+    {
+      "path": "fastgen/networks/lora_utils.py",
+      "sha256": "b56ce4b6c89a0b88106344ee235051016f7bbb424819ba9c468ce5b2a07da381"
+    },
+    {
+      "path": "fastgen/configs/discriminator.py",
+      "sha256": "34b67597d68ace9746fed0489980a998e4f0ddda6a9c86c47c96d49cfac46724"
+    },
+    {
+      "path": "fastgen/networks/discriminators.py",
+      "sha256": "a04670072fbea39e6b3dd6de84c973c5534c1adbcfb1e1bc8a5af92355327e65"
+    },
+    {
+      "path": "fastgen/trainer.py",
+      "sha256": "f8c5c8ed11b272c7ffee7d9680fb5d05d093706aa8f84eb6f07548fe9ab81716"
+    },
+    {
+      "path": "fastgen/methods/common_loss.py",
+      "sha256": "30f7d324ae496a0b8083830eb5a6877b86ebd9f9f8c8d039ffbfaecde6b12f98"
+    },
+    {
+      "path": "fastgen/configs/opt.py",
+      "sha256": "566abecc055c271c67a2b144ab65adcf3101b436925fd23cd126ddc3bae4c462"
+    },
+    {
+      "path": "fastgen/configs/config.py",
+      "sha256": "b5f5b0db113c38c3bc8a83820794b6384fe51bc8a31f770f06cf4474152ee734"
+    }
+  ]
+}

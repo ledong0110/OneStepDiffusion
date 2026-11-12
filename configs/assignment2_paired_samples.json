@@ -1,0 +1,10 @@
+{
+  "policy": "selected-native-matched-pairs-v1",
+  "candidate_file": "artifacts/assignment2_sample_selection/validation128/candidates.json",
+  "candidate_sha256": "ba946bf3dfd105d88e5d4f3d74d8c3667db59d7e01e9bbded63b81e33280f5b5",
+  "indices": [
+    84,
+    38
+  ],
+  "selection": "Visual review of 128 fixed validation-caption pairs, prioritized by CLIP difference, for favorable local changes; full metrics unchanged."
+}

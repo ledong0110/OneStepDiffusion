@@ -13,7 +13,7 @@ from tqdm.auto import tqdm
 from .diffusion import (coefficients, collapsed_x0_target, ddim_step, distillation_loss,
                         edge_error, make_grid, nested_grid, predict_x0)
 from .distillation_objectives import dmd_surrogate, rectified_flow_batch
-from .runtime import atomic_json, experiment_lock
+from .runtime import atomic_json, experiment_lock, sha256
 from .sd_data import CaptionStream, manifest_hash
 from .sd_models import (PREVIEW_PROMPTS, SDBundle, adapter_state, add_lora, epsilon,
                         consistency_prediction, set_consistency_prediction,
@@ -52,6 +52,10 @@ def save_state(path, config, student, ema, optimizer, stage, step, global_step, 
     if fake is not None:
         state["fake"] = {k: v.cpu() for k, v in adapter_state(fake).items()}
         state["fake_optimizer"] = fake_optimizer.state_dict()
+    if config.get("independent_training"):
+        state["independent_initialization_sha256"] = sha256(path.parent/"initialization.json")
+    from .checkpoint_storage import save_destination
+    path = save_destination(path)
     temporary = path.with_suffix(".tmp")
     torch.save(state, temporary)
     temporary.replace(path)
@@ -75,14 +79,24 @@ def preview(bundle, student, ema, grid, output, tracker, global_step):
     tracker.image(path, global_step, len(grid))
 
 
-def train_sd(config, state, device, output, checkpoint, env, tracker):
+def train_sd(config, state, device, output, checkpoint, env, tracker, *, stop_after=None):
     tr = config["train"]
     vsd = tr["mode"] in ("vsd", "dmd")
     dmd = tr["mode"] == "dmd"
+    gradient_mode = tr.get("dmd_gradient_mode")
+    noise_mode = tr.get("dmd_noise_mode")
+    data_update_offset = config.get("dmd_refinement", {}).get("data_update_offset", 0)
     consistency = tr["mode"] == "consistency"
     instaflow = tr["mode"] == "instaflow"
     endpoint_continuation = config.get("continuation", {}).get("instaflow_endpoint_only", False)
-    data = CaptionStream(config, images=not (vsd or instaflow))
+    independent = bool(config.get("independent_training"))
+    if stop_after is not None and not independent:
+        raise ValueError("The short preflight is restricted to independent one-step training")
+    if independent:
+        from .independent_response import PhasedCaptions, PhasedPairs, bind_initialization, independent_metadata, checkpoint_preview
+        data = PhasedCaptions(config)
+    else:
+        data = CaptionStream(config, images=not (vsd or instaflow))
     bundle = SDBundle(config, device)
     teacher = bundle.unet
     root = make_grid(len(bundle.alphas), tr["initial_steps"], device)
@@ -101,7 +115,10 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
     if dmd and (tr.get("dmd_regression_type", "latent_mse") == "lpips_vgg" or tr.get("dmd_diversity_weight", 0)):
         from .dmd_diversity import load_lpips
         perceptual_metric = load_lpips("vgg", device)
-    if dmd or (instaflow and not endpoint_continuation):
+    if independent:
+        pairs = PhasedPairs(config, bundle, root, data)
+        pairs.select(global_step if global_step < tr["updates_per_stage"] else global_step-1)
+    elif dmd or (instaflow and not endpoint_continuation):
         from .teacher_pairs import TeacherPairs
         if dmd and tr.get("dmd_pair_cache_dir"):
             with experiment_lock(tr["dmd_pair_cache_dir"]):
@@ -128,7 +145,10 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
             set_consistency_prediction(student, tr.get("consistency_sigma_data", .5))
             consistency_target = add_lora(new_unet(config, device), config, trainable=False,
                                           state=adapter_state(student))
-        parameters = [p for p in student.parameters() if p.requires_grad]
+        trainable = [(name, p) for name, p in student.named_parameters() if p.requires_grad]
+        parameter_names = [name for name, _ in trainable]
+        parameters = [p for _, p in trainable]
+        del trainable
         ema = adapter_state(student)
         optimizer = torch.optim.AdamW(parameters, lr=tr["learning_rate"], weight_decay=tr["weight_decay"])
         fake = fake_optimizer = None
@@ -139,6 +159,9 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
             fake_optimizer = torch.optim.AdamW(fake_parameters,
                 lr=tr.get("fake_learning_rate", 0.0001), weight_decay=tr["weight_decay"])
         first_step = 0
+        if independent:
+            bind_initialization(config, output, adapter_state(student), adapter_state(fake),
+                                optimizer, fake_optimizer, state)
         if state and stage_index == start_stage:
             load_adapter(student, state["student"])
             ema = {k: v.to(device) for k, v in state["ema"].items()}
@@ -159,10 +182,31 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
         endpoints = (torch.cat((root, root.new_tensor([-1]))) if consistency else None if vsd or instaflow else
                      torch.cat((nested_grid(root, 2*steps), root.new_tensor([-1]))))
         guidance = config["model"]["guidance_scale"] if stage_index == 0 else 1.0
-        with tqdm(range(first_step, tr["updates_per_stage"]), total=tr["updates_per_stage"],
+        end_step = min(tr["updates_per_stage"], first_step+stop_after) if stop_after is not None else tr["updates_per_stage"]
+
+        def independent_export(folder, elapsed, ema_state, student_parameters):
+            metadata = {"method": config["name"], "seed": config["seed"], "global_step": global_step,
+                "initial_steps": tr["initial_steps"], "stage_steps": 1,
+                "teacher_identity": teacher_id, "training_seconds": elapsed,
+                "training_hardware": env["hardware"], "effective_batch_size": config["data"]["batch_size"]*tr["grad_accumulation"],
+                "trainable_parameters": sum(p.numel() for p in student_parameters), "auxiliary_updates": auxiliary_updates,
+                "training_uses_real_images": False, "training_prompt_hash": manifest_hash(data.records),
+                "training_prompt_count": len(data.records), "peak_training_memory_mb":
+                    torch.cuda.max_memory_allocated(device)/2**20 if device.type == "cuda" else 0,
+                "fake_data": False, "edge_weight": 0., "edge_schedule": tr["edge_schedule"],
+                "student_prediction_type": "epsilon", "student_parameterization": "lora",
+                "dmd_regression_weight": tr["dmd_regression_weight"],
+                "paired_regression_batch_size": config["data"]["batch_size"]*tr["grad_accumulation"],
+                **pairs.metadata, **independent_metadata(config, output, data, pairs, global_step, auxiliary_updates)}
+            export_adapter(ema_state, folder, student_grid, config, metadata)
+            return metadata
+
+        with tqdm(range(first_step, end_step), total=tr["updates_per_stage"],
                   initial=first_step, desc=f"SD LoRA {tr['mode'].upper()} | {steps} steps",
                   unit="update", dynamic_ncols=True, disable=not config.get("progress_bar", True)) as bar:
             for step in bar:
+                if independent:
+                    pairs.select(global_step)
                 if instaflow and step >= tr["updates_per_stage"]//2 and distilled_pairs is None:
                     from .teacher_pairs import reflow_pairs
                     distilled_pairs = reflow_pairs(config, bundle, student, ema, root, output, pairs)
@@ -172,9 +216,14 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
                 for group in optimizer.param_groups:
                     group["lr"] = lr
                 optimizer.zero_grad(set_to_none=True)
+                gradients = None
+                if gradient_mode:
+                    from .dmd_conflict import GradientAccumulator
+                    gradients = GradientAccumulator(parameters, parameter_names)
+                data_step = data_update_offset+global_step
                 loss_value, parts, averaged_parts = 0.0, {}, {}
                 for micro in range(tr["grad_accumulation"]):
-                    images, prompts = data.batch(global_step*tr["grad_accumulation"]+micro, device)
+                    images, prompts = data.batch(data_step*tr["grad_accumulation"]+micro, device)
                     conditional = bundle.embeddings(prompts)
                     unconditional = empty.expand(len(prompts), -1, -1)
                     if instaflow:
@@ -199,17 +248,44 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
                             (len(z),), device=device)
                         alpha, sigma = coefficients(bundle.alphas, t)
                         with torch.no_grad():
-                            noisy = alpha*generated.detach()+sigma*torch.randn_like(generated)
+                            probe_noise = torch.randn_like(generated)
+                            noisy = alpha*generated.detach()+sigma*probe_noise
                             real_eps = epsilon(teacher, noisy, t, conditional, unconditional,
                                                guidance, config, device)
                             fake.eval()
                             fake_eps = epsilon(fake, noisy, t, conditional, unconditional,
                                                1 if dmd else guidance, config, device)
+                            if noise_mode:
+                                opposite = alpha*generated.detach()-sigma*probe_noise
+                                opposite_real = epsilon(teacher, opposite, t, conditional, unconditional,
+                                                        guidance, config, device)
+                                opposite_fake = epsilon(fake, opposite, t, conditional, unconditional,
+                                                        1, config, device)
+                                probe_predictions = [(noisy, real_eps, fake_eps),
+                                                     (opposite, opposite_real, opposite_fake)]
+                                if tr.get("dmd_noise_pairs", 1) == 2:
+                                    independent_noise = torch.randn_like(generated)
+                                    for sign in (1, -1):
+                                        independent_noisy = alpha*generated.detach()+sigma*(sign*independent_noise)
+                                        independent_real = epsilon(teacher, independent_noisy, t, conditional,
+                                                                   unconditional, guidance, config, device)
+                                        independent_fake = epsilon(fake, independent_noisy, t, conditional,
+                                                                   unconditional, 1, config, device)
+                                        probe_predictions.append((independent_noisy, independent_real, independent_fake))
                             fake.train()
                         if dmd:
-                            score_loss = dmd_surrogate(generated, noisy, real_eps, fake_eps, t, bundle.alphas)
+                            score_parts = {}
+                            if noise_mode:
+                                from .dmd_noise_agreement import normalized_score_direction, paired_score_surrogate
+                                directions = [normalized_score_direction(generated, noised, real, learned, t, bundle.alphas)
+                                    for noised, real, learned in probe_predictions]
+                                score_loss, score_parts = paired_score_surrogate(
+                                    generated, directions, noise_mode, tr["dmd_agreement_patch_size"],
+                                    noise_pairs=tr.get("dmd_noise_pairs", 1))
+                            else:
+                                score_loss = dmd_surrogate(generated, noisy, real_eps, fake_eps, t, bundle.alphas)
                             pair_noise, target_latents, pair_prompts = pairs.batch(
-                                global_step*tr["grad_accumulation"]+micro, device)
+                                data_step*tr["grad_accumulation"]+micro, device)
                             pair_embeddings = bundle.embeddings(pair_prompts)
                             reg_eps = epsilon(student, pair_noise, terminal, pair_embeddings, None, 1, config, device)
                             reg_latents = predict_x0(pair_noise, reg_eps, terminal, bundle.alphas)
@@ -218,10 +294,17 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
                                 bundle, perceptual_metric, reg_latents, target_latents, config)
                             loss = (score_loss+tr["dmd_regression_weight"]*regression_loss+
                                     tr.get("dmd_diversity_weight", 0)*diversity_loss)
-                            parts = {"dmd_score_loss": score_loss.detach().item(),
+                            parts = {**score_parts, "dmd_score_loss": score_loss.detach().item(),
                                      "dmd_regression_loss": regression_loss.detach().item(), **diversity_parts}
                             parts["dmd_regression_lpips" if tr.get("dmd_regression_type") == "lpips_vgg"
                                   else "dmd_regression_mse"] = regression_loss.detach().item()
+                            if tr.get("dmd_response_mode"):
+                                from .dmd_response import response_loss
+                                response, response_parts = response_loss(
+                                    reg_latents, target_latents, tr["dmd_response_mode"])
+                                loss = loss+tr["dmd_response_weight"]*response
+                                parts.update(response_parts, dmd_response_loss=response.detach().item(),
+                                             dmd_response_weight=tr["dmd_response_weight"])
                         else:
                             loss = vsd_surrogate(generated, real_eps, fake_eps, sigma)
                             parts = {"vsd_loss": loss.detach().item()}
@@ -260,7 +343,10 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
                             predict_x0(noisy, predicted, t, bundle.alphas), target, t)
                     if not torch.isfinite(loss):
                         raise FloatingPointError("Nonfinite SD loss; inspect checkpoint and precision")
-                    (loss/tr["grad_accumulation"]).backward()
+                    if gradients is not None:
+                        gradients.add(score_loss, regression_loss, tr["grad_accumulation"])
+                    else:
+                        (loss/tr["grad_accumulation"]).backward()
                     loss_value += loss.detach().item()/tr["grad_accumulation"]
                     for key, value in parts.items():
                         if isinstance(value, (int, float)):
@@ -268,6 +354,9 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
                         else:
                             averaged_parts[key] = value
                 parts = averaged_parts
+                if gradients is not None:
+                    parts.update(gradients.assign(gradient_mode, tr["dmd_regression_weight"]))
+                    del gradients
                 grad_norm = torch.nn.utils.clip_grad_norm_(parameters, tr["max_grad_norm"], error_if_nonfinite=True)
                 optimizer.step()
                 update_adapter_ema(ema, student, tr["ema_decay"])
@@ -278,7 +367,7 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
                         fake_optimizer.zero_grad(set_to_none=True)
                         fake_loss_value = 0.0
                         for micro in range(tr["grad_accumulation"]):
-                            _, prompts = data.batch((global_step*tr.get("fake_updates_per_step", 1)+auxiliary)
+                            _, prompts = data.batch((data_step*tr.get("fake_updates_per_step", 1)+auxiliary)
                                                      *tr["grad_accumulation"]+micro, device)
                             conditional = bundle.embeddings(prompts)
                             with torch.no_grad():
@@ -318,11 +407,21 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
                     if not config.get("progress_bar", True):
                         print(json.dumps(record), flush=True)
                 bar.set_postfix(loss=f"{loss_value:.4g}", lr=f"{lr:.2g}", refresh=False)
-                if (step+1) % tr["save_every"] == 0 or step+1 == tr["updates_per_stage"]:
+                if (step+1) % tr["save_every"] == 0 or step+1 == end_step:
                     save_state(checkpoint, config, student, ema, optimizer, stage_index, step+1,
                                global_step, elapsed, fake, fake_optimizer, auxiliary_updates)
+                    if independent:
+                        folder = output/"checkpoints"/f"step_{global_step:06d}"
+                        independent_export(folder, elapsed, ema, parameters)
+                        with torch.random.fork_rng(devices=[device.index or 0] if device.type == "cuda" else []):
+                            checkpoint_preview(bundle, student, ema, student_grid, config, folder, global_step)
                 if (step+1) % tr["preview_every"] == 0 or step+1 == tr["updates_per_stage"]:
                     preview(bundle, student, ema, student_grid, output, tracker, global_step)
+        if independent and end_step < tr["updates_per_stage"]:
+            atomic_json(output/"preflight.json", {"status": "passed", "global_step": global_step,
+                "auxiliary_updates": auxiliary_updates, "initialization_sha256": sha256(output/"initialization.json"),
+                "peak_memory_mb": torch.cuda.max_memory_allocated(device)/2**20 if device.type == "cuda" else 0})
+            return
         metadata = {"method": config["name"], "seed": config["seed"], "global_step": global_step,
                     "initial_steps": tr["initial_steps"], "training_seconds": previous_elapsed+time.perf_counter()-started,
                     "training_hardware": env["hardware"], "teacher_identity": teacher_id,
@@ -353,16 +452,48 @@ def train_sd(config, state, device, output, checkpoint, env, tracker):
         from .continuation import continuation_metadata
         metadata.update(continuation_metadata(config, output, global_step,
             metadata["training_seconds"], auxiliary_updates))
+        from .dmd_conflict import refinement_metadata
+        metadata.update(refinement_metadata(config, output, global_step,
+            metadata["training_seconds"], auxiliary_updates))
+        if gradient_mode:
+            from .dmd_diversity import lpips_identity
+            metadata.update(dmd_regression_type="lpips_vgg", dmd_diversity_weight=0.,
+                dmd_gradient_mode=gradient_mode, perceptual_metric=lpips_identity("vgg"),
+                teacher_pair_weights_sha256=pairs.metadata["weights_sha256"],
+                teacher_pair_protocol_hash=pairs.metadata["protocol_hash"],
+                adaptation="DMD+LPIPS, rank-matched LoRA G/F; experimental full-batch gradient combination")
+        if noise_mode:
+            from .dmd_diversity import lpips_identity
+            metadata.update(dmd_regression_type="lpips_vgg", dmd_diversity_weight=0.,
+                perceptual_metric=lpips_identity("vgg"),
+                teacher_pair_weights_sha256=pairs.metadata["weights_sha256"],
+                teacher_pair_protocol_hash=pairs.metadata["protocol_hash"],
+                adaptation="DMD with inherited LPIPS regression; paired noise score estimates and experimental spatial agreement filtering")
+        if tr.get("dmd_response_mode"):
+            from .dmd_diversity import lpips_identity
+            from .dmd_response import response_pair_metadata
+            metadata.update(dmd_regression_type="lpips_vgg", dmd_diversity_weight=0.,
+                perceptual_metric=lpips_identity("vgg"),
+                teacher_pair_weights_sha256=pairs.metadata["weights_sha256"],
+                teacher_pair_protocol_hash=pairs.metadata["protocol_hash"],
+                adaptation="DMD with inherited LPIPS regression; experimental finite same-caption response alignment")
+            metadata.update(response_pair_metadata(config, metadata))
         if dmd and "dmd_study" in config:
             from .dmd_diversity import study_metadata
             metadata.update(study_metadata(config, pairs, perceptual_metric))
+        if independent:
+            metadata.update(independent_metadata(config, output, data, pairs, global_step, auxiliary_updates))
         export_adapter(ema, output/f"stage_{steps}", student_grid, config, metadata)
         del student, optimizer, fake, fake_optimizer, ema, parameters, fake_parameters, consistency_target
     elapsed = previous_elapsed+time.perf_counter()-started
     atomic_json(output / "run.json", {"status": "complete", "method": config["name"],
                 "seed": config["seed"], "global_step": global_step, "auxiliary_updates": auxiliary_updates,
                 "training_seconds": elapsed, "config": config, "environment": env,
-                **continuation_metadata(config, output, global_step, elapsed, auxiliary_updates)})
+                **({"independent_training": config["independent_training"],
+                    "cumulative_training_updates": global_step,
+                    "independent_initialization_sha256": sha256(output/"initialization.json")} if independent else {}),
+                **continuation_metadata(config, output, global_step, elapsed, auxiliary_updates),
+                **refinement_metadata(config, output, global_step, elapsed, auxiliary_updates)})
     tracker.summarize({"global_step": global_step, "auxiliary_updates": auxiliary_updates,
                        "training_seconds": elapsed})
     print(f"Training complete: {output}", flush=True)

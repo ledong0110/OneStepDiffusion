@@ -1,0 +1,236 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage{cvpr}
+\input{preamble}
+\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
+\def\paperID{}
+\def\confName{CVPR}
+\def\confYear{2026}
+\input{generated/assignment2/selected_response_metrics.tex}
+\input{generated/ce7454/status.tex}
+\title{Direction Alignment for One-Step Text-to-Image Distillation}
+\author{Le Duc Dong \quad Nguyen Huu Thuat \quad Pham Viet Hoang \quad La Nguyen Gia Hy\\CE7454 Project 2}
+\begin{document}
+\maketitle
+\begin{abstract}
+Compressing a diffusion teacher into one denoiser call is difficult under a
+small training budget. We investigate a direction-alignment extension to
+distribution matching distillation (DMD). For two noises sharing a caption,
+the added loss aligns the student latent displacement with the corresponding
+teacher displacement while retaining DMD's perceptual regression. A rank-32
+Stable Diffusion 1.5 student trained independently for 36,000 updates obtains
+FID \ASelectedFID{}, IS \ASelectedIS{} and CLIP \ASelectedCLIP{} on all 5,000
+COCO-2017 validation captions at one network function evaluation. The original
+DMD+LPIPS reference has FID 29.94, IS 34.12 and CLIP 31.10. The added
+constraint aligns the direction of paired latent changes without
+requiring their magnitudes to match. Different teacher banks and initialization histories limit
+attribution of the main comparison to the added loss alone.
+\end{abstract}
+
+\section{Problem and motivation}
+Diffusion models refine an image through repeated denoising, making good
+generation expensive. Latent diffusion reduces each step's cost by operating
+in a VAE representation~\cite{rombach2022ldm}; distillation reduces the number
+of steps. Our project asks whether a one-step generator with limited LoRA
+capacity can better preserve the teacher's response to changes in noise.
+
+DMD combines diffusion-score matching and regression to teacher-generated
+images~\cite{yin2024dmd}. Its LPIPS term anchors individual outputs but does
+not explicitly align the change between two outputs. We add a direction-only
+constraint on that change. This reuses the paired regression examples and
+adds no student parameters or inference calls. The difficulty is balancing
+the extra training signal against image fidelity and caption alignment.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/assignment2/main_samples.pdf}
+\caption{Native samples with identical row prompts and initial noise. All
+students have 36,000 updates and use one step / one NFE. The teacher uses
+64 DDIM steps / 128 NFE. Ours is the independently trained model evaluated
+in Table~\ref{tab:quality}. Dog and lighthouse prompts are preset; teddy
+bears are a selected validation example. These examples do not determine
+the full-validation metric ranking.}
+\label{fig:samples}
+\end{figure*}
+
+\section{Related work}
+Progressive distillation compresses trajectories through two-to-one
+transitions~\cite{salimans2022progressive}; consistency distillation learns
+a shared endpoint along a trajectory~\cite{song2023consistency}. SwiftBrush
+uses variational score distillation without a paired-image bank, while
+InstaFlow simplifies noise--image couplings through
+reflow~\cite{nguyen2024swiftbrush,liu2024instaflow}.
+
+Perceptual regression is part of original DMD, and response alignment has
+prior art. GAD matches local teacher and student responses with vector
+error~\cite{huang2026gad}. We test angular alignment between independent
+cached pairs in a restricted SD1.5/LoRA setting. The contribution is the
+specific direction-only objective and its experimental study, rather than
+the invention of perceptual regression, response matching or cosine loss.
+
+\section{Method}
+\paragraph{One-step DMD backbone.}
+The student $G_\theta(z,c)$ maps Gaussian noise and a caption to a clean
+latent with one conditional U-Net call. LoRA adapts its attention projections
+at rank 32~\cite{hu2022lora}. A frozen teacher and a learned fake scorer
+predict clean latents $\hat x_0^T$ and $\hat x_0^F$ from the same noised
+student output $x$. The normalized distribution-matching direction is
+\begin{equation}
+g=\frac{\hat x_0^F-\hat x_0^T}
+{\max\{\operatorname{mean}(|x-\hat x_0^T|),\epsilon\}}.
+\end{equation}
+A stopped-target surrogate injects $g$ into the generator. A separate
+epsilon-denoising update fits the fake scorer on detached generated samples.
+The VAE and text encoder remain frozen, and teacher guidance is baked into
+the student; inference uses a single conditional branch.
+
+\paragraph{Direction alignment.}
+Two cached noises $z_1,z_2$ share caption $c$ and teacher endpoints
+$T(z_1,c),T(z_2,c)$. Define
+\begin{align}
+d_S&=G_\theta(z_2,c)-G_\theta(z_1,c),\nonumber\\
+d_T&=T(z_2,c)-T(z_1,c),\nonumber\\
+L_{\rm angle}&=1-\frac{\langle d_S,d_T\rangle}{\|d_S\|_2\|d_T\|_2},\\
+L&=L_{\rm DMD}+0.25L_{\rm LPIPS}+\lambda L_{\rm angle}.
+\end{align}
+Numerical guards handle vanishing norms. $L_{\rm LPIPS}$ averages LPIPS-VGG
+between decoded, clamped student and teacher RGB images~\cite{zhang2018lpips}.
+The teacher targets are detached; both student branches receive gradients.
+Pairs with teacher displacement norm at most $10^{-6}$ are excluded, and
+the student norm is clamped below at $10^{-6}$ in the denominator. The
+displacements use flattened FP32 latents.
+
+The paired DMD outputs already provide both student endpoints, so the added
+term requires no extra teacher or generator forward pass relative to that
+paired update. We fix $\lambda=0.298494$ from the first update of the
+independent run. This study does not establish an optimal angular weight
+within the 36,000-update budget.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.96\textwidth]{generated/assignment2/response_alignment_method.pdf}
+\caption{Direction-alignment design. Cached teacher endpoints share a caption
+and two independent noises. Their latent displacement guides the direction
+of the student displacement; both student branches receive gradients.
+DMD and LPIPS remain in the objective. The vectors are schematic.}
+\label{fig:method}
+\end{figure*}
+
+\section{Experimental protocol}
+\paragraph{Data and metrics.}
+We use COCO-2017 and select the lowest-ID caption per
+image~\cite{chen2015coco}. Two disjoint pools of 50,000 and 68,287 captions
+cover the training split. All 5,000 validation images are held out from
+student training. Each final evaluation generates one $512\times512$ image
+per validation caption using the same noise stream, seed 12345, and the
+same resizing and center-cropping protocol. We report FID, Inception Score
+and CLIP ViT-B/32 similarity, defined as mean $100\max(\cos(I,c),0)$.
+
+\paragraph{Training and comparison.}
+Ours starts with pretrained SD1.5 and fresh rank-32 student/scorer adapters,
+receiving 18,000 updates per caption pool. Effective batch is 16 via
+microbatch two and eight accumulation passes. AdamW uses learning rate
+$10^{-4}$, 100-step warmup, cosine decay, weight decay 0.01, gradient clip 1
+and EMA 0.995. The scorer receives one update per generator update. Teacher
+CFG is 7.5; student inference CFG is 1. Each phase has 5,000 cached teacher
+outputs from 2,500 captions and two noises each: 10,000 outputs and
+1,280,000 teacher NFEs in total.
+
+All standard baselines use rank-32 generators, 36,000 updates and one-NFE
+inference. The local consistency model uses a VP boundary blend and latent
+L2; InstaFlow uses VP epsilon-to-velocity conversion and cached couplings.
+SwiftBrush retains teacher CFG 4.5 and FP32; other recipes use CFG 7.5 and
+BF16. Original DMD+LPIPS uses a 5,000-output bank and an earlier training
+history. Equal generator updates therefore do not equalize supervision or
+total compute. \CEMatchedControlStatus{}
+
+\section{Results and analysis}
+\begin{table}[t]
+\centering\small
+\input{generated/ce7454/quality.tex}
+\caption{Full COCO-2017 validation: 5,000 generated and 5,000 real images.
+All students use one NFE; the teacher uses 128. Baseline names denote our
+local adapter recipes. Bold marks the best student metric.}
+\label{tab:quality}
+\end{table}
+\input{generated/ce7454/findings.tex}
+
+\paragraph{What the angular term changes.}
+Let $u=d_S/\|d_S\|$ and $v=d_T/\|d_T\|$. Above the norm guard,
+\begin{equation}
+\nabla_{d_S}L_{\rm angle}
+=-\frac{v-(u^\top v)u}{\|d_S\|}.
+\end{equation}
+The gradient removes the component parallel to $d_S$ and rotates the
+student response toward the teacher response. The two endpoint gradients
+have opposite signs, so their sum is zero in latent coordinates. Their
+magnitude is proportional to $|\sin\phi|/\|d_S\|$, where $\phi$ is the angle
+between the displacements. Small student displacements therefore require
+the numerical guard. These properties concern this loss alone; shared
+network parameters and Adam scaling can also change magnitude and midpoint.
+
+For $r=\|d_S\|/\|d_T\|$, a full relative vector error decomposes as
+\begin{equation}
+\frac{\|d_S-d_T\|^2}{\|d_T\|^2}
+=(r-1)^2+2r(1-u^\top v).
+\end{equation}
+Our angular term separates orientation from the radial penalty and its
+$r$-dependent weighting. This leaves output scale and appearance to the
+existing DMD and LPIPS objectives. The choice is useful when relative
+response direction is the desired constraint, but it does not force the
+correct amount of variation. Independent noise pairs define finite changes;
+they do not estimate a local Jacobian or establish improved diversity.
+
+\paragraph{Quality and text control.}
+Lower FID accompanies lower IS and CLIP, so the result is a trade-off in
+measured quality rather than a uniform improvement. FID compares marginal
+image-feature statistics and can improve without better caption binding.
+The angular objective constrains noise response under a fixed caption;
+it does not explicitly supervise object counts or relations. These
+distinctions explain why the text-control figures are useful alongside
+the aggregate metrics.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{generated/assignment2/prompt_control.pdf}
+\caption{Ours under fixed noise: four animals crossed with reading, drinking
+and eating prompts. All twelve combinations are shown at one NFE.}
+\label{fig:control}
+\end{figure}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{generated/assignment2/prompt_interpolation.pdf}
+\caption{Ours with dog-to-cat hidden-state interpolation at weights
+$0,0.25,0.5,0.75,1$. Each row fixes its initial noise. Images are native
+generator outputs rather than pixel blends.}
+\label{fig:interpolation}
+\end{figure}
+In Figure~\ref{fig:control}, animal identity and activity change while
+the cafe setting remains recognizable under fixed noise.
+Figure~\ref{fig:interpolation} varies text hidden states, a different input
+from the noise pairs used in training. It demonstrates conditioning
+behavior of the same one-step model, rather than directly testing the
+angular constraint. All images are native outputs; the selected examples
+complement the full-set metrics.
+
+\section{Limitations and conclusion}
+Resource constraints limit each main student to 36,000 updates and one
+training seed. Published budgets differ substantially: SwiftBrush reports
+65,000 updates, and consistency-model experiments include
+600,000--1,000,000 iterations~\cite{nguyen2024swiftbrush,song2023consistency}.
+Architecture, batch size and teacher cost prevent direct compute equivalence.
+The small paired bank, validation reuse and unknown teacher-pretraining
+overlap with COCO limit generalization claims.
+
+The project shows that direction-aligned DMD can produce useful one-step
+images under restricted adapter capacity. Its independently trained model
+reaches FID \ASelectedFID{} with lower IS and CLIP than the original DMD
+reference, without adding inference calls or trainable parameters.
+\CEControlConclusion{} Dedicated latency measurements
+would also need isolated GPU workloads.
+
+{\small
+\bibliographystyle{ieeenat_fullname}
+\bibliography{assignment2_references}
+}
+\end{document}

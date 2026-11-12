@@ -101,6 +101,8 @@ def evaluate_sd(config, checkpoint="teacher", steps=None, result_dir="results", 
         guidance = config["model"]["guidance_scale"]
     else:
         metadata = restore_export(bundle, checkpoint)
+        from .dmd_response import response_pair_metadata
+        metadata.update(response_pair_metadata(config, metadata))
         training_config = Path(checkpoint).parent/"config.yaml"
         if training_config.is_file():
             saved_train = yaml.safe_load(training_config.read_text())["train"]
@@ -212,7 +214,13 @@ def evaluate_sd(config, checkpoint="teacher", steps=None, result_dir="results", 
                   "auxiliary_lora_targets", "auxiliary_trainable_parameters", "dmd_study_policy",
                   "dmd_study_parent_config_hash", "dmd_regression_type", "dmd_diversity_weight",
                   "dmd_pair_seeds", "teacher_pair_unique_prompts", "teacher_pair_protocol_hash",
-                  "teacher_pair_weights_sha256", "perceptual_metric") if key in metadata},
+                  "teacher_pair_weights_sha256", "perceptual_metric", "dmd_gradient_mode",
+                  "dmd_noise_mode", "dmd_noise_pairs", "dmd_score_probes", "dmd_score_estimator_policy", "dmd_agreement_patch_size",
+                  "dmd_response_mode", "dmd_response_variant", "dmd_response_weight", "dmd_response_gradient_fraction",
+                  "dmd_refinement", "refinement_policy", "refinement_updates",
+                  "refinement_parent_checkpoint_sha256", "recent_baseline", "training_data_phases",
+                  "student_update_frequency", "discriminator_updates", "gan_weight", "f_divergence",
+                  "auxiliary_parameterization") if key in metadata},
               "training_hardware": metadata.get("training_hardware"),
               "auxiliary_updates": metadata.get("auxiliary_updates", 0),
               "training_uses_real_images": metadata.get("training_uses_real_images", False),

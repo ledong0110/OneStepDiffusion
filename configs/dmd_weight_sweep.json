@@ -1,0 +1,49 @@
+{
+  "policy": "dmd-diversity-weight-v1",
+  "weights": [
+    0.01,
+    0.3,
+    0.5
+  ],
+  "regression_weight": 0.25,
+  "regression_type": "lpips_vgg",
+  "seed": 42,
+  "cumulative_training_updates": 36000,
+  "loss_specific_updates": 18000,
+  "parent_checkpoint_sha256": "ebaacc0a7e60826469f143d4103fa2a22b0f01d8e1bf0b56e5b201b9693eb9bc",
+  "teacher_pair_weights_sha256": "ba360f75eba864e43c44f4028b8e5535d3ea0dda46b63249df2c2ca983afbe27",
+  "gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "max_parallel": 2,
+  "min_free_gpu_gib": 26,
+  "jobs": [
+    {
+      "key": "lambda_0p01",
+      "weight": 0.01,
+      "config": "configs/generated/dmd_weight_sweep/lambda_0p01.yaml",
+      "run_dir": "runs/sd15/dmd_weight_sweep/lambda_0p01",
+      "result_dir": "results/sd15/dmd_weight_sweep/lambda_0p01",
+      "config_hash": "85df10826d314aaa1b96c0e3e49cd6a1e8f59c5d38452c08ba04a50cac69cd74"
+    },
+    {
+      "key": "lambda_0p3",
+      "weight": 0.3,
+      "config": "configs/generated/dmd_weight_sweep/lambda_0p3.yaml",
+      "run_dir": "runs/sd15/dmd_weight_sweep/lambda_0p3",
+      "result_dir": "results/sd15/dmd_weight_sweep/lambda_0p3",
+      "config_hash": "b73ac1ff90d85a7f7ae67a827292e2c7bf478155fa8c33fb7edfff1a13c754e8"
+    },
+    {
+      "key": "lambda_0p5",
+      "weight": 0.5,
+      "config": "configs/generated/dmd_weight_sweep/lambda_0p5.yaml",
+      "run_dir": "runs/sd15/dmd_weight_sweep/lambda_0p5",
+      "result_dir": "results/sd15/dmd_weight_sweep/lambda_0p5",
+      "config_hash": "3cb95ee15e1a59cf765147e47a1f4f9b1c82de6d4c7444f41933998e62993dc0"
+    }
+  ]
+}

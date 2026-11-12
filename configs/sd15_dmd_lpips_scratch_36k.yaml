@@ -1,0 +1,47 @@
+extends: sd15_50k.yaml
+name: dmd_lpips_scratch
+output_dir: runs/sd15/independent36k/dmd_lpips_scratch_seed42
+wandb:
+  group: sd15-independent36k
+data:
+  train_limit: 118287
+  train_offset: 0
+  batch_size: 2
+model:
+  lora_rank: 32
+  guidance_scale: 7.5
+train:
+  mode: dmd
+  stages:
+  - 1
+  updates_per_stage: 36000
+  learning_rate: 0.0001
+  warmup_steps: 100
+  grad_accumulation: 8
+  fake_learning_rate: 0.0001
+  fake_updates_per_step: 1
+  dmd_regression_weight: 0.25
+  dmd_regression_type: lpips_vgg
+  dmd_pair_seeds: 2
+  dmd_pair_count: 5000
+  dmd_diversity_weight: 0.0
+  save_every: 1000
+  preview_every: 1000
+  log_every: 10
+  edge_weight: 0.0
+eval:
+  steps:
+  - 1
+  comparison_steps: 1
+  num_samples: 5000
+  num_real: 5000
+  retain_generated_images: false
+independent_training:
+  policy: independent-sd15-response-36k-v1
+  initialization: pretrained-sd15-fresh-lora
+  phase1_updates: 18000
+  phase1_limit: 50000
+  response_coefficient_policy: fixed-from-prior-pilot-not-recalibrated-at-initialization
+  pair_cache_dirs:
+  - runs/sd15/independent36k/shared_pairs_first50k
+  - runs/sd15/dmd_diversity_study/shared_teacher_pairs

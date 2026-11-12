@@ -2,6 +2,7 @@ import contextlib
 import hashlib
 import importlib.metadata
 import json
+import math
 import os
 import random
 import subprocess
@@ -66,6 +67,15 @@ def device_for(config):
         raise RuntimeError("CUDA unavailable. For CPU use --set device=cpu --set precision=fp32")
     if device.type == "cuda" and config["precision"] == "bf16" and not torch.cuda.is_bf16_supported():
         raise RuntimeError("This GPU does not support bf16; use --set precision=fp32")
+    if device.type == "cuda" and os.environ.get("FSD_MAX_GPU_MEMORY_GIB"):
+        allocation_device = device.index if device.index is not None else torch.cuda.current_device()
+        limit = float(os.environ["FSD_MAX_GPU_MEMORY_GIB"])
+        free, total = torch.cuda.mem_get_info(allocation_device)
+        if not math.isfinite(limit) or limit <= 0 or limit*2**30 > total:
+            raise ValueError("FSD_MAX_GPU_MEMORY_GIB must be positive and fit the selected GPU")
+        if free < (limit+1)*2**30:
+            raise RuntimeError("Not enough free GPU memory for the configured allocation cap and margin")
+        torch.cuda.set_per_process_memory_fraction(limit*2**30/total, allocation_device)
     return device
 
 
@@ -102,4 +112,5 @@ def provenance(config, device):
             "git_dirty": dirty, "device": str(device), "precision": config["precision"],
             "hardware": torch.cuda.get_device_name(device) if device.type == "cuda" else "CPU",
             "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+            "gpu_memory_limit_gib": os.environ.get("FSD_MAX_GPU_MEMORY_GIB"),
             "cpu_threads": torch.get_num_threads(), "tf32": False}

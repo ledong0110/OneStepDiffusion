@@ -1,0 +1,49 @@
+{
+  "policy": "dmd-paired-noise-spatial-agreement-v1",
+  "seed": 42,
+  "additional_updates": 500,
+  "cumulative_training_updates": 36500,
+  "parent_training_updates": 36000,
+  "parent_checkpoint_sha256": "67a3509c9b0113ecb44118dc749769c5bad4a1b6fb619b33b696cd02a0da2996",
+  "teacher_pair_weights_sha256": "ba360f75eba864e43c44f4028b8e5535d3ea0dda46b63249df2c2ca983afbe27",
+  "gpus": [
+    2,
+    3,
+    0,
+    1
+  ],
+  "max_parallel": 3,
+  "min_free_gpu_gib": 16.0,
+  "jobs": [
+    {
+      "key": "agreement",
+      "method": "dmd_noise_agreement",
+      "config": "configs/generated/dmd_noise_agreement/agreement.yaml",
+      "run_dir": "runs/sd15/dmd_noise_agreement/agreement",
+      "result_dir": "results/sd15/dmd_noise_agreement",
+      "config_hash": "bfb3d83f98704b16d4082ec67d53d1e74c9bb84df10874268d650316bf9745af"
+    },
+    {
+      "key": "paired_mean",
+      "method": "dmd_noise_mean",
+      "config": "configs/generated/dmd_noise_agreement/paired_mean.yaml",
+      "run_dir": "runs/sd15/dmd_noise_agreement/paired_mean",
+      "result_dir": "results/sd15/dmd_noise_agreement",
+      "config_hash": "bf9c8e920d078d3b37c53065829b9b832fccd3b30d466dbb8585c594ca419be3"
+    },
+    {
+      "key": "shifted_agreement",
+      "method": "dmd_noise_shifted",
+      "config": "configs/generated/dmd_noise_agreement/shifted_agreement.yaml",
+      "run_dir": "runs/sd15/dmd_noise_agreement/shifted_agreement",
+      "result_dir": "results/sd15/dmd_noise_agreement",
+      "config_hash": "5039c7e8d70c3cf7474f9d2d6e3bd667fe68db4d992f68f1366cfcc718aaf7f4"
+    }
+  ],
+  "reference_baseline": {
+    "result_file": "results/sd15/dmd_diversity_study/dmd_perceptual_seed42_1steps.result.json",
+    "result_sha256": "e43cc466977620dacaaad14827e7f616afbbe05f832b0dda021dfb19717affce",
+    "model_identity": "1bbed4b51b12644ee8f7e8688626b512a4eb651e56553441131ebe91344c7567"
+  },
+  "max_gpu_memory_gib": 15
+}

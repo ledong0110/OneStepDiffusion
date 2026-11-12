@@ -1,0 +1,4421 @@
+{
+  "sha": "3943fd5cfb2a8266ec53e7e541e4b8d2e5b1e94d",
+  "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/3943fd5cfb2a8266ec53e7e541e4b8d2e5b1e94d",
+  "tree": [
+    {
+      "path": ".env.example",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddd844d4cd2131e67ae7c5512443ef47db2f30f9",
+      "size": 2409,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ddd844d4cd2131e67ae7c5512443ef47db2f30f9"
+    },
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c7e3ee2da41eea40480d4cc31c6b9a705001126c",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/c7e3ee2da41eea40480d4cc31c6b9a705001126c"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "eb9b63d6f757ca680a81a74815e623849ce2f6e6",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/eb9b63d6f757ca680a81a74815e623849ce2f6e6"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06f9fe2aacdc8b25ffbb0e5ad2399ba1f9f3c353",
+      "size": 2601,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/06f9fe2aacdc8b25ffbb0e5ad2399ba1f9f3c353"
+    },
+    {
+      "path": ".github/workflows/fern-docs.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8f7283653b0450a50654c8d33e9bb31a46e697c0",
+      "size": 8871,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8f7283653b0450a50654c8d33e9bb31a46e697c0"
+    },
+    {
+      "path": ".github/workflows/request-nvskills-ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4092d220cc4857d843d8e401ed2c349cf247c929",
+      "size": 881,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4092d220cc4857d843d8e401ed2c349cf247c929"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f93a4455b0253fb4a241e13c67160bfe4dc8605",
+      "size": 3426,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3f93a4455b0253fb4a241e13c67160bfe4dc8605"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99982f48133cd8d688da6dcab4e0c00b52922be5",
+      "size": 3999,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/99982f48133cd8d688da6dcab4e0c00b52922be5"
+    },
+    {
+      "path": "Dockerfile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30045306a0f283ec4cfe0a8bda28c203e9761c76",
+      "size": 2761,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/30045306a0f283ec4cfe0a8bda28c203e9761c76"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23b94c604ed62c52dc90c5c07022820e7383094e",
+      "size": 11361,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/23b94c604ed62c52dc90c5c07022820e7383094e"
+    },
+    {
+      "path": "MANIFEST.in",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35840b9bd374dbe644eca0958aa8cd73918f744c",
+      "size": 185,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/35840b9bd374dbe644eca0958aa8cd73918f744c"
+    },
+    {
+      "path": "Makefile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4bcf0b92ec2d312a175ed6fdb34fabafe334d718",
+      "size": 1762,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4bcf0b92ec2d312a175ed6fdb34fabafe334d718"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b4be3428cc46a60501b8e82c3f407012e815fac",
+      "size": 13842,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8b4be3428cc46a60501b8e82c3f407012e815fac"
+    },
+    {
+      "path": "assets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f3f738145ab36ac4135b56e331303e9da4f59a92",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/f3f738145ab36ac4135b56e331303e9da4f59a92"
+    },
+    {
+      "path": "assets/teaser.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2726d12b0e2922186cc399d129fe2a7d4b5345fd",
+      "size": 1462966,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2726d12b0e2922186cc399d129fe2a7d4b5345fd"
+    },
+    {
+      "path": "comfyui",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8a9712851a43eb3fb6b27c18fb2fd7a2b54299b0",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/8a9712851a43eb3fb6b27c18fb2fd7a2b54299b0"
+    },
+    {
+      "path": "comfyui/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f113396ce51e1ab69cd44f8d7220baedf0d2b293",
+      "size": 5201,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f113396ce51e1ab69cd44f8d7220baedf0d2b293"
+    },
+    {
+      "path": "comfyui/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a6c2672f6eee31735397ea44e71f5b774a534fe",
+      "size": 3934,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2a6c2672f6eee31735397ea44e71f5b774a534fe"
+    },
+    {
+      "path": "comfyui/_config_helpers.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85ea916024b2def9a06fe08769f63d68a3bcc30a",
+      "size": 2144,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/85ea916024b2def9a06fe08769f63d68a3bcc30a"
+    },
+    {
+      "path": "comfyui/nodes_condition.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23b761ad4a59204642e0e6b05c8faa6aadc7c3fd",
+      "size": 11316,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/23b761ad4a59204642e0e6b05c8faa6aadc7c3fd"
+    },
+    {
+      "path": "comfyui/nodes_config.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5742836197c93a28d9fb2751851e46ccf25c9141",
+      "size": 4779,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5742836197c93a28d9fb2751851e46ccf25c9141"
+    },
+    {
+      "path": "comfyui/nodes_decode.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90e618b96fa78a2a29980d53e3f366559481f9d0",
+      "size": 7837,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/90e618b96fa78a2a29980d53e3f366559481f9d0"
+    },
+    {
+      "path": "comfyui/nodes_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e7fde69ee77ce996f144ad845fb7ff6ed3dd444",
+      "size": 5983,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5e7fde69ee77ce996f144ad845fb7ff6ed3dd444"
+    },
+    {
+      "path": "comfyui/nodes_prompt.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03704a4d5cb8264308c30bd1f275e88da3556169",
+      "size": 3284,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/03704a4d5cb8264308c30bd1f275e88da3556169"
+    },
+    {
+      "path": "comfyui/nodes_sampling.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f29f92422d0b4f1eab632168541e3177cd19e87",
+      "size": 7533,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3f29f92422d0b4f1eab632168541e3177cd19e87"
+    },
+    {
+      "path": "comfyui/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "36531614548b30a3d0994194eceeb386982203bc",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/36531614548b30a3d0994194eceeb386982203bc"
+    },
+    {
+      "path": "comfyui/workflows/QwenImage-LTX2.3.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b45b4078b9db3ec4957a1d79b339af385dade1a3",
+      "size": 40444,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b45b4078b9db3ec4957a1d79b339af385dade1a3"
+    },
+    {
+      "path": "fastgen",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a9e876e2e6ad2893d6ec98cce99e22341ca74223",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/a9e876e2e6ad2893d6ec98cce99e22341ca74223"
+    },
+    {
+      "path": "fastgen/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a5126c48177daf1aea74c59ae08bbc959c144e33",
+      "size": 1209,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a5126c48177daf1aea74c59ae08bbc959c144e33"
+    },
+    {
+      "path": "fastgen/callbacks",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "930f04dc38628a4dbbf5633aebd496c15c93101e",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/930f04dc38628a4dbbf5633aebd496c15c93101e"
+    },
+    {
+      "path": "fastgen/callbacks/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d13e5258e56c8722928a4f2d11306ece12b2843",
+      "size": 4050,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3d13e5258e56c8722928a4f2d11306ece12b2843"
+    },
+    {
+      "path": "fastgen/callbacks/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/callbacks/callback.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89cf3d178bec69acdec9cc7e67aa6168f181d208",
+      "size": 6709,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/89cf3d178bec69acdec9cc7e67aa6168f181d208"
+    },
+    {
+      "path": "fastgen/callbacks/carry.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca619e42cd4d12c2e5dafe5a3133858e2b035089",
+      "size": 5401,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ca619e42cd4d12c2e5dafe5a3133858e2b035089"
+    },
+    {
+      "path": "fastgen/callbacks/ct_schedule.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c1e04a00d3e7c0cdd61ae1de054318b5277c453",
+      "size": 3026,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9c1e04a00d3e7c0cdd61ae1de054318b5277c453"
+    },
+    {
+      "path": "fastgen/callbacks/ema.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29fa8e4a3a3070286cc5674ab20aa94fc8c29b70",
+      "size": 10576,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/29fa8e4a3a3070286cc5674ab20aa94fc8c29b70"
+    },
+    {
+      "path": "fastgen/callbacks/forced_weight_norm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "32f2d6cb0e2f6c24db3f2195c4cfa73e55d908e0",
+      "size": 939,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/32f2d6cb0e2f6c24db3f2195c4cfa73e55d908e0"
+    },
+    {
+      "path": "fastgen/callbacks/gpu_mem_profiler.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bfbfccb0ade4750291b510ac752035473dce4ae",
+      "size": 5843,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5bfbfccb0ade4750291b510ac752035473dce4ae"
+    },
+    {
+      "path": "fastgen/callbacks/gpu_stats.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "617edbad4053a01838ba95bfe735aef37e6a7643",
+      "size": 3684,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/617edbad4053a01838ba95bfe735aef37e6a7643"
+    },
+    {
+      "path": "fastgen/callbacks/grad_clip.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac16a409335f7e66f6922f348f54c87014474429",
+      "size": 5976,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ac16a409335f7e66f6922f348f54c87014474429"
+    },
+    {
+      "path": "fastgen/callbacks/param_count.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "72f1fc688625d9e628bedb406fccb0b79e20d160",
+      "size": 5133,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/72f1fc688625d9e628bedb406fccb0b79e20d160"
+    },
+    {
+      "path": "fastgen/callbacks/rank_consistency.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f379d1552899c8b293c3456b17434a9b2f5c382e",
+      "size": 5261,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f379d1552899c8b293c3456b17434a9b2f5c382e"
+    },
+    {
+      "path": "fastgen/callbacks/train_profiler.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af33969fd65fef49d148507057b4d9032bd69172",
+      "size": 6861,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/af33969fd65fef49d148507057b4d9032bd69172"
+    },
+    {
+      "path": "fastgen/callbacks/vipe_logger.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64fa8fe15830862632b3a1589c1ae2df31cf032a",
+      "size": 12583,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/64fa8fe15830862632b3a1589c1ae2df31cf032a"
+    },
+    {
+      "path": "fastgen/callbacks/vlm_logger.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8b7faa88c91ef8dfafb9b10120976f551a9c171",
+      "size": 15946,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e8b7faa88c91ef8dfafb9b10120976f551a9c171"
+    },
+    {
+      "path": "fastgen/callbacks/wandb.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a47ca2ba989fd6fa7ec1eeb11f39ca3d7b76c3cc",
+      "size": 45567,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a47ca2ba989fd6fa7ec1eeb11f39ca3d7b76c3cc"
+    },
+    {
+      "path": "fastgen/configs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0ce97c974e79498bde294eb990acc5d569e37666",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/0ce97c974e79498bde294eb990acc5d569e37666"
+    },
+    {
+      "path": "fastgen/configs/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04abc1bb3ab7ecff129c79a3dd9a415a64fbcf4a",
+      "size": 9591,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/04abc1bb3ab7ecff129c79a3dd9a415a64fbcf4a"
+    },
+    {
+      "path": "fastgen/configs/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/configs/callbacks.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7003aa7ed38ba89617c1220bbf62c23cc3d58cd8",
+      "size": 5184,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7003aa7ed38ba89617c1220bbf62c23cc3d58cd8"
+    },
+    {
+      "path": "fastgen/configs/config.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd35054fe1fe8cf7f1798c4bcb0a7ba9fc080d70",
+      "size": 17937,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fd35054fe1fe8cf7f1798c4bcb0a7ba9fc080d70"
+    },
+    {
+      "path": "fastgen/configs/config_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b79cd5526ae37ccd5e8c66bdeaac9ca43a22c09",
+      "size": 9685,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2b79cd5526ae37ccd5e8c66bdeaac9ca43a22c09"
+    },
+    {
+      "path": "fastgen/configs/data.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b199ecf3e6c3cd3d76d93a7dae630314deffe4c",
+      "size": 7496,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5b199ecf3e6c3cd3d76d93a7dae630314deffe4c"
+    },
+    {
+      "path": "fastgen/configs/discriminator.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b0ca7926c403bb235c4dd5aae1639f1f7c3742b",
+      "size": 6032,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6b0ca7926c403bb235c4dd5aae1639f1f7c3742b"
+    },
+    {
+      "path": "fastgen/configs/experiments",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b1e6642527e3247a9bb8fffb12ab48ae0f89480b",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/b1e6642527e3247a9bb8fffb12ab48ae0f89480b"
+    },
+    {
+      "path": "fastgen/configs/experiments/CogVideoX",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "bde86e47722044f36a9a4c9b26d58bdb8d79689c",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/bde86e47722044f36a9a4c9b26d58bdb8d79689c"
+    },
+    {
+      "path": "fastgen/configs/experiments/CogVideoX/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b460a1ed7678949c636ace8525bf400bbd74b72",
+      "size": 2106,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5b460a1ed7678949c636ace8525bf400bbd74b72"
+    },
+    {
+      "path": "fastgen/configs/experiments/CogVideoX/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d209f837d16ba84ef739c7cfa666fad5ec19f2a",
+      "size": 1702,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0d209f837d16ba84ef739c7cfa666fad5ec19f2a"
+    },
+    {
+      "path": "fastgen/configs/experiments/Cosmos3",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c7e600decf70a762fa10b458f082ff644e0f8f44",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/c7e600decf70a762fa10b458f082ff644e0f8f44"
+    },
+    {
+      "path": "fastgen/configs/experiments/Cosmos3/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cc6d95f14c462dede661c9a897fe7ca765aafe12",
+      "size": 3097,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/cc6d95f14c462dede661c9a897fe7ca765aafe12"
+    },
+    {
+      "path": "fastgen/configs/experiments/Cosmos3/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bedf2699926bd13a6f96bc804e0d1a2a55ce235d",
+      "size": 2472,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bedf2699926bd13a6f96bc804e0d1a2a55ce235d"
+    },
+    {
+      "path": "fastgen/configs/experiments/CosmosPredict2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a46534f2bb24a39a76bb08f5548d5a92965ec128",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/a46534f2bb24a39a76bb08f5548d5a92965ec128"
+    },
+    {
+      "path": "fastgen/configs/experiments/CosmosPredict2/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a274457398bad9683b031d6ee07b426b50119ee8",
+      "size": 3461,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a274457398bad9683b031d6ee07b426b50119ee8"
+    },
+    {
+      "path": "fastgen/configs/experiments/CosmosPredict2/config_dmd2_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03d651ac89772bc60b19ecb11da58f36cd64053d",
+      "size": 2192,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/03d651ac89772bc60b19ecb11da58f36cd64053d"
+    },
+    {
+      "path": "fastgen/configs/experiments/CosmosPredict2/config_dmd2_v2w.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe5993e71dc2d7dde6b6cd9f42d2fb0aefc85998",
+      "size": 520,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fe5993e71dc2d7dde6b6cd9f42d2fb0aefc85998"
+    },
+    {
+      "path": "fastgen/configs/experiments/CosmosPredict2/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6af1feeae3732abf1b92fffa2fb384e81e986c4c",
+      "size": 2543,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6af1feeae3732abf1b92fffa2fb384e81e986c4c"
+    },
+    {
+      "path": "fastgen/configs/experiments/CosmosPredict2/config_sft_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f92018db0855e4dd5e30680099ec9d42db04cfa4",
+      "size": 885,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f92018db0855e4dd5e30680099ec9d42db04cfa4"
+    },
+    {
+      "path": "fastgen/configs/experiments/CosmosPredict2/config_sft_v2w.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f720f3d6a1b661b8d2f999f836ea53fc795890b0",
+      "size": 718,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f720f3d6a1b661b8d2f999f836ea53fc795890b0"
+    },
+    {
+      "path": "fastgen/configs/experiments/DiT",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9aa9ba7f89f4993a02abdc1f9a138c12d4a6a7ad",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/9aa9ba7f89f4993a02abdc1f9a138c12d4a6a7ad"
+    },
+    {
+      "path": "fastgen/configs/experiments/DiT/config_mf_b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71c3b633d4d43f02cdf1028b6b06135d06624440",
+      "size": 3398,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/71c3b633d4d43f02cdf1028b6b06135d06624440"
+    },
+    {
+      "path": "fastgen/configs/experiments/DiT/config_mf_xl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f6ce92ceda50fb4bb274b3b71f9e01c1ebe34f5b",
+      "size": 1733,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f6ce92ceda50fb4bb274b3b71f9e01c1ebe34f5b"
+    },
+    {
+      "path": "fastgen/configs/experiments/DiT/config_pdd_repa_xl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b10f53b7279f62a980fa291ab33ed83da96cc84a",
+      "size": 2818,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b10f53b7279f62a980fa291ab33ed83da96cc84a"
+    },
+    {
+      "path": "fastgen/configs/experiments/DiT/config_sft_dit_xl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47b734d0feb37c9a7538c81992950a7cea45facd",
+      "size": 2697,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/47b734d0feb37c9a7538c81992950a7cea45facd"
+    },
+    {
+      "path": "fastgen/configs/experiments/DiT/config_sft_sit_xl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db4a20ef83a29cee976cd7f0707ff95c7f983cb9",
+      "size": 2834,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/db4a20ef83a29cee976cd7f0707ff95c7f983cb9"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "626262032b01eca583cc41db03d4c5ae7536fb0c",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/626262032b01eca583cc41db03d4c5ae7536fb0c"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_cm_cifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "729735f29831b707534d11ca37bbb89c473c0cad",
+      "size": 1098,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/729735f29831b707534d11ca37bbb89c473c0cad"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_cm_cifar10_fast.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d0d5c325f2940b9ad5c2e89abdb27fe14df009a8",
+      "size": 989,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d0d5c325f2940b9ad5c2e89abdb27fe14df009a8"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_cm_in64.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47657fdbe3bb66a58c9d4dfd9510e76a922815f8",
+      "size": 2872,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/47657fdbe3bb66a58c9d4dfd9510e76a922815f8"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_dmd2_cifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02c091286e4cfb74aa5fbf1041b400a277bf551b",
+      "size": 1159,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/02c091286e4cfb74aa5fbf1041b400a277bf551b"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_dmd2_fast.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b7fa2e981c27ffebf0a91d3e4a0b0ea10dd8fd0",
+      "size": 928,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5b7fa2e981c27ffebf0a91d3e4a0b0ea10dd8fd0"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_dmd2_in64.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc67584def469657c1833de21f0a67e9b5808f58",
+      "size": 2279,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bc67584def469657c1833de21f0a67e9b5808f58"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_f_distill_cifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "054981028638d15db9361ef2635b118c0b004638",
+      "size": 1214,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/054981028638d15db9361ef2635b118c0b004638"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_f_distill_in64.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d1e5b79b01c12a1188321c85fe77c7ec1126175",
+      "size": 2352,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5d1e5b79b01c12a1188321c85fe77c7ec1126175"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_mf_cifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e76dd4ae33130c8bf3b7c5d33c24d775137e8186",
+      "size": 2609,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e76dd4ae33130c8bf3b7c5d33c24d775137e8186"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_scd_cifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d131f62bbfda6fc726fe597f1484ae2e1d458e2",
+      "size": 1189,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3d131f62bbfda6fc726fe597f1484ae2e1d458e2"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_scd_in64.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09e684a010700cb6a0b0828005fdb027d13b0524",
+      "size": 2761,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/09e684a010700cb6a0b0828005fdb027d13b0524"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_sct_cifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "176e65e590724538cad49121b084aba592cbf263",
+      "size": 1406,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/176e65e590724538cad49121b084aba592cbf263"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_sft_edm_cifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd1db287ab34ec54c861cc6c48f3ff4338d8bc15",
+      "size": 2992,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/cd1db287ab34ec54c861cc6c48f3ff4338d8bc15"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_sft_edm_in64.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc22597ecafd71896b17ad157fa93f2621c2aabe",
+      "size": 2871,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bc22597ecafd71896b17ad157fa93f2621c2aabe"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM/config_tcm_cifar10.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "debe4b3c029925fd8c956383853e029a9bda5d2f",
+      "size": 1480,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/debe4b3c029925fd8c956383853e029a9bda5d2f"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7874baddb9d888b14941707e8b5ca9241bef7ebd",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/7874baddb9d888b14941707e8b5ca9241bef7ebd"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM2/config_cm_s.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2326e168e018144b9d8267b1ebe1af305a05452",
+      "size": 3334,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f2326e168e018144b9d8267b1ebe1af305a05452"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM2/config_cm_xl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1e6e2572aed5f34878f78485c253d1f5c092332",
+      "size": 845,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c1e6e2572aed5f34878f78485c253d1f5c092332"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM2/config_scm_xl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30d288d5457837e4414a5e124dfea6851c591624",
+      "size": 2946,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/30d288d5457837e4414a5e124dfea6851c591624"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM2/config_sft_s.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "203f1107808d193426150acb45ba5ee633b19c70",
+      "size": 3210,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/203f1107808d193426150acb45ba5ee633b19c70"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM2/config_sft_xl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fed2f1f8f07e02fd812c25b6d9994f0537de026",
+      "size": 980,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3fed2f1f8f07e02fd812c25b6d9994f0537de026"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM2/config_tcm_s.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "23f35dfbd657dea915b067483a7853b44056413e",
+      "size": 3439,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/23f35dfbd657dea915b067483a7853b44056413e"
+    },
+    {
+      "path": "fastgen/configs/experiments/EDM2/config_tcm_xl.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45722684da7db91fc14dd9f4842dbb67b5d5c6a2",
+      "size": 1113,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/45722684da7db91fc14dd9f4842dbb67b5d5c6a2"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4f40e94c28a52e2a7a2bf8b0b837bb6e250a34da",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/4f40e94c28a52e2a7a2bf8b0b837bb6e250a34da"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux/config_ayf.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "053a7a38d7db2bb159f85689dde9bd0c3222a521",
+      "size": 3790,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/053a7a38d7db2bb159f85689dde9bd0c3222a521"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4e143dad27688945b5d48373ff46b7b0d6cbb849",
+      "size": 2887,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4e143dad27688945b5d48373ff46b7b0d6cbb849"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4883c4d12219b41fc99e53c2aef99f7079afee43",
+      "size": 1905,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4883c4d12219b41fc99e53c2aef99f7079afee43"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cd39a9045b1ec46d5fa4ff335913362ce3fefac9",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/cd39a9045b1ec46d5fa4ff335913362ce3fefac9"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1d0117d9f186ffd8bcbeaa66771ea709ab336c90",
+      "size": 3415,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1d0117d9f186ffd8bcbeaa66771ea709ab336c90"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_dmd2_image_edit.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2db09315a001acb8c0e85d793ebdf017501abeb6",
+      "size": 3240,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2db09315a001acb8c0e85d793ebdf017501abeb6"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_dmd2_image_edit_klein_base_4b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "196152747137aae7f1d95e9156f85b304fd324b1",
+      "size": 2389,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/196152747137aae7f1d95e9156f85b304fd324b1"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_dmd2_image_edit_klein_base_9b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9099f7d2a9cefa4e03fba3aa76a9afa0c9ac4450",
+      "size": 3369,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9099f7d2a9cefa4e03fba3aa76a9afa0c9ac4450"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_dmd2_klein_base_4b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99a0c6e2e7d8dd0a6008628a89282d44f87273cb",
+      "size": 4110,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/99a0c6e2e7d8dd0a6008628a89282d44f87273cb"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_dmd2_klein_base_9b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "476614308c46bfa47395b733604920005f9da091",
+      "size": 4145,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/476614308c46bfa47395b733604920005f9da091"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "753f3b1fc985626be9d052a0a128a89ea741d46b",
+      "size": 2505,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/753f3b1fc985626be9d052a0a128a89ea741d46b"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_sft_image_edit.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bb25856b88ee8cc123dd26d09fdb9aeb1ecf612",
+      "size": 1714,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9bb25856b88ee8cc123dd26d09fdb9aeb1ecf612"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_sft_image_edit_klein_base_4b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0478ca04ec324ec8fffa7f96be5b0a7b7eb726dc",
+      "size": 2562,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0478ca04ec324ec8fffa7f96be5b0a7b7eb726dc"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_sft_image_edit_klein_base_9b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84dda720c559e960cddb5a59ea484ca14484613f",
+      "size": 2984,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/84dda720c559e960cddb5a59ea484ca14484613f"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_sft_klein_base_4b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a12c3079ce2b458dc2bf5cf41a26da6123ef13e5",
+      "size": 2644,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a12c3079ce2b458dc2bf5cf41a26da6123ef13e5"
+    },
+    {
+      "path": "fastgen/configs/experiments/Flux2/config_sft_klein_base_9b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8a67b42be9322508c3530b7ccf546c9c9546247",
+      "size": 2710,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a8a67b42be9322508c3530b7ccf546c9c9546247"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "98289f34efc6033c9cb1d575bc4cacde8f00bfdb",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/98289f34efc6033c9cb1d575bc4cacde8f00bfdb"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a299eb8d06d735286542580ba4ed31f10a5204dd",
+      "size": 3226,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a299eb8d06d735286542580ba4ed31f10a5204dd"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2/config_dmd2_ltx23.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21e821120e3e700060d92c79bdbc9ad8336738bc",
+      "size": 3047,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/21e821120e3e700060d92c79bdbc9ad8336738bc"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2/config_dmd2_ltx25.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fb0ed969155e8041d5c8b8467f5ca9652a600ef",
+      "size": 1765,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8fb0ed969155e8041d5c8b8467f5ca9652a600ef"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2/config_pdd_ltx23.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4fae439d9740e767597bee964ba1fd293db82b0",
+      "size": 5997,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b4fae439d9740e767597bee964ba1fd293db82b0"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2/config_pdd_ltx23_audio.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a187f6b48f34219f7ef81bdf0694a7a30223c693",
+      "size": 2099,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a187f6b48f34219f7ef81bdf0694a7a30223c693"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48bc0d3e5109a39ae2f633bf20c1eebedaec2b95",
+      "size": 2128,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/48bc0d3e5109a39ae2f633bf20c1eebedaec2b95"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2/config_sft_ltx23.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2353c896c28271de77f74718dab19793e156ef89",
+      "size": 1960,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2353c896c28271de77f74718dab19793e156ef89"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2/config_sft_ltx25.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfb2c874593f0a4cca068e17c9abc0443e015e03",
+      "size": 2191,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bfb2c874593f0a4cca068e17c9abc0443e015e03"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2I2V",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "10a17d7379acdd18aaff64df7d538dd4524859e9",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/10a17d7379acdd18aaff64df7d538dd4524859e9"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2I2V/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2I2V/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f64a71d2ff3fe607c674202aa54a6aed334a0ae",
+      "size": 752,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1f64a71d2ff3fe607c674202aa54a6aed334a0ae"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2I2V/config_dmd2_ltx23.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26e547a654e8bbc650ee40b922203d05fb61d80e",
+      "size": 768,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/26e547a654e8bbc650ee40b922203d05fb61d80e"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2I2V/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "683636809c61020d4bf5250f9dc17937fe346a4e",
+      "size": 748,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/683636809c61020d4bf5250f9dc17937fe346a4e"
+    },
+    {
+      "path": "fastgen/configs/experiments/LTX2I2V/config_sft_ltx23.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89ed73399569f3db1392c515d0dcef6fb044b51b",
+      "size": 764,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/89ed73399569f3db1392c515d0dcef6fb044b51b"
+    },
+    {
+      "path": "fastgen/configs/experiments/MiniMaxH3",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9a87b2901096bd0558112481758993188f9ce6bf",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/9a87b2901096bd0558112481758993188f9ce6bf"
+    },
+    {
+      "path": "fastgen/configs/experiments/MiniMaxH3/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b9c43757594dae29876976f05ed3e7b23ed6e0e",
+      "size": 5171,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2b9c43757594dae29876976f05ed3e7b23ed6e0e"
+    },
+    {
+      "path": "fastgen/configs/experiments/MiniMaxH3/config_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f87d315de6425296c736fd99bcb649cc301077e",
+      "size": 5240,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6f87d315de6425296c736fd99bcb649cc301077e"
+    },
+    {
+      "path": "fastgen/configs/experiments/MiniMaxH3/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9d9c305068f0295e4261a08a50f129227f178c42",
+      "size": 3632,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9d9c305068f0295e4261a08a50f129227f178c42"
+    },
+    {
+      "path": "fastgen/configs/experiments/QwenImage",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a8c65862eaba3ba1a9eaaa001608e7e2bb71e578",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/a8c65862eaba3ba1a9eaaa001608e7e2bb71e578"
+    },
+    {
+      "path": "fastgen/configs/experiments/QwenImage/config_ayf.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22152a8b1e4180bc63968a5f3b2d43a9c6f424e7",
+      "size": 3964,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/22152a8b1e4180bc63968a5f3b2d43a9c6f424e7"
+    },
+    {
+      "path": "fastgen/configs/experiments/QwenImage/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20e024e28caad6535c8966a72b1daacec70f7c4e",
+      "size": 3147,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/20e024e28caad6535c8966a72b1daacec70f7c4e"
+    },
+    {
+      "path": "fastgen/configs/experiments/QwenImage/config_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c950577685ce5ea9df0a4032ce4266d8f5c182d0",
+      "size": 2660,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c950577685ce5ea9df0a4032ce4266d8f5c182d0"
+    },
+    {
+      "path": "fastgen/configs/experiments/QwenImage/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a4abc227f7207a13d2ff7c76dd179215d8e2d49",
+      "size": 2004,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9a4abc227f7207a13d2ff7c76dd179215d8e2d49"
+    },
+    {
+      "path": "fastgen/configs/experiments/SD15",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "3a92b3dedbb4464a7fafe1ef995058850afec0d7",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/3a92b3dedbb4464a7fafe1ef995058850afec0d7"
+    },
+    {
+      "path": "fastgen/configs/experiments/SD15/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71ad65aacc40721794c11d8ec69a7ff449dc9f90",
+      "size": 1705,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/71ad65aacc40721794c11d8ec69a7ff449dc9f90"
+    },
+    {
+      "path": "fastgen/configs/experiments/SD15/config_f_distill.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9750d16a82aa618e22a0b3981febfa943b06b64",
+      "size": 1729,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b9750d16a82aa618e22a0b3981febfa943b06b64"
+    },
+    {
+      "path": "fastgen/configs/experiments/SD15/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab722c6dead33f67779fbd4e4698f40962e76d3b",
+      "size": 1540,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ab722c6dead33f67779fbd4e4698f40962e76d3b"
+    },
+    {
+      "path": "fastgen/configs/experiments/SDXL",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "313af57e9067654cddc6fba17af8d928945d99b4",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/313af57e9067654cddc6fba17af8d928945d99b4"
+    },
+    {
+      "path": "fastgen/configs/experiments/SDXL/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "434a54ad08cc7e817adbd1a47c5495e438130f88",
+      "size": 1728,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/434a54ad08cc7e817adbd1a47c5495e438130f88"
+    },
+    {
+      "path": "fastgen/configs/experiments/SDXL/config_f_distill.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "391f6e7f0bd218444562d1a566f089160f6c9e46",
+      "size": 1869,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/391f6e7f0bd218444562d1a566f089160f6c9e46"
+    },
+    {
+      "path": "fastgen/configs/experiments/SDXL/config_kd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "910621c3c3514267f63b0425f2faa6ce2680d447",
+      "size": 883,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/910621c3c3514267f63b0425f2faa6ce2680d447"
+    },
+    {
+      "path": "fastgen/configs/experiments/SDXL/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "70621005dec8726ce5711f79a49786d8481f7d92",
+      "size": 1615,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/70621005dec8726ce5711f79a49786d8481f7d92"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4674c4decb1aa19c43a3daa0b916778e19a1b988",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/4674c4decb1aa19c43a3daa0b916778e19a1b988"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_dmd2_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58895dc2524cc48f0d3be3de7044d4e5ecf2ba43",
+      "size": 2531,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/58895dc2524cc48f0d3be3de7044d4e5ecf2ba43"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_dmd2_lingbot_world.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fb313f66f0966baba9bbfee5080c53455a265e0",
+      "size": 3760,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8fb313f66f0966baba9bbfee5080c53455a265e0"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_dmd2_wan22_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d157a42b9e4a6c3e7e84a9c560b6e15e14707af6",
+      "size": 2608,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d157a42b9e4a6c3e7e84a9c560b6e15e14707af6"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_dmd2_wan22_5b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77ad9261f45b891bad3c77aabddf3d27f2c7726b",
+      "size": 2575,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/77ad9261f45b891bad3c77aabddf3d27f2c7726b"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_sft_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cd0dbcddae5328b74c11e75c7848d8a2143519a",
+      "size": 1854,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4cd0dbcddae5328b74c11e75c7848d8a2143519a"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_sft_causal_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "25591d7ceda3683343252c6bf0c642fc43408f62",
+      "size": 1936,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/25591d7ceda3683343252c6bf0c642fc43408f62"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_sft_causal_wan22_5b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d593618105314655cb6a18ab70ddeb6fa41a306d",
+      "size": 1897,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d593618105314655cb6a18ab70ddeb6fa41a306d"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_sft_lingbot_world.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "968f7c64905e2abc76f7dd9644c8060850ea6087",
+      "size": 2735,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/968f7c64905e2abc76f7dd9644c8060850ea6087"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_sft_wan22_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c9311d76bced1c9ba32df47583cab05df854301",
+      "size": 1856,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5c9311d76bced1c9ba32df47583cab05df854301"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanI2V/config_sft_wan22_5b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "04008d1a17292c32acaaae807be16f53650e10e4",
+      "size": 1765,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/04008d1a17292c32acaaae807be16f53650e10e4"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fd994ad24be8939299adf0133e63519b632c160a",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/fd994ad24be8939299adf0133e63519b632c160a"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_anyflow.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e3d749a94b90000c0dc9598cb4aeb3bfeb807cf",
+      "size": 6187,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6e3d749a94b90000c0dc9598cb4aeb3bfeb807cf"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_anyflow_onpolicy.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41c977b0cb34b66aff51254b3ac40b3fc8efcfb7",
+      "size": 8889,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/41c977b0cb34b66aff51254b3ac40b3fc8efcfb7"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_causvid.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3e9d6c8048b42b2a6c8e3c76b5c1fb6116159e5",
+      "size": 2838,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e3e9d6c8048b42b2a6c8e3c76b5c1fb6116159e5"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "219eaf96fb9ea1c80c793859699db3b20496a696",
+      "size": 2630,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/219eaf96fb9ea1c80c793859699db3b20496a696"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_dmd2_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fdc8f9e1bf76141118dd9ea1025520d77cb6aa5a",
+      "size": 2766,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fdc8f9e1bf76141118dd9ea1025520d77cb6aa5a"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_dmd2_wan22_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea355e31a955e68ff250a0b66059ed46c6dc0f5f",
+      "size": 2613,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ea355e31a955e68ff250a0b66059ed46c6dc0f5f"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_dmd2_wan22_5b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bbd19a4c1c761a93b1f1ae4ff73eb5b7935670e",
+      "size": 2566,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1bbd19a4c1c761a93b1f1ae4ff73eb5b7935670e"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_fdistill.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "05fc8744733812ed54e584f352a5aa835abc926d",
+      "size": 1829,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/05fc8744733812ed54e584f352a5aa835abc926d"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_kd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ef28c7f317aebbdcb6644036937e2f6ee38fca28",
+      "size": 944,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ef28c7f317aebbdcb6644036937e2f6ee38fca28"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_kd_path.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e9a117d39c61536c44f62d7f7a0aaa5bbdf2c05",
+      "size": 1183,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5e9a117d39c61536c44f62d7f7a0aaa5bbdf2c05"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_kd_path_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d719b3ecbc8e1d4c91399edf5b8f9677d67f16f7",
+      "size": 1300,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d719b3ecbc8e1d4c91399edf5b8f9677d67f16f7"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_ladd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d5c8afb7809c241113e63c4c994855b060d3dad",
+      "size": 2287,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3d5c8afb7809c241113e63c4c994855b060d3dad"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_mf.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86e1dc45020c829296fb6d1ee92bc3c9763c2315",
+      "size": 3268,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/86e1dc45020c829296fb6d1ee92bc3c9763c2315"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae0caf03212f503c8b65312b78f82c03cdf1db97",
+      "size": 2804,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ae0caf03212f503c8b65312b78f82c03cdf1db97"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_pdd_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "31d15a878ae6eecf3c4001e76b93c4e847b8fe3d",
+      "size": 1960,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/31d15a878ae6eecf3c4001e76b93c4e847b8fe3d"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sf.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5232518d0e9bb8ccffefbaf1717a92847f381533",
+      "size": 2968,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5232518d0e9bb8ccffefbaf1717a92847f381533"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sf_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1622252fd48febcaf31b4803c085031b9eab982",
+      "size": 2622,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a1622252fd48febcaf31b4803c085031b9eab982"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9c18d1e9e119d590ab23c6eece710215ec1e17f2",
+      "size": 1467,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9c18d1e9e119d590ab23c6eece710215ec1e17f2"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sft_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "644eaba5037ce496507050bbf30b206cb0a8500d",
+      "size": 1589,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/644eaba5037ce496507050bbf30b206cb0a8500d"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sft_causal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28d755bbacd921e963e603dba896988fde63452e",
+      "size": 1402,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/28d755bbacd921e963e603dba896988fde63452e"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sft_causal_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6c54ba31b2e1982341abc2c4a2a43aa9969adfe",
+      "size": 1445,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b6c54ba31b2e1982341abc2c4a2a43aa9969adfe"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sft_teacher_forcing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e5e6305b203ccdf0078f5e2aa473ae842481309",
+      "size": 1719,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1e5e6305b203ccdf0078f5e2aa473ae842481309"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sft_teacher_forcing_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "365b0e711839cf3c08d48545744c5904f7d40575",
+      "size": 811,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/365b0e711839cf3c08d48545744c5904f7d40575"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanT2V/config_sft_wan22_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6dcc88ec1131531e0bfa66bf40c731ab64cf860",
+      "size": 1396,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b6dcc88ec1131531e0bfa66bf40c731ab64cf860"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanV2V",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7ae1e8b9809a4cdce7697005b9f1a91934918699",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/7ae1e8b9809a4cdce7697005b9f1a91934918699"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanV2V/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37ba43596faf22ee1979b681a7e0da4904cfc71e",
+      "size": 2779,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/37ba43596faf22ee1979b681a7e0da4904cfc71e"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanV2V/config_sf.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9595d1cdc2e16ad79c89cac0a269ba5d9da2e716",
+      "size": 3025,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9595d1cdc2e16ad79c89cac0a269ba5d9da2e716"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanV2V/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a1cbfdf589daccb8a740662a3230260797378bf",
+      "size": 1842,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3a1cbfdf589daccb8a740662a3230260797378bf"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanV2V/config_sft_14b.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51e45f5ae4d4fdc3ebeef4a4ef4e849c2da10982",
+      "size": 2035,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/51e45f5ae4d4fdc3ebeef4a4ef4e849c2da10982"
+    },
+    {
+      "path": "fastgen/configs/experiments/WanV2V/config_sft_causal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "058c443a70dd38bf4ca2641fd0fc1dd3b2dc3ee1",
+      "size": 1924,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/058c443a70dd38bf4ca2641fd0fc1dd3b2dc3ee1"
+    },
+    {
+      "path": "fastgen/configs/instantiate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7caf3c0c44f1e36169f0379ec9dcbfe294606832",
+      "size": 4685,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7caf3c0c44f1e36169f0379ec9dcbfe294606832"
+    },
+    {
+      "path": "fastgen/configs/methods",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1b77c888e8903c4de5fb60ecf07471e1f42f4d3a",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/1b77c888e8903c4de5fb60ecf07471e1f42f4d3a"
+    },
+    {
+      "path": "fastgen/configs/methods/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/configs/methods/config_anyflow.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37da94a291eb10a19c03fe21c4b70657db63e0f4",
+      "size": 5347,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/37da94a291eb10a19c03fe21c4b70657db63e0f4"
+    },
+    {
+      "path": "fastgen/configs/methods/config_ayf.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6ef05ccf4498fa3e57fb9599b7e66a7cf988eb9",
+      "size": 4221,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d6ef05ccf4498fa3e57fb9599b7e66a7cf988eb9"
+    },
+    {
+      "path": "fastgen/configs/methods/config_causvid.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83b512c04f92a52312dc9e083345d402632f71e4",
+      "size": 1439,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/83b512c04f92a52312dc9e083345d402632f71e4"
+    },
+    {
+      "path": "fastgen/configs/methods/config_cm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8c310c2b907d78e3dbccfac74876ec9ff3b24cc",
+      "size": 3214,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f8c310c2b907d78e3dbccfac74876ec9ff3b24cc"
+    },
+    {
+      "path": "fastgen/configs/methods/config_dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ceb7fdf0df88f9ae825835aa4a548440cc29bf7a",
+      "size": 7289,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ceb7fdf0df88f9ae825835aa4a548440cc29bf7a"
+    },
+    {
+      "path": "fastgen/configs/methods/config_f_distill.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "451eec4571bd94764be85ad2a481e313f2ffb570",
+      "size": 1670,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/451eec4571bd94764be85ad2a481e313f2ffb570"
+    },
+    {
+      "path": "fastgen/configs/methods/config_kd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a7ff0d7f882d297127728870a103d698ccc02cb",
+      "size": 935,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2a7ff0d7f882d297127728870a103d698ccc02cb"
+    },
+    {
+      "path": "fastgen/configs/methods/config_kd_causal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "10f511bf28594999dcce6eb002deb8fc6496c2c3",
+      "size": 1462,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/10f511bf28594999dcce6eb002deb8fc6496c2c3"
+    },
+    {
+      "path": "fastgen/configs/methods/config_ladd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f814b44c4be62cba2717e909741d9bbe7f9dd1aa",
+      "size": 3314,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f814b44c4be62cba2717e909741d9bbe7f9dd1aa"
+    },
+    {
+      "path": "fastgen/configs/methods/config_mean_flow.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8371fd1ab0580013f1e549806313be5d536c128b",
+      "size": 5758,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8371fd1ab0580013f1e549806313be5d536c128b"
+    },
+    {
+      "path": "fastgen/configs/methods/config_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a517283fec3b1b7f727e7cc45eb5ab543f39521",
+      "size": 2326,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9a517283fec3b1b7f727e7cc45eb5ab543f39521"
+    },
+    {
+      "path": "fastgen/configs/methods/config_scm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa6dd4287083b23469632f0c482164b029ef8650",
+      "size": 3956,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/aa6dd4287083b23469632f0c482164b029ef8650"
+    },
+    {
+      "path": "fastgen/configs/methods/config_self_forcing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "332a57d9f7f4cfd44560ad2e930c2ea6bcb13565",
+      "size": 1755,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/332a57d9f7f4cfd44560ad2e930c2ea6bcb13565"
+    },
+    {
+      "path": "fastgen/configs/methods/config_sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d28aee2b305a43c1cb914505dcee7f8cab1570d",
+      "size": 1369,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6d28aee2b305a43c1cb914505dcee7f8cab1570d"
+    },
+    {
+      "path": "fastgen/configs/methods/config_sft_causal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5e095f6fad9d921e4d3664436955208ae0ff0518",
+      "size": 1273,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5e095f6fad9d921e4d3664436955208ae0ff0518"
+    },
+    {
+      "path": "fastgen/configs/methods/config_sft_teacher_forcing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "056f2d1b04b41727e417c436b8437fa94b835afd",
+      "size": 2139,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/056f2d1b04b41727e417c436b8437fa94b835afd"
+    },
+    {
+      "path": "fastgen/configs/methods/config_tcm.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5cf2435c67926376d16d4c66e864f1826bcb12f2",
+      "size": 2500,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5cf2435c67926376d16d4c66e864f1826bcb12f2"
+    },
+    {
+      "path": "fastgen/configs/net.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cdbe07859992ce7ce19a87e070562c0d92d3fd4f",
+      "size": 20241,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/cdbe07859992ce7ce19a87e070562c0d92d3fd4f"
+    },
+    {
+      "path": "fastgen/configs/opt.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81ee857f17d9fc91c0bd175c2623bc268576f94b",
+      "size": 1889,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/81ee857f17d9fc91c0bd175c2623bc268576f94b"
+    },
+    {
+      "path": "fastgen/datasets",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "26282f2bf8eb985d9f14b5285992480879731a2d",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/26282f2bf8eb985d9f14b5285992480879731a2d"
+    },
+    {
+      "path": "fastgen/datasets/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0070ad78f5bf9218f89da326dc3b7aeb335a1f0f",
+      "size": 13603,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0070ad78f5bf9218f89da326dc3b7aeb335a1f0f"
+    },
+    {
+      "path": "fastgen/datasets/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "739b93b73199ffc155d30745d24027da53aaea8e",
+      "size": 169,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/739b93b73199ffc155d30745d24027da53aaea8e"
+    },
+    {
+      "path": "fastgen/datasets/augment.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f562336447e6ed4613a9ef027338577bb617323a",
+      "size": 22848,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f562336447e6ed4613a9ef027338577bb617323a"
+    },
+    {
+      "path": "fastgen/datasets/class_cond_dataloader.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b87aff73115b337e6ab2d285a1ece5895fc7bc0",
+      "size": 2305,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6b87aff73115b337e6ab2d285a1ece5895fc7bc0"
+    },
+    {
+      "path": "fastgen/datasets/class_cond_dataset.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ce49eafc5245e591358beb409310b376071c33c",
+      "size": 11099,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1ce49eafc5245e591358beb409310b376071c33c"
+    },
+    {
+      "path": "fastgen/datasets/crop_resize.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4654aeb24550d9d675a3a3f75573b47e029315e",
+      "size": 5824,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b4654aeb24550d9d675a3a3f75573b47e029315e"
+    },
+    {
+      "path": "fastgen/datasets/decoders.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea20a62e98bd5868aa4714c6d898a3d01b91e998",
+      "size": 38221,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ea20a62e98bd5868aa4714c6d898a3d01b91e998"
+    },
+    {
+      "path": "fastgen/datasets/samplers.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49fc55e96617501eafe0196b0c3f473c375bc5ea",
+      "size": 2345,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/49fc55e96617501eafe0196b0c3f473c375bc5ea"
+    },
+    {
+      "path": "fastgen/datasets/video_resampling.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f67304e308fad64af2b8de49e97a5819151c174c",
+      "size": 2881,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f67304e308fad64af2b8de49e97a5819151c174c"
+    },
+    {
+      "path": "fastgen/datasets/wds_dataloaders.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2ab46a6dd623b333704809834106da681f0207d",
+      "size": 39375,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b2ab46a6dd623b333704809834106da681f0207d"
+    },
+    {
+      "path": "fastgen/datasets/wds_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5237581f7541a388b0aec5aca5f450dc190b6459",
+      "size": 41157,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5237581f7541a388b0aec5aca5f450dc190b6459"
+    },
+    {
+      "path": "fastgen/methods",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "819edc80e7e87b507a840b04384b265cd28bab41",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/819edc80e7e87b507a840b04384b265cd28bab41"
+    },
+    {
+      "path": "fastgen/methods/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "966269bf0c0eb6e1ea4985643f0e7391153b7dcb",
+      "size": 3746,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/966269bf0c0eb6e1ea4985643f0e7391153b7dcb"
+    },
+    {
+      "path": "fastgen/methods/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be758e5593cc31ae0ef5a8125d7c357f20cfffdc",
+      "size": 1750,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/be758e5593cc31ae0ef5a8125d7c357f20cfffdc"
+    },
+    {
+      "path": "fastgen/methods/backward_simulation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb8d0194aaf3b742067bde57f4aa2a20ac1369dc",
+      "size": 10027,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bb8d0194aaf3b742067bde57f4aa2a20ac1369dc"
+    },
+    {
+      "path": "fastgen/methods/causal_sampling.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdb467c26aa88e738e9f799e57489363254793f3",
+      "size": 5410,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bdb467c26aa88e738e9f799e57489363254793f3"
+    },
+    {
+      "path": "fastgen/methods/common_loss.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fff1525dcf486e53b4ab2ea368f11bf260e84425",
+      "size": 16489,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fff1525dcf486e53b4ab2ea368f11bf260e84425"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "99418e4f68e5efa9d55bbdd2422aea0031897c8f",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/99418e4f68e5efa9d55bbdd2422aea0031897c8f"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63a16ae4cfd8ad912a4b8f4613db9cf7caf22a59",
+      "size": 11864,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/63a16ae4cfd8ad912a4b8f4613db9cf7caf22a59"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/anyflow.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "565be31a774395de0442ebdeef9b7f95218a6dc4",
+      "size": 9779,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/565be31a774395de0442ebdeef9b7f95218a6dc4"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/causvid.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbdb046c38d6c3e97da7377e31fd589faa513211",
+      "size": 12022,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bbdb046c38d6c3e97da7377e31fd589faa513211"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/dmd2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f89d2f6f5c79036c29b5b4e622650cbe3d6b571a",
+      "size": 39117,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f89d2f6f5c79036c29b5b4e622650cbe3d6b571a"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/f_distill.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b55e92faee8b08a472681842b7013bd6e10825ff",
+      "size": 6570,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b55e92faee8b08a472681842b7013bd6e10825ff"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/ladd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dba79702b5b42ad41bc6524a5b76cb95bd80248d",
+      "size": 462,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/dba79702b5b42ad41bc6524a5b76cb95bd80248d"
+    },
+    {
+      "path": "fastgen/methods/distribution_matching/self_forcing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56ef96451188fd62972dbdb096b40e8102286dbb",
+      "size": 7487,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/56ef96451188fd62972dbdb096b40e8102286dbb"
+    },
+    {
+      "path": "fastgen/methods/fine_tuning",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "206864fcda99e2003e19b58b6d8a205356040fb7",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/206864fcda99e2003e19b58b6d8a205356040fb7"
+    },
+    {
+      "path": "fastgen/methods/fine_tuning/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce925ef29dd6a09fe95076934208d05690f593b8",
+      "size": 6149,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ce925ef29dd6a09fe95076934208d05690f593b8"
+    },
+    {
+      "path": "fastgen/methods/fine_tuning/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/methods/fine_tuning/sft.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8440bc82be9515e704f56ea5f08552321209382c",
+      "size": 15347,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8440bc82be9515e704f56ea5f08552321209382c"
+    },
+    {
+      "path": "fastgen/methods/model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d2828cc6fede896bea3ddb2153e75b4cc2ab3e78",
+      "size": 51406,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d2828cc6fede896bea3ddb2153e75b4cc2ab3e78"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fcac4bd8b6717b95908ae14336f680b13718e89e",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/fcac4bd8b6717b95908ae14336f680b13718e89e"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/CM.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f53254eba213379271293eb124e48c3b86f86033",
+      "size": 10615,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f53254eba213379271293eb124e48c3b86f86033"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/KD.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b241184f7fb1af30e4dd830a680fd0c97261a0b",
+      "size": 7979,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7b241184f7fb1af30e4dd830a680fd0c97261a0b"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "986c23a55b42827fb02e8df660dc98ccf46f7522",
+      "size": 12909,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/986c23a55b42827fb02e8df660dc98ccf46f7522"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/TCM.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76a792dceeb21ece73b1d4595a69ab29772e3cf3",
+      "size": 8600,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/76a792dceeb21ece73b1d4595a69ab29772e3cf3"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbad450d01a1866ad4fbd8d3727eccca10f7cd7e",
+      "size": 173,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/dbad450d01a1866ad4fbd8d3727eccca10f7cd7e"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/ayf.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "124844d893578124a88e60a4f7bfd9357ca5e616",
+      "size": 11020,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/124844d893578124a88e60a4f7bfd9357ca5e616"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/mean_flow.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65206b039c7e4acde10ae7244d74fe7e7411e87f",
+      "size": 38508,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/65206b039c7e4acde10ae7244d74fe7e7411e87f"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "112077d844a6c2eb556ad6f22e73fe0a9ba38b90",
+      "size": 19544,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/112077d844a6c2eb556ad6f22e73fe0a9ba38b90"
+    },
+    {
+      "path": "fastgen/methods/trajectory_matching/sCM.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "305b8530d92e3bc152174a8588b4f1eb136ee232",
+      "size": 18953,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/305b8530d92e3bc152174a8588b4f1eb136ee232"
+    },
+    {
+      "path": "fastgen/networks",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b903ca8a7fe734d111d0ab558f808e47ccc6b651",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/b903ca8a7fe734d111d0ab558f808e47ccc6b651"
+    },
+    {
+      "path": "fastgen/networks/CogVideoX",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0ff7bc190a57981a597f01dfc346d1c12ce9fff2",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/0ff7bc190a57981a597f01dfc346d1c12ce9fff2"
+    },
+    {
+      "path": "fastgen/networks/CogVideoX/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/CogVideoX/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d2c01f09043c2f6aed5116a52e8178a28c9b53b",
+      "size": 30748,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2d2c01f09043c2f6aed5116a52e8178a28c9b53b"
+    },
+    {
+      "path": "fastgen/networks/DiT",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "a19d3c33de8c5d6748cca9cc791d6692617f0d98",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/a19d3c33de8c5d6748cca9cc791d6692617f0d98"
+    },
+    {
+      "path": "fastgen/networks/DiT/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/DiT/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e6ef3bedcb09aac37dfc34253a8c4f6f0b0ec62",
+      "size": 46458,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9e6ef3bedcb09aac37dfc34253a8c4f6f0b0ec62"
+    },
+    {
+      "path": "fastgen/networks/DiT/network_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "063e2ecd332bb8ae9613d3e54450e949d6902b2d",
+      "size": 1314,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/063e2ecd332bb8ae9613d3e54450e949d6902b2d"
+    },
+    {
+      "path": "fastgen/networks/EDM",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8de099e49e90bd7d44dae1cc5c3c3fcd22b15853",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/8de099e49e90bd7d44dae1cc5c3c3fcd22b15853"
+    },
+    {
+      "path": "fastgen/networks/EDM/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/EDM/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "93a722fa9937c216a34a081583645c24106c8d55",
+      "size": 46414,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/93a722fa9937c216a34a081583645c24106c8d55"
+    },
+    {
+      "path": "fastgen/networks/EDM2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cba5155a380a498ef9e47c9e10d3f252d62270ec",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/cba5155a380a498ef9e47c9e10d3f252d62270ec"
+    },
+    {
+      "path": "fastgen/networks/EDM2/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/EDM2/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d887050b9b51407f9967c51c5fc1dfc03c70e0a5",
+      "size": 29007,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d887050b9b51407f9967c51c5fc1dfc03c70e0a5"
+    },
+    {
+      "path": "fastgen/networks/Flux",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "86c0dfd1712cd6c6e92a300305b88b21a7107128",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/86c0dfd1712cd6c6e92a300305b88b21a7107128"
+    },
+    {
+      "path": "fastgen/networks/Flux/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0944b65fdbc1b6db59071d12271239c029c212a2",
+      "size": 139,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0944b65fdbc1b6db59071d12271239c029c212a2"
+    },
+    {
+      "path": "fastgen/networks/Flux/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99278eb3f4949f46b86b7c1c5d38faff8b41e45d",
+      "size": 40505,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/99278eb3f4949f46b86b7c1c5d38faff8b41e45d"
+    },
+    {
+      "path": "fastgen/networks/Flux2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "20da2bbdbd89d779b4cb9e77cdf4266ed61a24d9",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/20da2bbdbd89d779b4cb9e77cdf4266ed61a24d9"
+    },
+    {
+      "path": "fastgen/networks/Flux2/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/Flux2/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57922593bf283c94ed3c009cae4fe1e76e909eb5",
+      "size": 63071,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/57922593bf283c94ed3c009cae4fe1e76e909eb5"
+    },
+    {
+      "path": "fastgen/networks/LTX2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0e895ff52b4125d07625f485e108626e7243eea5",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/0e895ff52b4125d07625f485e108626e7243eea5"
+    },
+    {
+      "path": "fastgen/networks/LTX2/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "560b40b8f06614b56be08d13c8d42150fdd58b78",
+      "size": 228,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/560b40b8f06614b56be08d13c8d42150fdd58b78"
+    },
+    {
+      "path": "fastgen/networks/LTX2/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86fe0b27a8ec1fc4ecbdc88b3e100189e0ca3fc6",
+      "size": 127138,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/86fe0b27a8ec1fc4ecbdc88b3e100189e0ca3fc6"
+    },
+    {
+      "path": "fastgen/networks/LTX2/network_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1a2987de8bbeabc4d8e42a306d810a3a01a130e3",
+      "size": 677,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1a2987de8bbeabc4d8e42a306d810a3a01a130e3"
+    },
+    {
+      "path": "fastgen/networks/MiniMaxH3",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "292bc6094be9e370ba8f23719caebe22ddb7f027",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/292bc6094be9e370ba8f23719caebe22ddb7f027"
+    },
+    {
+      "path": "fastgen/networks/MiniMaxH3/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/MiniMaxH3/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dd69658ba131d63dfa28fbd0c4d3655bf495dca6",
+      "size": 78537,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/dd69658ba131d63dfa28fbd0c4d3655bf495dca6"
+    },
+    {
+      "path": "fastgen/networks/MiniMaxH3/network_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a7c5e67b304305961800a1a79e20d2b5b1c5d4c3",
+      "size": 1286,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a7c5e67b304305961800a1a79e20d2b5b1c5d4c3"
+    },
+    {
+      "path": "fastgen/networks/MiniMaxH3/packing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89c34cd3f2e2ee11bebf0075fbfc6fb2e72f5ad3",
+      "size": 19264,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/89c34cd3f2e2ee11bebf0075fbfc6fb2e72f5ad3"
+    },
+    {
+      "path": "fastgen/networks/QwenImage",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b3d212e20f22f19aa788acd8fa0ee4c6216dd0ba",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/b3d212e20f22f19aa788acd8fa0ee4c6216dd0ba"
+    },
+    {
+      "path": "fastgen/networks/QwenImage/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/QwenImage/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c949515822a020ec7d5776f741b26c056abb2f38",
+      "size": 43427,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c949515822a020ec7d5776f741b26c056abb2f38"
+    },
+    {
+      "path": "fastgen/networks/QwenImage/network_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad5f44363c6ea362e5ce530b31640c17388a298f",
+      "size": 634,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ad5f44363c6ea362e5ce530b31640c17388a298f"
+    },
+    {
+      "path": "fastgen/networks/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0c0b75179d6a5088a3e5c0982a15a9adbb76f03",
+      "size": 13582,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c0c0b75179d6a5088a3e5c0982a15a9adbb76f03"
+    },
+    {
+      "path": "fastgen/networks/SD15",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ebe2a82f2f885717354d19dbb2b67fa8e79411b4",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/ebe2a82f2f885717354d19dbb2b67fa8e79411b4"
+    },
+    {
+      "path": "fastgen/networks/SD15/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/SD15/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f7f0ecc9df6f9de7c22aa3dddb845dd8ed6be227",
+      "size": 28128,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f7f0ecc9df6f9de7c22aa3dddb845dd8ed6be227"
+    },
+    {
+      "path": "fastgen/networks/SDXL",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "cd3ee5a2c2748454273dd076f24ab189d829265b",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/cd3ee5a2c2748454273dd076f24ab189d829265b"
+    },
+    {
+      "path": "fastgen/networks/SDXL/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/SDXL/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90ca24534083c948a124b9d199f596f116931d9c",
+      "size": 19080,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/90ca24534083c948a124b9d199f596f116931d9c"
+    },
+    {
+      "path": "fastgen/networks/VaceWan",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c9a50fa884da5668e759f13086d79554cd952bf8",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/c9a50fa884da5668e759f13086d79554cd952bf8"
+    },
+    {
+      "path": "fastgen/networks/VaceWan/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d45ef945bb1455f948f7e6dac93dd43cef0983c9",
+      "size": 190,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d45ef945bb1455f948f7e6dac93dd43cef0983c9"
+    },
+    {
+      "path": "fastgen/networks/VaceWan/modules",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b0ec58b9864d82dfc1da25b77ac99dbba54dcf3d",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/b0ec58b9864d82dfc1da25b77ac99dbba54dcf3d"
+    },
+    {
+      "path": "fastgen/networks/VaceWan/modules/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c668ebf177c3ac43f97b67cb757a310c678450e3",
+      "size": 232,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c668ebf177c3ac43f97b67cb757a310c678450e3"
+    },
+    {
+      "path": "fastgen/networks/VaceWan/modules/vace_depth_annotator.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7acc9705a486e6d089d93c7b00b2fb30b20ac5c7",
+      "size": 6395,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7acc9705a486e6d089d93c7b00b2fb30b20ac5c7"
+    },
+    {
+      "path": "fastgen/networks/VaceWan/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1145a2ba131e59c1644dcf2a3a7850cc0beb675",
+      "size": 37014,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d1145a2ba131e59c1644dcf2a3a7850cc0beb675"
+    },
+    {
+      "path": "fastgen/networks/VaceWan/network_causal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd52a90d73ecc7d585df7c4f5969cde98b648a0f",
+      "size": 35742,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/cd52a90d73ecc7d585df7c4f5969cde98b648a0f"
+    },
+    {
+      "path": "fastgen/networks/Wan",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0623bb0dfd6e2c1ba9e7a3c45141b58e2cbafbb6",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/0623bb0dfd6e2c1ba9e7a3c45141b58e2cbafbb6"
+    },
+    {
+      "path": "fastgen/networks/Wan/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0208a9246cc9b0cbd1a0f6616d35634800ab0522",
+      "size": 294,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0208a9246cc9b0cbd1a0f6616d35634800ab0522"
+    },
+    {
+      "path": "fastgen/networks/Wan/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e33334a4e46d1b23c9195c6af1886dc60340bcd8",
+      "size": 72889,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e33334a4e46d1b23c9195c6af1886dc60340bcd8"
+    },
+    {
+      "path": "fastgen/networks/Wan/network_causal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96d11ec51acbfc7f93fe8091bcefca7b064213ca",
+      "size": 49079,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/96d11ec51acbfc7f93fe8091bcefca7b064213ca"
+    },
+    {
+      "path": "fastgen/networks/Wan/network_pdd.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e98879be9b10f94b4505c83df4327dcccff4eab5",
+      "size": 540,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e98879be9b10f94b4505c83df4327dcccff4eab5"
+    },
+    {
+      "path": "fastgen/networks/Wan/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b9b1a33aa5351f4a0c8420c63b46843fbea0a65",
+      "size": 6919,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9b9b1a33aa5351f4a0c8420c63b46843fbea0a65"
+    },
+    {
+      "path": "fastgen/networks/Wan/wan_moe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b9d3f3c86fa1759e998851856acd913fb990d1be",
+      "size": 26239,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b9d3f3c86fa1759e998851856acd913fb990d1be"
+    },
+    {
+      "path": "fastgen/networks/WanI2V",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d591ec4b302623335a62ae81bf3f280c6c023b37",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/d591ec4b302623335a62ae81bf3f280c6c023b37"
+    },
+    {
+      "path": "fastgen/networks/WanI2V/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54b117c22861dacd0c3cdd825cba511f0746a406",
+      "size": 346,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/54b117c22861dacd0c3cdd825cba511f0746a406"
+    },
+    {
+      "path": "fastgen/networks/WanI2V/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdf43f8d9c0bb26561ac87dc3414289337e20f87",
+      "size": 31582,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bdf43f8d9c0bb26561ac87dc3414289337e20f87"
+    },
+    {
+      "path": "fastgen/networks/WanI2V/network_cam.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "34cd2cc7f6babe00a4917fe5ba6221244f542048",
+      "size": 27315,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/34cd2cc7f6babe00a4917fe5ba6221244f542048"
+    },
+    {
+      "path": "fastgen/networks/WanI2V/network_causal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c27325a0e1cd948379a43d882634f9dc5697a63d",
+      "size": 17134,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c27325a0e1cd948379a43d882634f9dc5697a63d"
+    },
+    {
+      "path": "fastgen/networks/WanI2V/wan_moe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f1bb70478e34783e8d297b035ed8b9262c5cbb1",
+      "size": 11068,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3f1bb70478e34783e8d297b035ed8b9262c5cbb1"
+    },
+    {
+      "path": "fastgen/networks/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/networks/cosmos3",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "de5271066f109833944aebbcdc6145bfd730450c",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/de5271066f109833944aebbcdc6145bfd730450c"
+    },
+    {
+      "path": "fastgen/networks/cosmos3/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "edb974f6ec7f77a4c3536164024e0b9bc64ffda8",
+      "size": 515,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/edb974f6ec7f77a4c3536164024e0b9bc64ffda8"
+    },
+    {
+      "path": "fastgen/networks/cosmos3/modules.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "faa7273bd690997013441a83abf30a585469c2eb",
+      "size": 25648,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/faa7273bd690997013441a83abf30a585469c2eb"
+    },
+    {
+      "path": "fastgen/networks/cosmos3/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2d226461b8023e76d913904d88f02c9229eed42",
+      "size": 45881,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b2d226461b8023e76d913904d88f02c9229eed42"
+    },
+    {
+      "path": "fastgen/networks/cosmos_predict2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "766a260f067c372bd3c08e5fa81fb9821e14aa7f",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/766a260f067c372bd3c08e5fa81fb9821e14aa7f"
+    },
+    {
+      "path": "fastgen/networks/cosmos_predict2/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43045f3fc1211c1f074268bd8ca96c9e31185fd1",
+      "size": 495,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/43045f3fc1211c1f074268bd8ca96c9e31185fd1"
+    },
+    {
+      "path": "fastgen/networks/cosmos_predict2/modules.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02005b9ccb4e7750f38e0ae2420e11e6dc10f04e",
+      "size": 36037,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/02005b9ccb4e7750f38e0ae2420e11e6dc10f04e"
+    },
+    {
+      "path": "fastgen/networks/cosmos_predict2/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ce72b1790e6a290faeddf625014ffcaeb8c0640",
+      "size": 72547,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3ce72b1790e6a290faeddf625014ffcaeb8c0640"
+    },
+    {
+      "path": "fastgen/networks/discriminators.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "82a5e75bd0fbdb8a43a0badfdd4a1bd72b875a2a",
+      "size": 43697,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/82a5e75bd0fbdb8a43a0badfdd4a1bd72b875a2a"
+    },
+    {
+      "path": "fastgen/networks/kv_cache",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6c53b04ec68f6b3a193dd9493beffd7c2e61588a",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/6c53b04ec68f6b3a193dd9493beffd7c2e61588a"
+    },
+    {
+      "path": "fastgen/networks/kv_cache/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7326248090f51dbec2348533d1d69263ff175b0f",
+      "size": 4445,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7326248090f51dbec2348533d1d69263ff175b0f"
+    },
+    {
+      "path": "fastgen/networks/kv_cache/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "115da08302b52fd37e240924b38ab5a59ba46981",
+      "size": 832,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/115da08302b52fd37e240924b38ab5a59ba46981"
+    },
+    {
+      "path": "fastgen/networks/kv_cache/base.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ddb881f11f36224a94e2e09ec03e877458583ff2",
+      "size": 18218,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ddb881f11f36224a94e2e09ec03e877458583ff2"
+    },
+    {
+      "path": "fastgen/networks/kv_cache/vanilla_engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b26c1d6e4f3c968370545fa2ec329b35d073bd2",
+      "size": 12663,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8b26c1d6e4f3c968370545fa2ec329b35d073bd2"
+    },
+    {
+      "path": "fastgen/networks/lora_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3cc58ca39aff47406a8741a7fcb7658734727adf",
+      "size": 15453,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3cc58ca39aff47406a8741a7fcb7658734727adf"
+    },
+    {
+      "path": "fastgen/networks/module.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aa352adcb5827fcee1a0cd753fc203f505991f36",
+      "size": 15144,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/aa352adcb5827fcee1a0cd753fc203f505991f36"
+    },
+    {
+      "path": "fastgen/networks/network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b001d7a4adb9f9c1bd1891c7aacfeda7e67bb0a9",
+      "size": 35061,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b001d7a4adb9f9c1bd1891c7aacfeda7e67bb0a9"
+    },
+    {
+      "path": "fastgen/networks/network_causal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f432b710d92918952659d8318d6afd791cd4e9ea",
+      "size": 11495,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f432b710d92918952659d8318d6afd791cd4e9ea"
+    },
+    {
+      "path": "fastgen/networks/noise_schedule.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "772bdc5e6a07d4da91fd3e28018d2fd75c541161",
+      "size": 124237,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/772bdc5e6a07d4da91fd3e28018d2fd75c541161"
+    },
+    {
+      "path": "fastgen/networks/time_distributions.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a5d31bc74512891263649aeb71037e6617c1155",
+      "size": 26006,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8a5d31bc74512891263649aeb71037e6617c1155"
+    },
+    {
+      "path": "fastgen/networks/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6758f59f64636c022c6e1e8e8beac8cdb2764259",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/6758f59f64636c022c6e1e8e8beac8cdb2764259"
+    },
+    {
+      "path": "fastgen/networks/utils/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "43fefffa38d04f974bca5f25c2d185c8c7908cc1",
+      "size": 260,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/43fefffa38d04f974bca5f25c2d185c8c7908cc1"
+    },
+    {
+      "path": "fastgen/networks/utils/pdd_mixin.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad171d55c2cc0e0a83e4b793cd07f35074e4f7c6",
+      "size": 51560,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ad171d55c2cc0e0a83e4b793cd07f35074e4f7c6"
+    },
+    {
+      "path": "fastgen/third_party",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7e4644d6c4a65f367219275d77ab55a11f343be8",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/7e4644d6c4a65f367219275d77ab55a11f343be8"
+    },
+    {
+      "path": "fastgen/third_party/.ruff.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "126a36b670acfd7c575fc4bbcbd176ff66b62bec",
+      "size": 56,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/126a36b670acfd7c575fc4bbcbd176ff66b62bec"
+    },
+    {
+      "path": "fastgen/third_party/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "495e816b5537b243781ae5bf02f255cc99cd2070",
+      "size": 424,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/495e816b5537b243781ae5bf02f255cc99cd2070"
+    },
+    {
+      "path": "fastgen/third_party/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a4b0436dfeac3c07ac645e6700070fc561e8992",
+      "size": 400,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4a4b0436dfeac3c07ac645e6700070fc561e8992"
+    },
+    {
+      "path": "fastgen/third_party/annotators",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b742dcb605c63471c5588895f1708732296d7cac",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/b742dcb605c63471c5588895f1708732296d7cac"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0ca5c4b9a82193ec1cd8b3d28d208af2f1c7f378",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/0ca5c4b9a82193ec1cd8b3d28d208af2f1c7f378"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f49a4e16e68b128803cc2dcea614603632b04eac",
+      "size": 11356,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f49a4e16e68b128803cc2dcea614603632b04eac"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59dc8c4705a85225132ef09384976950f910a21b",
+      "size": 1973,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/59dc8c4705a85225132ef09384976950f910a21b"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd53bf56da9840d68ca2a9c433994c1afbd4219a",
+      "size": 885,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fd53bf56da9840d68ca2a9c433994c1afbd4219a"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/dinov2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8615e739a657d8326a9d9b7a4e12ae1a38bb096c",
+      "size": 15884,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8615e739a657d8326a9d9b7a4e12ae1a38bb096c"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/dpt.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d69e2082601f30006cbaa0ef7c73397d34ef18e7",
+      "size": 7925,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d69e2082601f30006cbaa0ef7c73397d34ef18e7"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "affb80cddfed4207c4f53e906838ca95ef759eac",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/affb80cddfed4207c4f53e906838ca95ef759eac"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c6ee2a5e2ef537223f8b2005515d7f4fd915835",
+      "size": 1241,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3c6ee2a5e2ef537223f8b2005515d7f4fd915835"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers/attention.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7613b06841457ed8517bee5650eee4523110ca27",
+      "size": 3092,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7613b06841457ed8517bee5650eee4523110ca27"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers/block.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6e646cf64d9d5c68600fd117360031f82c47e39",
+      "size": 10102,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e6e646cf64d9d5c68600fd117360031f82c47e39"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers/drop_path.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2e5f63edeb9942b5b99c913adc11aba6af47efa2",
+      "size": 1927,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2e5f63edeb9942b5b99c913adc11aba6af47efa2"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers/layer_scale.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "334cfafa8713007a3a9e6b16c2a279c85b374a59",
+      "size": 1581,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/334cfafa8713007a3a9e6b16c2a279c85b374a59"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers/mlp.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07c7bf4549faff756611f0e0eb236173e96260f2",
+      "size": 2038,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/07c7bf4549faff756611f0e0eb236173e96260f2"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers/patch_embed.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a6651b133a5296c737b29ec03065312df1769fc",
+      "size": 3600,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5a6651b133a5296c737b29ec03065312df1769fc"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/layers/swiglu_ffn.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bec5792139cec5cd8e71dcf3df9f845ab6db1aff",
+      "size": 2626,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bec5792139cec5cd8e71dcf3df9f845ab6db1aff"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/util",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1ab7467e22e190f274514495869853a8088230f2",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/1ab7467e22e190f274514495869853a8088230f2"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/util/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd53bf56da9840d68ca2a9c433994c1afbd4219a",
+      "size": 885,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fd53bf56da9840d68ca2a9c433994c1afbd4219a"
+    },
+    {
+      "path": "fastgen/third_party/annotators/depth_anything_v2/util/blocks.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb1745b019da03379fdf5a1f2ad1d2d41553a267",
+      "size": 4769,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fb1745b019da03379fdf5a1f2ad1d2d41553a267"
+    },
+    {
+      "path": "fastgen/third_party/wan_prompt_expand",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d6a69411adc21f31cbd75efce0a35de8feb7b890",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/d6a69411adc21f31cbd75efce0a35de8feb7b890"
+    },
+    {
+      "path": "fastgen/third_party/wan_prompt_expand/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f49a4e16e68b128803cc2dcea614603632b04eac",
+      "size": 11356,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f49a4e16e68b128803cc2dcea614603632b04eac"
+    },
+    {
+      "path": "fastgen/third_party/wan_prompt_expand/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80690c5ee8df4fea784a68f5ac87e0fa6aba55e8",
+      "size": 1833,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/80690c5ee8df4fea784a68f5ac87e0fa6aba55e8"
+    },
+    {
+      "path": "fastgen/third_party/wan_prompt_expand/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "fastgen/third_party/wan_prompt_expand/prompt_expand.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0d350042cc5b470a8d6a48bc2d9a5f2522f6659",
+      "size": 38771,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a0d350042cc5b470a8d6a48bc2d9a5f2522f6659"
+    },
+    {
+      "path": "fastgen/third_party/wan_prompt_expand/qwen_vl_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b325f3a36e337e0c4277a1754d3e7c3856591777",
+      "size": 13768,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b325f3a36e337e0c4277a1754d3e7c3856591777"
+    },
+    {
+      "path": "fastgen/trainer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af0b8880db33df841c28b7d2e6373dfe0f9860cb",
+      "size": 25099,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/af0b8880db33df841c28b7d2e6373dfe0f9860cb"
+    },
+    {
+      "path": "fastgen/utils",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8dd9d26f22577de1c80797c52882ec61adadcf43",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/8dd9d26f22577de1c80797c52882ec61adadcf43"
+    },
+    {
+      "path": "fastgen/utils/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c935fb18182464caf0e5ebf3cb9b2c5c9ed97ee",
+      "size": 181,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6c935fb18182464caf0e5ebf3cb9b2c5c9ed97ee"
+    },
+    {
+      "path": "fastgen/utils/audio.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "320276bd82b066ae746326207919422c0c79b713",
+      "size": 30208,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/320276bd82b066ae746326207919422c0c79b713"
+    },
+    {
+      "path": "fastgen/utils/autoresume.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c36b43a499bc1ea488123ab7e1ac0c8864881f5",
+      "size": 6009,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7c36b43a499bc1ea488123ab7e1ac0c8864881f5"
+    },
+    {
+      "path": "fastgen/utils/basic_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f3d767746558a9a77844f3f9bedc3ac33833664",
+      "size": 12419,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9f3d767746558a9a77844f3f9bedc3ac33833664"
+    },
+    {
+      "path": "fastgen/utils/cache_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c4388d3ee2f45dcc6ce137b5f427966354c8f3b",
+      "size": 14357,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2c4388d3ee2f45dcc6ce137b5f427966354c8f3b"
+    },
+    {
+      "path": "fastgen/utils/camera_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7672cf179b16adfd68c801ee152d55b45593451",
+      "size": 31759,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d7672cf179b16adfd68c801ee152d55b45593451"
+    },
+    {
+      "path": "fastgen/utils/checkpointer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7798cb5cc49a724e526bc35c03713f0ed5c0a444",
+      "size": 49151,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7798cb5cc49a724e526bc35c03713f0ed5c0a444"
+    },
+    {
+      "path": "fastgen/utils/distributed",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6d56f1edad6695445ccb2fe11b765423eb6d9a0f",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/6d56f1edad6695445ccb2fe11b765423eb6d9a0f"
+    },
+    {
+      "path": "fastgen/utils/distributed/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bf7191c86c520943aee36c2285472e48791f2b8e",
+      "size": 1832,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bf7191c86c520943aee36c2285472e48791f2b8e"
+    },
+    {
+      "path": "fastgen/utils/distributed/collectives.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37b7153154353464b09536b8ba9f0d369b92ef6b",
+      "size": 11646,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/37b7153154353464b09536b8ba9f0d369b92ef6b"
+    },
+    {
+      "path": "fastgen/utils/distributed/ddp.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb4b75d0db9497b3ade05c7c70d37c2361a1414f",
+      "size": 6203,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/cb4b75d0db9497b3ade05c7c70d37c2361a1414f"
+    },
+    {
+      "path": "fastgen/utils/distributed/fsdp.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8454febe545d8af895abcdb8145d4381687dfce",
+      "size": 31141,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a8454febe545d8af895abcdb8145d4381687dfce"
+    },
+    {
+      "path": "fastgen/utils/distributed/module.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "76a39dd8bd34e51cbbcc68304dc4789bb275984c",
+      "size": 11435,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/76a39dd8bd34e51cbbcc68304dc4789bb275984c"
+    },
+    {
+      "path": "fastgen/utils/distributed/s3_filesystem.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6baa5fcea504cc8e68434e79be9233228ba38e36",
+      "size": 6613,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6baa5fcea504cc8e68434e79be9233228ba38e36"
+    },
+    {
+      "path": "fastgen/utils/env.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bc814f1684a9dc2b041dd99edfa2bebbfd7993a6",
+      "size": 7326,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bc814f1684a9dc2b041dd99edfa2bebbfd7993a6"
+    },
+    {
+      "path": "fastgen/utils/global_vars.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "976c7d0387dd87fd0bb0f6a216de5d59b4e4558c",
+      "size": 1846,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/976c7d0387dd87fd0bb0f6a216de5d59b4e4558c"
+    },
+    {
+      "path": "fastgen/utils/guidance.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7c8386c909bc3b2e400d3b8e9025387529ff5423",
+      "size": 32482,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7c8386c909bc3b2e400d3b8e9025387529ff5423"
+    },
+    {
+      "path": "fastgen/utils/io_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3849f83c612d533fc3837222f038af6b5e6759dc",
+      "size": 12382,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3849f83c612d533fc3837222f038af6b5e6759dc"
+    },
+    {
+      "path": "fastgen/utils/logging_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a57f1a33479ca9be6c7039fb368e7942607c9ad2",
+      "size": 2446,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a57f1a33479ca9be6c7039fb368e7942607c9ad2"
+    },
+    {
+      "path": "fastgen/utils/lr_scheduler.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0167c009ecde389b5dc49843bc942fb938018c1b",
+      "size": 3347,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0167c009ecde389b5dc49843bc942fb938018c1b"
+    },
+    {
+      "path": "fastgen/utils/media_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e479afb991cd039eb40943a172c54e22405edd88",
+      "size": 13470,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e479afb991cd039eb40943a172c54e22405edd88"
+    },
+    {
+      "path": "fastgen/utils/module.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "567e9d4f49be779a6fed180999d078e3aec4e508",
+      "size": 40249,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/567e9d4f49be779a6fed180999d078e3aec4e508"
+    },
+    {
+      "path": "fastgen/utils/s3.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cfdae03445741637dadd6426c7bc5889a1b67a17",
+      "size": 8023,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/cfdae03445741637dadd6426c7bc5889a1b67a17"
+    },
+    {
+      "path": "fastgen/utils/scripts.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d32da414dcf3615d5c14d91119df41b915a16ee",
+      "size": 10508,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2d32da414dcf3615d5c14d91119df41b915a16ee"
+    },
+    {
+      "path": "fastgen/utils/tensor.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae95fb33896095c61b856a48fb5c23da101d0e94",
+      "size": 9986,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ae95fb33896095c61b856a48fb5c23da101d0e94"
+    },
+    {
+      "path": "fastgen/utils/tree_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7b528c178e3f17b77992cbee2785069e2a2b00d1",
+      "size": 17850,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7b528c178e3f17b77992cbee2785069e2a2b00d1"
+    },
+    {
+      "path": "fastgen/utils/vlm_judge.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "627f8f326bf78cd0845406d4161d7a62c5b042fa",
+      "size": 19112,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/627f8f326bf78cd0845406d4161d7a62c5b042fa"
+    },
+    {
+      "path": "fern",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "03fa8a581e430aa1d7bcb5bb3424725fdd081981",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/03fa8a581e430aa1d7bcb5bb3424725fdd081981"
+    },
+    {
+      "path": "fern/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bda88d41e3cb9937d8e6db1491979035ebd395c",
+      "size": 898,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7bda88d41e3cb9937d8e6db1491979035ebd395c"
+    },
+    {
+      "path": "fern/docs.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "815b530a7d17f3a5a1ea848c95956ba3a6baf877",
+      "size": 2574,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/815b530a7d17f3a5a1ea848c95956ba3a6baf877"
+    },
+    {
+      "path": "fern/docs",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1e0191da4e282f3db8295b46464667ae45be9621",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/1e0191da4e282f3db8295b46464667ae45be9621"
+    },
+    {
+      "path": "fern/docs/.gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42165a063fac53bea53d19a93eae5495eb312914",
+      "size": 216,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/42165a063fac53bea53d19a93eae5495eb312914"
+    },
+    {
+      "path": "fern/docs/overview.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6a2d4fd22def13f9e9e71d68256381771d9fba5",
+      "size": 1758,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c6a2d4fd22def13f9e9e71d68256381771d9fba5"
+    },
+    {
+      "path": "fern/docs/release-notes.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0649b6ac4173362dcf346bde0e6b37d51c4e998b",
+      "size": 650,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0649b6ac4173362dcf346bde0e6b37d51c4e998b"
+    },
+    {
+      "path": "fern/docs/training.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f1439de2fcc32fca715cf8f88a77d2528991db5",
+      "size": 2497,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2f1439de2fcc32fca715cf8f88a77d2528991db5"
+    },
+    {
+      "path": "fern/docs/troubleshooting.mdx",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa910a3d9be7dbae033e237a9aeef3f5e93d97af",
+      "size": 6914,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fa910a3d9be7dbae033e237a9aeef3f5e93d97af"
+    },
+    {
+      "path": "fern/fern.config.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e4cb8d245c4a0b97e55445a4c3e634973f3a6601",
+      "size": 55,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e4cb8d245c4a0b97e55445a4c3e634973f3a6601"
+    },
+    {
+      "path": "fern/scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9e940896809a87b817dc8c66bac6ea3a36f960fe",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/9e940896809a87b817dc8c66bac6ea3a36f960fe"
+    },
+    {
+      "path": "fern/scripts/build_docs.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a45e1309b29cd3f5109eb6fd3b7e4214a5da12bb",
+      "size": 6909,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a45e1309b29cd3f5109eb6fd3b7e4214a5da12bb"
+    },
+    {
+      "path": "fern/scripts/check-docs-paths",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2963d7dcddb4449aad8c57247279362026f9e6c0",
+      "size": 13884,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2963d7dcddb4449aad8c57247279362026f9e6c0"
+    },
+    {
+      "path": "licenses",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e945bc7eac129b0049bb7c870093d19019011c5e",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/e945bc7eac129b0049bb7c870093d19019011c5e"
+    },
+    {
+      "path": "licenses/OpenMDW",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c6c7b969d8dcfcc733948a01cf36b462892858d5",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/c6c7b969d8dcfcc733948a01cf36b462892858d5"
+    },
+    {
+      "path": "licenses/OpenMDW/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ec297ac5456384786644013ec196da33b916be97",
+      "size": 2619,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ec297ac5456384786644013ec196da33b916be97"
+    },
+    {
+      "path": "licenses/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d02ec86ef1d32dfec71f224f8a8b8c39188dfb63",
+      "size": 1503,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d02ec86ef1d32dfec71f224f8a8b8c39188dfb63"
+    },
+    {
+      "path": "licenses/Wan",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5d6936a9361725ec783dbb4878d8afdc0a9bf2f5",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/5d6936a9361725ec783dbb4878d8afdc0a9bf2f5"
+    },
+    {
+      "path": "licenses/Wan/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f49a4e16e68b128803cc2dcea614603632b04eac",
+      "size": 11356,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f49a4e16e68b128803cc2dcea614603632b04eac"
+    },
+    {
+      "path": "licenses/depth_anything_v2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5d6936a9361725ec783dbb4878d8afdc0a9bf2f5",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/5d6936a9361725ec783dbb4878d8afdc0a9bf2f5"
+    },
+    {
+      "path": "licenses/depth_anything_v2/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f49a4e16e68b128803cc2dcea614603632b04eac",
+      "size": 11356,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f49a4e16e68b128803cc2dcea614603632b04eac"
+    },
+    {
+      "path": "licenses/detectron2",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "875c86402431cde019c7aa16c1b59986d12be407",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/875c86402431cde019c7aa16c1b59986d12be407"
+    },
+    {
+      "path": "licenses/detectron2/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea36abb9a9136e0081520c4cca848c26cf4367da",
+      "size": 10255,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ea36abb9a9136e0081520c4cca848c26cf4367da"
+    },
+    {
+      "path": "licenses/diffusers",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5d6936a9361725ec783dbb4878d8afdc0a9bf2f5",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/5d6936a9361725ec783dbb4878d8afdc0a9bf2f5"
+    },
+    {
+      "path": "licenses/diffusers/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f49a4e16e68b128803cc2dcea614603632b04eac",
+      "size": 11356,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f49a4e16e68b128803cc2dcea614603632b04eac"
+    },
+    {
+      "path": "licenses/torchaudio",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0d6cfefc3ab85624565a0b9b7c677fd24b680092",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/0d6cfefc3ab85624565a0b9b7c677fd24b680092"
+    },
+    {
+      "path": "licenses/torchaudio/LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fe62fe81ba664e224b84ec744332d35e28b761c",
+      "size": 1334,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8fe62fe81ba664e224b84ec744332d35e28b761c"
+    },
+    {
+      "path": "pyproject.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "51fb6b7775ac8bb95d237b195622229d3a74b0b7",
+      "size": 1289,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/51fb6b7775ac8bb95d237b195622229d3a74b0b7"
+    },
+    {
+      "path": "requirements.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7f8d2eb47064f13eb463d591b7e44b5d4e040ef",
+      "size": 891,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b7f8d2eb47064f13eb463d591b7e44b5d4e040ef"
+    },
+    {
+      "path": "scripts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "386e523fd0a805b52316841ac17f2ecda9ab6dfc",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/386e523fd0a805b52316841ac17f2ecda9ab6dfc"
+    },
+    {
+      "path": "scripts/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48a56f05b4093635fe7e5ada77d9e79ab806df71",
+      "size": 10625,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/48a56f05b4093635fe7e5ada77d9e79ab806df71"
+    },
+    {
+      "path": "scripts/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "scripts/download_data.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2773e53d59766119adb76804809456e86063bc66",
+      "size": 31869,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2773e53d59766119adb76804809456e86063bc66"
+    },
+    {
+      "path": "scripts/fid",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0224376f374da0e96a9140ed8aabab12c60b9440",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/0224376f374da0e96a9140ed8aabab12c60b9440"
+    },
+    {
+      "path": "scripts/fid/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ee9ac29bf10ac7f0f2d4d930393543c95bc0434",
+      "size": 189,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5ee9ac29bf10ac7f0f2d4d930393543c95bc0434"
+    },
+    {
+      "path": "scripts/fid/compute_fid_from_ckpts.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf5b3f9cbc5b5634b86c41fe643551a0023208b8",
+      "size": 10687,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/cf5b3f9cbc5b5634b86c41fe643551a0023208b8"
+    },
+    {
+      "path": "scripts/fid/fid.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "20f6b3fcf0be910f8f7f5478f659c46fcae691a8",
+      "size": 8031,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/20f6b3fcf0be910f8f7f5478f659c46fcae691a8"
+    },
+    {
+      "path": "scripts/fid/inception.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8bb8d8cf1278ee5cb41c20908f5248c63831eafc",
+      "size": 1541,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8bb8d8cf1278ee5cb41c20908f5248c63831eafc"
+    },
+    {
+      "path": "scripts/format.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f011981323af1668310c3f0457e0ab4e2ed49e7",
+      "size": 433,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5f011981323af1668310c3f0457e0ab4e2ed49e7"
+    },
+    {
+      "path": "scripts/fsdp_convert.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3af2da4d93f7b59b55bf22f79d123cd5882fc80",
+      "size": 3113,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d3af2da4d93f7b59b55bf22f79d123cd5882fc80"
+    },
+    {
+      "path": "scripts/inference",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "0c43b9b759b636a8d43653d818530c633120590a",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/0c43b9b759b636a8d43653d818530c633120590a"
+    },
+    {
+      "path": "scripts/inference/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "scripts/inference/examples",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "826fe1dfa4876bb32a27827c3d803ce2a4ddf5fb",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/826fe1dfa4876bb32a27827c3d803ce2a4ddf5fb"
+    },
+    {
+      "path": "scripts/inference/examples/00_child_swings_rusty_swing_set.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c168383b50ec9dfe30dccb3000efc33ab91e441f",
+      "size": 2082065,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c168383b50ec9dfe30dccb3000efc33ab91e441f"
+    },
+    {
+      "path": "scripts/inference/examples/00_child_swings_rusty_swing_set.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5ba161f812eb2ae1991a7b2a0f20d6eaafb5d9a8",
+      "size": 1017595,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5ba161f812eb2ae1991a7b2a0f20d6eaafb5d9a8"
+    },
+    {
+      "path": "scripts/inference/examples/01_impressionist_rubber_duck_sunset.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "68a0cca78f97824d720a47a514b0f67001c37f57",
+      "size": 1148215,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/68a0cca78f97824d720a47a514b0f67001c37f57"
+    },
+    {
+      "path": "scripts/inference/examples/01_impressionist_rubber_duck_sunset.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e18f14d2e11cf200cb9dc82330654c7c4995a67",
+      "size": 663311,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0e18f14d2e11cf200cb9dc82330654c7c4995a67"
+    },
+    {
+      "path": "scripts/inference/examples/02_two_cyclists_stop_sign.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ba8cdcad93c21896c049e562bc6f9860dc73e53",
+      "size": 1565372,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9ba8cdcad93c21896c049e562bc6f9860dc73e53"
+    },
+    {
+      "path": "scripts/inference/examples/02_two_cyclists_stop_sign.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "71d9b8404a1ea501d96eef5b71261b47e873ed12",
+      "size": 931759,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/71d9b8404a1ea501d96eef5b71261b47e873ed12"
+    },
+    {
+      "path": "scripts/inference/examples/03_astronaut_cow_beach_van_gogh.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f021f4c0479b48639e7e750a5d2717bd339c3eb0",
+      "size": 1249715,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f021f4c0479b48639e7e750a5d2717bd339c3eb0"
+    },
+    {
+      "path": "scripts/inference/examples/03_astronaut_cow_beach_van_gogh.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "499af124e745118ff68fef7a7c7174518762e019",
+      "size": 915513,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/499af124e745118ff68fef7a7c7174518762e019"
+    },
+    {
+      "path": "scripts/inference/examples/04_bird_flying_church_tower_clock.mp4",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99a528e9348dad008a700c58a812f96774a5c854",
+      "size": 896658,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/99a528e9348dad008a700c58a812f96774a5c854"
+    },
+    {
+      "path": "scripts/inference/examples/04_bird_flying_church_tower_clock.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7bc7b1605904c990b27b04adadb4313fbf66b161",
+      "size": 602456,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7bc7b1605904c990b27b04adadb4313fbf66b161"
+    },
+    {
+      "path": "scripts/inference/examples/camera",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "736db8099b68d5d56f0c20157feef723758cc9ba",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/736db8099b68d5d56f0c20157feef723758cc9ba"
+    },
+    {
+      "path": "scripts/inference/examples/camera/00_child_swings_rusty_swing_set",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "545e08acd9d0f5acc3669f7ea14c1b0364bfd048",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/545e08acd9d0f5acc3669f7ea14c1b0364bfd048"
+    },
+    {
+      "path": "scripts/inference/examples/camera/00_child_swings_rusty_swing_set/intrinsics.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f37a9fa654177c06b19afd898436cd39f063a07",
+      "size": 2704,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9f37a9fa654177c06b19afd898436cd39f063a07"
+    },
+    {
+      "path": "scripts/inference/examples/camera/00_child_swings_rusty_swing_set/poses.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ffc762bfc0cefab1aa85cab6c4d6f628a002876f",
+      "size": 10432,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ffc762bfc0cefab1aa85cab6c4d6f628a002876f"
+    },
+    {
+      "path": "scripts/inference/examples/camera/01_impressionist_rubber_duck_sunset",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "33c80d6130511227baabdd04478e5cac2e7b8577",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/33c80d6130511227baabdd04478e5cac2e7b8577"
+    },
+    {
+      "path": "scripts/inference/examples/camera/01_impressionist_rubber_duck_sunset/intrinsics.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f37a9fa654177c06b19afd898436cd39f063a07",
+      "size": 2704,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9f37a9fa654177c06b19afd898436cd39f063a07"
+    },
+    {
+      "path": "scripts/inference/examples/camera/01_impressionist_rubber_duck_sunset/poses.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce24304d31946c874b3dccd0cabf535ac67bcd39",
+      "size": 10432,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ce24304d31946c874b3dccd0cabf535ac67bcd39"
+    },
+    {
+      "path": "scripts/inference/examples/camera/02_two_cyclists_stop_sign",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "26ce1862ebd89427db2e1fd2966c88e5d18247d7",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/26ce1862ebd89427db2e1fd2966c88e5d18247d7"
+    },
+    {
+      "path": "scripts/inference/examples/camera/02_two_cyclists_stop_sign/intrinsics.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f37a9fa654177c06b19afd898436cd39f063a07",
+      "size": 2704,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9f37a9fa654177c06b19afd898436cd39f063a07"
+    },
+    {
+      "path": "scripts/inference/examples/camera/02_two_cyclists_stop_sign/poses.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f92584711856314599f2ccc7b6a5434d5bb74dbf",
+      "size": 10432,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f92584711856314599f2ccc7b6a5434d5bb74dbf"
+    },
+    {
+      "path": "scripts/inference/examples/camera/03_astronaut_cow_beach_van_gogh",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5a14fde2833ed943d405bbf6e10d2e325cff17f8",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/5a14fde2833ed943d405bbf6e10d2e325cff17f8"
+    },
+    {
+      "path": "scripts/inference/examples/camera/03_astronaut_cow_beach_van_gogh/intrinsics.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f37a9fa654177c06b19afd898436cd39f063a07",
+      "size": 2704,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9f37a9fa654177c06b19afd898436cd39f063a07"
+    },
+    {
+      "path": "scripts/inference/examples/camera/03_astronaut_cow_beach_van_gogh/poses.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "24ce397b9b5bdc41570e53b858cc9ee5ec964b57",
+      "size": 10432,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/24ce397b9b5bdc41570e53b858cc9ee5ec964b57"
+    },
+    {
+      "path": "scripts/inference/examples/camera/04_bird_flying_church_tower_clock",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c0e710e7ac3b0ffdd679183f5e4fba3d45759caf",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/c0e710e7ac3b0ffdd679183f5e4fba3d45759caf"
+    },
+    {
+      "path": "scripts/inference/examples/camera/04_bird_flying_church_tower_clock/intrinsics.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f37a9fa654177c06b19afd898436cd39f063a07",
+      "size": 2704,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9f37a9fa654177c06b19afd898436cd39f063a07"
+    },
+    {
+      "path": "scripts/inference/examples/camera/04_bird_flying_church_tower_clock/poses.npy",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6c164aa4a7014f679fc08539f725c7de2e96cd9",
+      "size": 10432,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d6c164aa4a7014f679fc08539f725c7de2e96cd9"
+    },
+    {
+      "path": "scripts/inference/flashdreams_inference.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8baed64a25673e43a7debef3c894dab2fab53765",
+      "size": 14079,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8baed64a25673e43a7debef3c894dab2fab53765"
+    },
+    {
+      "path": "scripts/inference/image_model_inference.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ac67b09fcfe2ca13ef6941b19214f3ba6f7ba78",
+      "size": 12484,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6ac67b09fcfe2ca13ef6941b19214f3ba6f7ba78"
+    },
+    {
+      "path": "scripts/inference/inference_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e6035159a36622dd8740cc590eb5cf3ee14e74f",
+      "size": 24772,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9e6035159a36622dd8740cc590eb5cf3ee14e74f"
+    },
+    {
+      "path": "scripts/inference/prompts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "05dc3f00d7731fec4030d5adc4aed9ed5f8b3db1",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/05dc3f00d7731fec4030d5adc4aed9ed5f8b3db1"
+    },
+    {
+      "path": "scripts/inference/prompts/audio_prompts.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de3d1603a900c39dc15046fa1721810fdf4a4527",
+      "size": 4483,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/de3d1603a900c39dc15046fa1721810fdf4a4527"
+    },
+    {
+      "path": "scripts/inference/prompts/camera_poses_paths.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e9e2f977993145a485dd0563877e4fc0bedaf4e1",
+      "size": 330,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e9e2f977993145a485dd0563877e4fc0bedaf4e1"
+    },
+    {
+      "path": "scripts/inference/prompts/classes.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f55b5c9eef39f00a9a4d8a58764fdc365b60f081",
+      "size": 19,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f55b5c9eef39f00a9a4d8a58764fdc365b60f081"
+    },
+    {
+      "path": "scripts/inference/prompts/edit_prompts.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fc1fe6d3db1d737a46d69c28d597b88618f1018",
+      "size": 308,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6fc1fe6d3db1d737a46d69c28d597b88618f1018"
+    },
+    {
+      "path": "scripts/inference/prompts/empty_prompt.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b137891791fe96927ad78e64b0aad7bded08bdc",
+      "size": 1,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8b137891791fe96927ad78e64b0aad7bded08bdc"
+    },
+    {
+      "path": "scripts/inference/prompts/image_prompts.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f8dd802df8cdc999ef4857e1830e9edfa584e82",
+      "size": 774,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9f8dd802df8cdc999ef4857e1830e9edfa584e82"
+    },
+    {
+      "path": "scripts/inference/prompts/negative_prompt.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6341e5d503278ece814c38bc98325ce2a410869f",
+      "size": 393,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6341e5d503278ece814c38bc98325ce2a410869f"
+    },
+    {
+      "path": "scripts/inference/prompts/negative_prompt_cosmos.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fc66b83ccc4c2c79644778e70d79750eedd7ba6",
+      "size": 539,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0fc66b83ccc4c2c79644778e70d79750eedd7ba6"
+    },
+    {
+      "path": "scripts/inference/prompts/negative_prompt_cosmos3.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "759911bbfa6ca6be2c8a46b75f9c62988fb98781",
+      "size": 14851,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/759911bbfa6ca6be2c8a46b75f9c62988fb98781"
+    },
+    {
+      "path": "scripts/inference/prompts/negative_prompt_lingbot_world.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0c2040ea6860571d57640ffb9a7a931da1408e1",
+      "size": 739,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/a0c2040ea6860571d57640ffb9a7a931da1408e1"
+    },
+    {
+      "path": "scripts/inference/prompts/negative_prompt_ltx.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5d9c9b84b6850e44b54d84c3f63b81c712ab1a4",
+      "size": 1172,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c5d9c9b84b6850e44b54d84c3f63b81c712ab1a4"
+    },
+    {
+      "path": "scripts/inference/prompts/negative_prompt_ltx_short.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c83df0f0298a03022083604eab989a6577ee0af",
+      "size": 63,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1c83df0f0298a03022083604eab989a6577ee0af"
+    },
+    {
+      "path": "scripts/inference/prompts/source_image_paths.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "66f092726bca602307e5325ca1583a9d33f74da5",
+      "size": 315,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/66f092726bca602307e5325ca1583a9d33f74da5"
+    },
+    {
+      "path": "scripts/inference/prompts/source_video_paths.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b253029d932466b5685aaf6de53608007f23c1ac",
+      "size": 315,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b253029d932466b5685aaf6de53608007f23c1ac"
+    },
+    {
+      "path": "scripts/inference/prompts/video_prompts.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6b1bed1658c4b93e03f7492f40f224a16f7f78f0",
+      "size": 3112,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6b1bed1658c4b93e03f7492f40f224a16f7f78f0"
+    },
+    {
+      "path": "scripts/inference/video_model_inference.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f0682e79ff697e8f2340697bc0d0e4bfe686c4e",
+      "size": 19909,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4f0682e79ff697e8f2340697bc0d0e4bfe686c4e"
+    },
+    {
+      "path": "scripts/inference/vlm_infer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6b8483ecc79338f6a0bc05431e21f03f5cc9f94",
+      "size": 10446,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b6b8483ecc79338f6a0bc05431e21f03f5cc9f94"
+    },
+    {
+      "path": "scripts/resumable_s3_download.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9e1ca69c4c61b6344f6730741dc4e47c2afb92ab",
+      "size": 1586,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9e1ca69c4c61b6344f6730741dc4e47c2afb92ab"
+    },
+    {
+      "path": "setup.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f7e8b2e92e2dd1aadba8e3d548fe09431fa5776",
+      "size": 1310,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5f7e8b2e92e2dd1aadba8e3d548fe09431fa5776"
+    },
+    {
+      "path": "tests",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7041c0a448bcb6f58c85cd8114e539400aee6df4",
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/trees/7041c0a448bcb6f58c85cd8114e539400aee6df4"
+    },
+    {
+      "path": "tests/__init__.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52a7a9daf028f654d6a02f65c99cc609a57b492f",
+      "size": 137,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/52a7a9daf028f654d6a02f65c99cc609a57b492f"
+    },
+    {
+      "path": "tests/conftest.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db70a43872da87ed3fc82998b3368fc210e8c9a4",
+      "size": 4726,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/db70a43872da87ed3fc82998b3368fc210e8c9a4"
+    },
+    {
+      "path": "tests/model_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5fe68a6be9d42fa9673c3386fd6638187116f141",
+      "size": 9073,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/5fe68a6be9d42fa9673c3386fd6638187116f141"
+    },
+    {
+      "path": "tests/test_anyflowmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bed7ebec7fffed77a93a51bf4942a68980640db1",
+      "size": 49506,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bed7ebec7fffed77a93a51bf4942a68980640db1"
+    },
+    {
+      "path": "tests/test_audio.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "770492eea33c5d3f779c7e93097a1aa4cf8162c5",
+      "size": 1422,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/770492eea33c5d3f779c7e93097a1aa4cf8162c5"
+    },
+    {
+      "path": "tests/test_ayfmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62e7983f6620600e591d3810094d5984b24db500",
+      "size": 9706,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/62e7983f6620600e591d3810094d5984b24db500"
+    },
+    {
+      "path": "tests/test_backward_simulation.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42a6d72ba74b3f6fb29391789d7ff03fb0243364",
+      "size": 14937,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/42a6d72ba74b3f6fb29391789d7ff03fb0243364"
+    },
+    {
+      "path": "tests/test_basic_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87cc27dda01408f6cd0cb56404b7182d45d8da7e",
+      "size": 2861,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/87cc27dda01408f6cd0cb56404b7182d45d8da7e"
+    },
+    {
+      "path": "tests/test_cache_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "633aea68712de08d54204cd32e785e547dba0392",
+      "size": 27091,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/633aea68712de08d54204cd32e785e547dba0392"
+    },
+    {
+      "path": "tests/test_callbacks.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "12f496ed5d311c3ca95d8c8f06a1009c6e7364fb",
+      "size": 91013,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/12f496ed5d311c3ca95d8c8f06a1009c6e7364fb"
+    },
+    {
+      "path": "tests/test_camera_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "58c1415e16da4bed309901d6535b948c42cb0990",
+      "size": 5639,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/58c1415e16da4bed309901d6535b948c42cb0990"
+    },
+    {
+      "path": "tests/test_causvidmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d45ee90b193045a61d4b8a82a5cfd350860fc7c2",
+      "size": 34464,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d45ee90b193045a61d4b8a82a5cfd350860fc7c2"
+    },
+    {
+      "path": "tests/test_checkpointing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "293d09507b282e3d4290164e7cd7da6d73b98814",
+      "size": 206375,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/293d09507b282e3d4290164e7cd7da6d73b98814"
+    },
+    {
+      "path": "tests/test_cmmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57ffc8df41d9e580f6deb03654abb718483f4c1d",
+      "size": 7926,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/57ffc8df41d9e580f6deb03654abb718483f4c1d"
+    },
+    {
+      "path": "tests/test_comfyui_nodes.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8723a7816e26b175baef4c5cd8b77c55fc95456",
+      "size": 66962,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e8723a7816e26b175baef4c5cd8b77c55fc95456"
+    },
+    {
+      "path": "tests/test_conditioning.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "461b4bd7afb07fc7bb40e2580a39cd64e2a7d587",
+      "size": 78100,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/461b4bd7afb07fc7bb40e2580a39cd64e2a7d587"
+    },
+    {
+      "path": "tests/test_config_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "243760d9ee7d65e81353902fe01684e4c3ebd3b2",
+      "size": 3053,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/243760d9ee7d65e81353902fe01684e4c3ebd3b2"
+    },
+    {
+      "path": "tests/test_configs.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b533cd1651a18fee6a89646f0fff8d1f83c9d6b",
+      "size": 56172,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/9b533cd1651a18fee6a89646f0fff8d1f83c9d6b"
+    },
+    {
+      "path": "tests/test_container.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ad286a3b0f50ae44d7ca4f446422f7d1bab63e3",
+      "size": 2117,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2ad286a3b0f50ae44d7ca4f446422f7d1bab63e3"
+    },
+    {
+      "path": "tests/test_dataloader.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13208ab105306aff3247f1aa6bd36d3f2dca074d",
+      "size": 93065,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/13208ab105306aff3247f1aa6bd36d3f2dca074d"
+    },
+    {
+      "path": "tests/test_ddp.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b04b9574948c11bb8e00651700963a6dd862ea34",
+      "size": 14982,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b04b9574948c11bb8e00651700963a6dd862ea34"
+    },
+    {
+      "path": "tests/test_decoders.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0590cc95f8fb6f1043ec852d14e85cc4447cbb11",
+      "size": 46745,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0590cc95f8fb6f1043ec852d14e85cc4447cbb11"
+    },
+    {
+      "path": "tests/test_discriminators.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56037b5153b85cc571bb268476a5e689cc64f188",
+      "size": 21186,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/56037b5153b85cc571bb268476a5e689cc64f188"
+    },
+    {
+      "path": "tests/test_distributed.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07cbc9cc91dd5d83c446cc6b58438356d716f213",
+      "size": 61374,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/07cbc9cc91dd5d83c446cc6b58438356d716f213"
+    },
+    {
+      "path": "tests/test_dmd2model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dec8658127e59c5fac57985b2187dd85159e7bfb",
+      "size": 112662,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/dec8658127e59c5fac57985b2187dd85159e7bfb"
+    },
+    {
+      "path": "tests/test_download_data.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "843a2a8d662f4f42bd6ff151808b3ab1990ab081",
+      "size": 10236,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/843a2a8d662f4f42bd6ff151808b3ab1990ab081"
+    },
+    {
+      "path": "tests/test_env.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b4b145b4fb7dc65f7b1cb93480b3a4759380f46a",
+      "size": 13664,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b4b145b4fb7dc65f7b1cb93480b3a4759380f46a"
+    },
+    {
+      "path": "tests/test_f_distillmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c017582f3abbe6c98f584d055fa6203253fad1ff",
+      "size": 12742,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c017582f3abbe6c98f584d055fa6203253fad1ff"
+    },
+    {
+      "path": "tests/test_fastgen_model.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f68e756d2aa9fcdc3b76e3df6febe6c3be5156d",
+      "size": 66557,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3f68e756d2aa9fcdc3b76e3df6febe6c3be5156d"
+    },
+    {
+      "path": "tests/test_fastgen_module.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bdba350db286c630cd7070458fa5c8f6134e81c",
+      "size": 72746,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1bdba350db286c630cd7070458fa5c8f6134e81c"
+    },
+    {
+      "path": "tests/test_fern.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e213fb6b3017c4fd7c0560c88d911d5718a6fbbc",
+      "size": 17772,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e213fb6b3017c4fd7c0560c88d911d5718a6fbbc"
+    },
+    {
+      "path": "tests/test_fid.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c0ede170db45db7ba17020791d422a56668e16de",
+      "size": 11643,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/c0ede170db45db7ba17020791d422a56668e16de"
+    },
+    {
+      "path": "tests/test_fixtures.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd350359d8a53b65c0ebaaa65a9ba7c130b5a60e",
+      "size": 6567,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/cd350359d8a53b65c0ebaaa65a9ba7c130b5a60e"
+    },
+    {
+      "path": "tests/test_fsdp.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bed3a522c29b94191b34c6bcc7adb40906a33298",
+      "size": 186810,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bed3a522c29b94191b34c6bcc7adb40906a33298"
+    },
+    {
+      "path": "tests/test_fsdp_patches.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0e38fcbfb770cd0a5e7cb9d6bb5820d1be0ebdb3",
+      "size": 36082,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/0e38fcbfb770cd0a5e7cb9d6bb5820d1be0ebdb3"
+    },
+    {
+      "path": "tests/test_guidance.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8147b74e90f0a058865d3679d7fa644de4e21486",
+      "size": 105074,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8147b74e90f0a058865d3679d7fa644de4e21486"
+    },
+    {
+      "path": "tests/test_imports.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b9a7fea68987924f59e6cd073e20039d5ece3a0",
+      "size": 9277,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8b9a7fea68987924f59e6cd073e20039d5ece3a0"
+    },
+    {
+      "path": "tests/test_inference_scripts.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f668efd04ec318d7498dd0fbbafa67bd4ab7861",
+      "size": 116495,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4f668efd04ec318d7498dd0fbbafa67bd4ab7861"
+    },
+    {
+      "path": "tests/test_instantiate.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fde501ff62d9884cad71e728e6f99730a4b9a466",
+      "size": 2721,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/fde501ff62d9884cad71e728e6f99730a4b9a466"
+    },
+    {
+      "path": "tests/test_io_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a173edd39bef4bcd7430f29a98d8a0213dcbe25",
+      "size": 21660,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/8a173edd39bef4bcd7430f29a98d8a0213dcbe25"
+    },
+    {
+      "path": "tests/test_kdmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fb65761495d44fb1415be7dac3280b7b8ef908e",
+      "size": 13120,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2fb65761495d44fb1415be7dac3280b7b8ef908e"
+    },
+    {
+      "path": "tests/test_kv_cache_engine.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "08f5976cd9907f7bafc0bb93b7b5738297818343",
+      "size": 20593,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/08f5976cd9907f7bafc0bb93b7b5738297818343"
+    },
+    {
+      "path": "tests/test_laddmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "406a64897e13f977a965df0ceefcc628170c7aaf",
+      "size": 21410,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/406a64897e13f977a965df0ceefcc628170c7aaf"
+    },
+    {
+      "path": "tests/test_logger.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5b1d85b335cb2a9a3839fa4703aa1935515b262",
+      "size": 29369,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f5b1d85b335cb2a9a3839fa4703aa1935515b262"
+    },
+    {
+      "path": "tests/test_lora_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75a7bebb121a234f6f8a22481b25ee2346a75443",
+      "size": 22311,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/75a7bebb121a234f6f8a22481b25ee2346a75443"
+    },
+    {
+      "path": "tests/test_lr_scheduler.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a1e29ba7bf3ea4f4dbf19790e23c778de0bc7de",
+      "size": 2712,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2a1e29ba7bf3ea4f4dbf19790e23c778de0bc7de"
+    },
+    {
+      "path": "tests/test_meanflowmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4a3aa205fdb1635df17f3ec7c8deeffcb488425b",
+      "size": 41052,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4a3aa205fdb1635df17f3ec7c8deeffcb488425b"
+    },
+    {
+      "path": "tests/test_media_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44115ad6f3e77944d24cc860a2a1c3c242e2d9ae",
+      "size": 9949,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/44115ad6f3e77944d24cc860a2a1c3c242e2d9ae"
+    },
+    {
+      "path": "tests/test_module.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3347bc33534a4ba02b7f0c0e563f4a952b46913",
+      "size": 52901,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/e3347bc33534a4ba02b7f0c0e563f4a952b46913"
+    },
+    {
+      "path": "tests/test_multimodal.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d2f7b86a70968d75d2272cec0214ec19c4ffdbf",
+      "size": 61314,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/7d2f7b86a70968d75d2272cec0214ec19c4ffdbf"
+    },
+    {
+      "path": "tests/test_network.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42a2206ac52dc83dfa66412649a4081b6db2501d",
+      "size": 670403,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/42a2206ac52dc83dfa66412649a4081b6db2501d"
+    },
+    {
+      "path": "tests/test_network_contracts.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c8645663d032d3f4e0638cc32db402f755b67e3",
+      "size": 34697,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6c8645663d032d3f4e0638cc32db402f755b67e3"
+    },
+    {
+      "path": "tests/test_network_fsdp.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d15a7e97006bd55dcd87deb4d74cfea7e77ab070",
+      "size": 155321,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/d15a7e97006bd55dcd87deb4d74cfea7e77ab070"
+    },
+    {
+      "path": "tests/test_noise_schedule.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3b6ad5743151977b7e8efb92c7c390f72101465c",
+      "size": 150650,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/3b6ad5743151977b7e8efb92c7c390f72101465c"
+    },
+    {
+      "path": "tests/test_output_conditioning.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "81c8dc26bc628e7950226230c6c27d16d4540ae4",
+      "size": 55182,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/81c8dc26bc628e7950226230c6c27d16d4540ae4"
+    },
+    {
+      "path": "tests/test_packaging.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f4c1438e1f2c8fed4100581b807fd5e1da313f75",
+      "size": 4269,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f4c1438e1f2c8fed4100581b807fd5e1da313f75"
+    },
+    {
+      "path": "tests/test_pddmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af3e2c008b5294bc743d99bfab2e665f692c259a",
+      "size": 154050,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/af3e2c008b5294bc743d99bfab2e665f692c259a"
+    },
+    {
+      "path": "tests/test_preprocessing.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db7708132cb5d94a6f5b3eee3b4b1b286f129fd0",
+      "size": 31565,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/db7708132cb5d94a6f5b3eee3b4b1b286f129fd0"
+    },
+    {
+      "path": "tests/test_s3.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bbb7c809e6dc6fe37af72dc30a8f9847f1ab5393",
+      "size": 16826,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/bbb7c809e6dc6fe37af72dc30a8f9847f1ab5393"
+    },
+    {
+      "path": "tests/test_scmmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8e99886835b3b4c6ed2cfc6b538e2539e740206",
+      "size": 36945,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/b8e99886835b3b4c6ed2cfc6b538e2539e740206"
+    },
+    {
+      "path": "tests/test_scripts.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f96215f71371f8054ed57409d9a8ab8a09ee510b",
+      "size": 22544,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f96215f71371f8054ed57409d9a8ab8a09ee510b"
+    },
+    {
+      "path": "tests/test_sfmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6833a5c88bd08c918bb27101b98a631d4f949665",
+      "size": 14365,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/6833a5c88bd08c918bb27101b98a631d4f949665"
+    },
+    {
+      "path": "tests/test_sftmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f37a52c062671c5965a7fc3c915365d6d15dd375",
+      "size": 33792,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f37a52c062671c5965a7fc3c915365d6d15dd375"
+    },
+    {
+      "path": "tests/test_state_contract.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5369ac8b40cf344883e4ad693b01581f0f1ea6b",
+      "size": 63292,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/f5369ac8b40cf344883e4ad693b01581f0f1ea6b"
+    },
+    {
+      "path": "tests/test_tcmmodel.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f0ec8b9fbdb3b47cd146330031471786d001fc9",
+      "size": 14996,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/4f0ec8b9fbdb3b47cd146330031471786d001fc9"
+    },
+    {
+      "path": "tests/test_tensor.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "884acb8bf4467f2263157165bc4ec98fa1042a25",
+      "size": 15285,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/884acb8bf4467f2263157165bc4ec98fa1042a25"
+    },
+    {
+      "path": "tests/test_time_distributions.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab639359fb0483fbc96f4cb599370d908f80bdf9",
+      "size": 40059,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/ab639359fb0483fbc96f4cb599370d908f80bdf9"
+    },
+    {
+      "path": "tests/test_torch_compile.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "581449efb42bfaa91fc76f5273b0e1b27a516bda",
+      "size": 13605,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/581449efb42bfaa91fc76f5273b0e1b27a516bda"
+    },
+    {
+      "path": "tests/test_trainer.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fd2969bc35a9a4e55b32a3b9f41ec51f99da572",
+      "size": 37580,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2fd2969bc35a9a4e55b32a3b9f41ec51f99da572"
+    },
+    {
+      "path": "tests/test_tree_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67700930974b85bfb32247b5a27e0b6746fa6c29",
+      "size": 45823,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/67700930974b85bfb32247b5a27e0b6746fa6c29"
+    },
+    {
+      "path": "tests/test_wds_utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b206e955667e883b8476433298977b1f7668310",
+      "size": 28862,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/2b206e955667e883b8476433298977b1f7668310"
+    },
+    {
+      "path": "tests/utils.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1cbaf7df8eafb7fe4b9850ad4806f2256d09e059",
+      "size": 22286,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/1cbaf7df8eafb7fe4b9850ad4806f2256d09e059"
+    },
+    {
+      "path": "train.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "263ad8acf83eafbcac1dddd9345f98e062c84b0c",
+      "size": 1756,
+      "url": "https://api.github.com/repos/NVlabs/FastGen/git/blobs/263ad8acf83eafbcac1dddd9345f98e062c84b0c"
+    }
+  ],
+  "truncated": false
+}

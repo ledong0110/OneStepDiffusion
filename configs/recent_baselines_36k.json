@@ -1,0 +1,44 @@
+{
+  "policy": "recent36k-resource-gated-v1",
+  "source_commit": "3943fd5cfb2a8266ec53e7e541e4b8d2e5b1e94d",
+  "gpus": [
+    0,
+    1,
+    2
+  ],
+  "max_parallel": 2,
+  "minimum_free_gpu_gib": 64,
+  "training_memory_cap_gib": 48,
+  "minimum_free_disk_gib": 70,
+  "student_updates": 36000,
+  "auxiliary_updates": 324000,
+  "jobs": [
+    {
+      "method": "dmd2",
+      "config": "configs/sd15_dmd2_36k.yaml",
+      "config_hash": "a52889e86d47c20af25a65373c9763823a3b42b7e7b86c8de8426b3088ee9750",
+      "run_dir": "runs/sd15/recent36k/dmd2_seed42",
+      "result_dir": "results/sd15/recent36k"
+    },
+    {
+      "method": "f_distill",
+      "config": "configs/sd15_f_distill_36k.yaml",
+      "config_hash": "591b99b4490628a5247af7ea81c90166038bfd7ca5328f7c98418e7e7a9d6f5c",
+      "run_dir": "runs/sd15/recent36k/f_distill_seed42",
+      "result_dir": "results/sd15/recent36k"
+    }
+  ],
+  "source_hashes": {
+    "src/few_step_diffusion/recent_objectives.py": "e2a268979d156d6e7faa038d56c3737ccead19f03698692d191944ce4cba98eb",
+    "src/few_step_diffusion/sd_recent_training.py": "f191c3f4f8600bbc12cc143c9db56f767c9e11740d822beb71d1ae6d5c469c9f",
+    "src/few_step_diffusion/sd_models.py": "29ea752d02c71bf407a2c838309add7f536abf58a0fd53c119dfb19ac1b36f81",
+    "src/few_step_diffusion/sd_evaluation.py": "642db33351d678047daed19b6d7979ee09f15dd1e571fc3988fac0463bb778f2",
+    "src/few_step_diffusion/sd_data.py": "cf95cf2d989b47c13971bc3c32a3b5a3a920d4febdfa3362c56b6259f724a466",
+    "src/few_step_diffusion/checkpoint_storage.py": "77b551692f7646f94e6eceeec163e93216fc08f15696ee6ff12f26a889fc68fe",
+    "src/few_step_diffusion/recent_performance.py": "4367fb0af8ca40ad3ad0b727a3272cac27b4e38c5205f1309ba147fa80be78e5",
+    "src/few_step_diffusion/vae_cache.py": "9b65792017eb781ca7a4e5007af9c9b8faaa764364cbd597822963753780173d",
+    "scripts/accelerate_recent_baselines.py": "21aa3c20acf94330c157ec2903e4d212fd0768383d6811bd17f0cd5c41d1b689",
+    "scripts/cache_recent_vae.py": "ddc12d90b13733fa2a8d1fb7339debaa5a70e03bfd7e083775de898870a61002",
+    "scripts/launch_recent_baselines.py": "50094e7be0a14509052afdd8d1062e1d67ace7590960b82eaa95772a6ed7c009"
+  }
+}

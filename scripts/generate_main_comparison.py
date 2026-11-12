@@ -13,7 +13,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 METHODS = ("dmd_perceptual_diversity", "baseline", "consistency", "dmd",
-           "swiftbrush_lora", "instaflow")
+           "swiftbrush_lora", "instaflow", "dmd_perceptual")
 OUTPUT = Path("results/sd15/active_one_step/main_comparison.json")
 
 

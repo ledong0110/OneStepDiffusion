@@ -18,7 +18,9 @@ PROTOCOL_KEYS = ("dataset", "image_size", "num_samples", "num_real", "reference_
                  "clip_model_identity", "clip_score_definition", "latency_scope", "comparison_steps",
                  "continuation_policy", "parent_training_prompt_hash", "parent_training_updates",
                  "dmd_study_policy", "dmd_study_parent_config_hash", "teacher_pair_protocol_hash",
-                 "teacher_pair_weights_sha256")
+                 "teacher_pair_weights_sha256", "refinement_policy",
+                 "refinement_parent_checkpoint_sha256", "dmd_score_estimator_policy",
+                 "dmd_score_probes", "dmd_agreement_patch_size")
 
 ABLATION_METHODS = {"edge_weight_low", "edge_weight_high"}
 EDGE_SETTINGS = {"baseline": (0.0, "off"), "edge_constant": (.1, "constant"),
@@ -77,7 +79,20 @@ def collect_results(folder, schema_path, *, result_files=None):
                 if record["sampling_steps"] != record["comparison_steps"]:
                     raise ValueError("Student sampling steps differ from the matched-comparison protocol")
             if sd:
-                if record["method"].startswith("dmd_"):
+                from .dmd_conflict import MODES, validate_refinement_result
+                from .dmd_noise_agreement import MODES as NOISE_MODES, validate_result as validate_noise_result
+                from .dmd_noise_agreement import PAIR_MODES
+                from .dmd_response import MODES as RESPONSE_MODES, validate_result as validate_response_result
+                if record.get("independent_training") or record["method"] in ("response_scratch", "dmd_lpips_scratch"):
+                    from .independent_response import validate_result as validate_independent_result
+                    validate_independent_result(record)
+                elif record["method"] in MODES.values():
+                    validate_refinement_result(record)
+                elif record["method"] in (*NOISE_MODES.values(), *PAIR_MODES.values()):
+                    validate_noise_result(record)
+                elif record["method"] in RESPONSE_MODES.values():
+                    validate_response_result(record)
+                elif record["method"].startswith("dmd_"):
                     from .dmd_diversity import STUDY_POLICY, VARIANTS
                     if record["method"] not in VARIANTS:
                         raise ValueError("Unknown DMD study variant")

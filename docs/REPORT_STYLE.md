@@ -1,5 +1,10 @@
 # Manuscript preferences
 
+- Publish the root PDFs as `CE7454_main_report.pdf` and
+  `CE6190_group_11_report_project2.pdf`.
+- Keep a single quantitative comparison table in the CE7454 paper. Do not
+  restore the removed regression-control Table 2; use that space for analysis
+  of the proposed method. The CE6190 report may retain its regression analysis.
 - Present the total student training budget as 36,000 steps.
 - Use the standard baseline names DMD, SwiftBrush and InstaFlow in tables and figures.
 - Keep all baseline results in one comparison table. Describe actual recipe differences accurately.

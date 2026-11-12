@@ -1,0 +1,10 @@
+{
+  "policy": "assignment2-evaluated-main-candidate-v1",
+  "study": "independent_response_36k",
+  "method": "response_scratch",
+  "model_identity": "1cc4e257f8ef6ccfba84a28bcad19f2bdde83bc7b94a20b0ceead4c533e7c77f",
+  "result_sha256": "12f2aea60f0259d55409c1e8954bc376254362f6055e54f0ecad638b0be76486",
+  "checkpoint_sha256": "a224c3b7856f6e9a79bf51ca6cc62a987d7e9090cc1de9caecb7c65dca0d1c35",
+  "qualitative_main_sha256": "63a5ab2c808a7c2d6d517546f5a3b6aff9dc8aca0aae592eb8a8f82f94f9bda8",
+  "reason": "Use only the completed independently trained 36,000-update angular-response model for the main metrics and every Ours figure. Exclude additional-update pilots from both reports. The original DMD reference differs in initialization history and paired bank; matched control results are included only after completed 36,000-update training and full evaluation."
+}

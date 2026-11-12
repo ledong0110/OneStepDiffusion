@@ -1,0 +1,41 @@
+{
+  "policy": "dmd-lpips-conflict-refinement-v1",
+  "seed": 42,
+  "additional_updates": 500,
+  "cumulative_training_updates": 36500,
+  "parent_training_updates": 36000,
+  "parent_checkpoint_sha256": "67a3509c9b0113ecb44118dc749769c5bad4a1b6fb619b33b696cd02a0da2996",
+  "teacher_pair_weights_sha256": "ba360f75eba864e43c44f4028b8e5535d3ea0dda46b63249df2c2ca983afbe27",
+  "gpus": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "max_parallel": 2,
+  "min_free_gpu_gib": 16.0,
+  "jobs": [
+    {
+      "key": "block_project",
+      "method": "dmd_block_conflict",
+      "config": "configs/generated/dmd_block_conflict/block_project.yaml",
+      "run_dir": "runs/sd15/dmd_block_conflict/block_project",
+      "result_dir": "results/sd15/dmd_block_conflict",
+      "config_hash": "ff74be8ff7b106e3e1e1f08235693fbef54470e2861e2865423414f8e756eb30"
+    },
+    {
+      "key": "block_norm_match",
+      "method": "dmd_block_norm_control",
+      "config": "configs/generated/dmd_block_conflict/block_norm_match.yaml",
+      "run_dir": "runs/sd15/dmd_block_conflict/block_norm_match",
+      "result_dir": "results/sd15/dmd_block_conflict",
+      "config_hash": "e3c8009ee5f5ed296f2c5aa2a92d83043caed1806d23aa2ff5ea658d45b0f688"
+    }
+  ],
+  "reference_baseline": {
+    "result_file": "results/sd15/dmd_diversity_study/dmd_perceptual_seed42_1steps.result.json",
+    "result_sha256": "e43cc466977620dacaaad14827e7f616afbbe05f832b0dda021dfb19717affce",
+    "model_identity": "1bbed4b51b12644ee8f7e8688626b512a4eb651e56553441131ebe91344c7567"
+  },
+  "max_gpu_memory_gib": 15
+}

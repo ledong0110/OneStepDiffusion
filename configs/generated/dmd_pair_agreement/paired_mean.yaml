@@ -1,0 +1,85 @@
+name: dmd_pair_mean
+seed: 42
+output_dir: runs/sd15/dmd_pair_agreement/paired_mean
+device: cuda
+precision: bf16
+progress_bar: true
+wandb:
+  mode: auto
+  project: few-step-diffusion
+  entity: null
+  group: sd15-dmd-pair-agreement
+  name: null
+  tags: []
+  log_images: true
+model:
+  source: stable-diffusion-v1-5/stable-diffusion-v1-5
+  revision: 451f4fe16113bff5a5d2269ed5ad43b0592e9a14
+  family: stable-diffusion
+  lora_rank: 32
+  guidance_scale: 7.5
+  gradient_checkpointing: true
+data:
+  root: data/coco2017
+  download: true
+  fake: false
+  batch_size: 2
+  dataset: COCO-2017
+  image_size: 512
+  train_limit: 68287
+  download_workers: 12
+  train_offset: 50000
+  sampling: shuffled_epochs
+train:
+  mode: dmd
+  initial_steps: 64
+  stages:
+  - 1
+  updates_per_stage: 500
+  learning_rate: 1.0e-05
+  weight_decay: 0.01
+  warmup_steps: 25
+  grad_accumulation: 8
+  max_grad_norm: 1.0
+  ema_decay: 0.995
+  min_snr_gamma: 5.0
+  edge_weight: 0.0
+  edge_schedule: noise_aware
+  save_every: 50
+  log_every: 10
+  preview_every: 250
+  fake_learning_rate: 0.0001
+  fake_updates_per_step: 1
+  vsd_t_min: 0.02
+  vsd_t_max: 0.98
+  dmd_regression_weight: 0.25
+  dmd_pair_count: 5000
+  instaflow_pair_count: 50000
+  instaflow_prediction_type: epsilon-converted-velocity
+  dmd_pair_seeds: 2
+  dmd_regression_type: lpips_vgg
+  dmd_diversity_weight: 0.0
+  dmd_pair_cache_dir: /home/dong/workspace/few_step_diffusion/runs/sd15/dmd_diversity_study/shared_teacher_pairs
+  dmd_noise_mode: paired_mean
+  dmd_agreement_patch_size: 8
+  dmd_noise_pairs: 2
+eval:
+  steps:
+  - 1
+  num_samples: 5000
+  batch_size: 4
+  seed: 12345
+  reference_split: validation
+  num_real: 5000
+  benchmark_batch_size: 1
+  benchmark_repeats: 10
+  benchmark_warmup: 3
+  comparison_steps: 1
+  retain_generated_images: false
+dmd_refinement:
+  policy: dmd-independent-pair-spatial-agreement-v1
+  parent_run: /home/dong/workspace/few_step_diffusion/runs/sd15/dmd_diversity_study/dmd_perceptual_seed42
+  parent_config_hash: 695b1075f19a7bdfe0100ca719c42f236d37ad3adae355880cc2fe9fc13ec4da
+  parent_checkpoint_sha256: 67a3509c9b0113ecb44118dc749769c5bad4a1b6fb619b33b696cd02a0da2996
+  additional_updates: 500
+  data_update_offset: 18000

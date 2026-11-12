@@ -1,0 +1,57 @@
+{
+  "policy": "independent-sd15-response-36k-v1",
+  "gpus": [
+    0,
+    1,
+    2
+  ],
+  "jobs": [
+    {
+      "method": "response_scratch",
+      "config": "configs/sd15_response_scratch_36k.yaml",
+      "run_dir": "runs/sd15/independent36k/response_scratch_seed42",
+      "config_hash": "fe08932106043eb246017487b3be42f4aa655bf26df4218ee6c71df8d341b52d"
+    },
+    {
+      "method": "dmd_lpips_scratch",
+      "config": "configs/sd15_dmd_lpips_scratch_36k.yaml",
+      "run_dir": "runs/sd15/independent36k/dmd_lpips_scratch_seed42",
+      "config_hash": "81d9303b92c1564fad7548f4d2c856dbe7ffdeb3e9c111fbb39c64bab8843b12"
+    }
+  ],
+  "student_updates": 36000,
+  "initial_distillation_updates": 0,
+  "source_hashes": {
+    "src/few_step_diffusion/independent_response.py": "33e71b37e860d2342f7310c2c94915e07226c0d8a3270e31861c157bb41cda43",
+    "src/few_step_diffusion/sd_training.py": "2c85cab1eb1309bb8267f133eced3c163db4581fcfd8cf1ad750248418b0e5cd",
+    "src/few_step_diffusion/dmd_response.py": "834b5c9b9cc15be3e689f7a772af35579c0f51780f5be873e3d094beaf9cf0e2",
+    "src/few_step_diffusion/teacher_pairs.py": "bd6d297eab6e2b80ba63620d347025032c8d04b70243fa1074f691baf122405c",
+    "src/few_step_diffusion/dmd_diversity.py": "26ef31680d077a635aca548952af5b0997c168f3edef624e28dcff760190cd22",
+    "src/few_step_diffusion/training.py": "6336c6274347945e2873930d5c0d9b41183ca9dbc061641a28fda620e15f433d",
+    "src/few_step_diffusion/checkpoint_storage.py": "77b551692f7646f94e6eceeec163e93216fc08f15696ee6ff12f26a889fc68fe",
+    "scripts/launch_independent_job.py": "8cd9f1e1bdd9560c50f9c34c11c640e0b3a7983dd2cc03e602edf4d9dd234ad2",
+    "scripts/launch_independent_response.py": "9a0e19d7af133b7963db136676be499ad86e10e44b5a0bec481ec95d3a8abd66"
+  },
+  "phase_limits": {
+    "prepare": {
+      "gpu_gib": 9,
+      "cap_gib": 8,
+      "disk_gib": 2
+    },
+    "preflight": {
+      "gpu_gib": 16,
+      "cap_gib": 15,
+      "disk_gib": 6
+    },
+    "train": {
+      "gpu_gib": 16,
+      "cap_gib": 15,
+      "disk_gib": 6
+    },
+    "evaluate": {
+      "gpu_gib": 16,
+      "cap_gib": 15,
+      "disk_gib": 3
+    }
+  }
+}

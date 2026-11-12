@@ -90,6 +90,48 @@ def test_selected_rows_reject_mismatched_caption_and_noise(tmp_path, report_modu
     assert not (tmp_path/"bad.pdf").exists()
 
 
+def test_final_model_control_and_interpolation_use_the_evaluated_budget(tmp_path, report_module):
+    from few_step_diffusion.qualitative import panel_specs, protocol_hash
+    record = result_fixture()
+    record.update(method="dmd_response_angular_30", training_updates=2000, cumulative_training_updates=38000)
+    seed = 12346
+    selection = {"prompt_control_eval_seed": seed, "interpolation_noise_seeds": [12546, 12548]}
+    out, folder = tmp_path/"figures", tmp_path/"new_model/qualitative"
+    out.mkdir()
+    folder.mkdir(parents=True)
+    png = record["sample_images_png_base64"][0]
+    control = {key: record[key] for key in ("method", "seed", "model_identity", "precision",
+        "teacher_identity", "lora_rank", "training_updates", "cumulative_training_updates")}
+    control.update(status="qualitative", image_size=512, sampling_steps=1, nfe=1, eval_seed=seed,
+        protocol_hash=protocol_hash(seed), panels={kind: [{**item, "png_base64": png} for item in items]
+            for kind, items in panel_specs(seed).items() if kind in ("comparison", "control")})
+    control_path = folder/"control.json"
+    control_path.write_text(json.dumps(control))
+    result = report_module.draw_prompt_control(tmp_path, record, out, folder=folder, selection=selection)
+    assert result["model_identity"] == record["model_identity"]
+    assert "38,000-update" in (out/"prompt_control.tex").read_text()
+    control["cumulative_training_updates"] = 36000
+    control_path.write_text(json.dumps(control))
+    with pytest.raises(ValueError, match="training budget"):
+        report_module.draw_prompt_control(tmp_path, record, out, folder=folder, selection=selection)
+    weights = [0, .25, .5, .75, 1]
+    interpolation = {"method": record["method"], "model_identity": record["model_identity"],
+        "weights": weights, "protocol": "linear-clip-hidden-state-v1", "cumulative_training_updates": 38000,
+        "sampling_steps": 1, "nfe": 1, "prompts": ["SYNTHETIC dog", "SYNTHETIC cat"],
+        "rows": [{"noise_seed": s, "images": [{"weight": w, "png_base64": png} for w in weights]}
+                 for s in selection["interpolation_noise_seeds"]]}
+    path = tmp_path/"new_model/interpolation.json"
+    path.write_text(json.dumps(interpolation))
+    result = report_module.draw_interpolation(tmp_path, record, out, path=path, selection=selection)
+    assert result["model_identity"] == record["model_identity"]
+    assert "38,000-update" in (out/"interpolation_figure.tex").read_text()
+    for key, value in (("model_identity", "different checkpoint"), ("method", "different method"),
+                       ("cumulative_training_updates", 36000), ("sampling_steps", 2)):
+        path.write_text(json.dumps({**interpolation, key: value}))
+        with pytest.raises(ValueError, match="checkpoint/protocol"):
+            report_module.draw_interpolation(tmp_path, record, out, path=path, selection=selection)
+
+
 def test_main_comparison_rejects_wrong_model_noise_and_changed_validation_image(tmp_path, report_module):
     import hashlib
     proposal = result_fixture()
@@ -188,7 +230,7 @@ def test_root_pdf_updates_only_after_a_successful_page_check(tmp_path, report_mo
     build.mkdir(parents=True)
     source = build/"main.pdf"
     source.write_bytes(b"synthetic PDF test fixture")
-    published = tmp_path/"main_report.pdf"
+    published = tmp_path/"CE7454_main_report.pdf"
     published.write_bytes(b"previous published report")
     monkeypatch.setattr(report_module.subprocess, "run", lambda *args, **kwargs: None)
     monkeypatch.setattr(report_module.subprocess, "check_output", lambda *args, **kwargs: "Pages: 5\n")
@@ -198,7 +240,7 @@ def test_root_pdf_updates_only_after_a_successful_page_check(tmp_path, report_mo
     monkeypatch.setattr(report_module.subprocess, "check_output", lambda *args, **kwargs: "Pages: 4\n")
     report_module.compile_report(tmp_path)
     assert published.read_bytes() == source.read_bytes()
-    assert not (tmp_path/".main_report.pdf.tmp").exists()
+    assert not (tmp_path/"CE7454_main_report.pdf.tmp").exists()
 
 
 def watcher_inputs(root):

@@ -1,0 +1,89 @@
+{
+  "policy": "dmd-finite-response-alignment-v1",
+  "seed": 42,
+  "additional_updates": 1000,
+  "cumulative_training_updates": 37000,
+  "parent_training_updates": 36000,
+  "parent_checkpoint_sha256": "67a3509c9b0113ecb44118dc749769c5bad4a1b6fb619b33b696cd02a0da2996",
+  "teacher_pair_weights_sha256": "ba360f75eba864e43c44f4028b8e5535d3ea0dda46b63249df2c2ca983afbe27",
+  "gpus": [
+    0,
+    1,
+    2
+  ],
+  "max_parallel": 3,
+  "min_free_gpu_gib": 16.0,
+  "jobs": [
+    {
+      "key": "angular_50",
+      "method": "dmd_response_angular_50",
+      "config": "configs/generated/dmd_response_final/angular_50.yaml",
+      "run_dir": "runs/sd15/dmd_response_final/angular_50",
+      "result_dir": "results/sd15/dmd_response_final",
+      "config_hash": "cc4fbd1e37b2688ec0e9fe7d35920bf2fff1a1ff2df9e91b8d2742c5f88db85e"
+    },
+    {
+      "key": "magnitude_50",
+      "method": "dmd_response_magnitude_50",
+      "config": "configs/generated/dmd_response_final/magnitude_50.yaml",
+      "run_dir": "runs/sd15/dmd_response_final/magnitude_50",
+      "result_dir": "results/sd15/dmd_response_final",
+      "config_hash": "3c363968bca7fc41b89ad68c19c73729329b50a2aa659650226db23a7275041c"
+    },
+    {
+      "key": "vector_50",
+      "method": "dmd_response_vector_50",
+      "config": "configs/generated/dmd_response_final/vector_50.yaml",
+      "run_dir": "runs/sd15/dmd_response_final/vector_50",
+      "result_dir": "results/sd15/dmd_response_final",
+      "config_hash": "5b242d011e1a286b72afccb8b423c8944ab75784b5661c86dcb342f63c25842b"
+    }
+  ],
+  "reference_baseline": {
+    "result_file": "results/sd15/dmd_diversity_study/dmd_perceptual_seed42_1steps.result.json",
+    "result_sha256": "e43cc466977620dacaaad14827e7f616afbbe05f832b0dda021dfb19717affce",
+    "model_identity": "1bbed4b51b12644ee8f7e8688626b512a4eb651e56553441131ebe91344c7567"
+  },
+  "max_gpu_memory_gib": 15,
+  "final_design": {
+    "policy": "response-final-design-from-completed-pilot-v1",
+    "pilot_study": "dmd_response_strength",
+    "pilot_plan_sha256": "2c949b057288ae938a54ed2b3e8de6de42289040f8dcc2797145c94c1986e16c",
+    "selected_pilot_method": "dmd_response_angular_50",
+    "gradient_fraction": 0.5,
+    "reason": "Select the 50% initial-gradient angular setting for its lowest pilot FID (28.9540 versus 29.0722 and 29.6275) and maintained measured within-caption variation. IS (33.8479) and CLIP (31.0402) are slightly lower than at 30%; the choice prioritizes FID and is exploratory. Matched native samples preserve recognizable subjects and layouts without establishing visual superiority. Use 1,000 additional updates, twice the pilot budget, to test the angular objective against magnitude-only and full-vector controls under the same budget and fixed 36k initialization. The original DMD reference is not retrained.",
+    "pilot_evidence": [
+      {
+        "method": "dmd_response_angular_10",
+        "result_file": "results/sd15/dmd_response_strength/dmd_response_angular_10_seed42_1steps.result.json",
+        "result_sha256": "0000b128faefaaa3bc1b93ec9a4cc2a11767cd2444efbd6490cd7aa19513c1d5",
+        "model_identity": "3334fa2d3638668fc41a1ff852a34edc63ee88e63a88018333e407b64827ff0c",
+        "checkpoint_sha256": "4bd1918fab3fe62ce71a23d779696fc743dbeeaf7fb1ed71d00d01092dc0cc13",
+        "fid": 29.62750316833882,
+        "clip_score_mean": 31.108331511306762,
+        "diversity_lpips_alex_mean": 0.7088145008310676
+      },
+      {
+        "method": "dmd_response_angular_30",
+        "result_file": "results/sd15/dmd_response_strength/dmd_response_angular_30_seed42_1steps.result.json",
+        "result_sha256": "ec21a00306455faa82275cac1dcc6df0ac242a0c52fc6266137dcc2b23b026f5",
+        "model_identity": "ec1e5d2745fbd02be4d48ad8c835ccb16dc040050fbc9661d6707231357a830e",
+        "checkpoint_sha256": "da9b519a67a155b66e73a0a5eed8b5c9ccab8c79fbd36827fe59bce35e3dc6f2",
+        "fid": 29.072181703654906,
+        "clip_score_mean": 31.080708340072633,
+        "diversity_lpips_alex_mean": 0.7096609221771359
+      },
+      {
+        "method": "dmd_response_angular_50",
+        "result_file": "results/sd15/dmd_response_strength/dmd_response_angular_50_seed42_1steps.result.json",
+        "result_sha256": "12ceb58591ea6872077393bf4722b7cec97b9bdb80fc27e72475eed5454443c0",
+        "model_identity": "922e8c54696d1fcedf6517f1dc046f84c2e62001557b35fc8d36725be5a61df9",
+        "checkpoint_sha256": "ee1fcb830695e4a92d3043cd3359a5f65069f561710c78fcb9be540d00c19ecc",
+        "fid": 28.954016381834435,
+        "clip_score_mean": 31.04021085319519,
+        "diversity_lpips_alex_mean": 0.7101449500769377
+      }
+    ],
+    "selection_scope": "exploratory-validation-selection; not an independent test set"
+  }
+}

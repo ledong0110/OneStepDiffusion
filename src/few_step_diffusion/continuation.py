@@ -73,7 +73,13 @@ def initialize_continuation(config, output):
     expected = continuation_config(state["config"], parent, config["output_dir"],
         config["data"]["train_offset"], config["data"]["train_limit"],
         specification["additional_updates"])
-    if "dmd_study" in config:
+    if "dmd_weight_sweep" in config:
+        from .dmd_diversity import apply_weight_sweep
+        if config["dmd_weight_sweep"]["policy"] != "dmd-diversity-weight-v1":
+            raise ValueError("Unknown DMD coefficient sweep policy")
+        expected = apply_weight_sweep(expected, config["dmd_weight_sweep"]["diversity_weight"],
+                                      config["dmd_study"]["pair_cache_dir"])
+    elif "dmd_study" in config:
         from .dmd_diversity import apply_variant
         expected = apply_variant(expected, config["dmd_study"]["variant"],
                                  config["dmd_study"]["pair_cache_dir"])

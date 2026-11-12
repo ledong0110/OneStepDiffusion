@@ -4,7 +4,34 @@ from pathlib import Path
 import subprocess
 import sys
 
+import pytest
+import torch
+
 from few_step_diffusion.runtime import atomic_json, experiment_lock
+
+
+@pytest.mark.parametrize(("configured_device", "allocation_device"), [("cuda", 0), ("cuda:2", 2)])
+def test_gpu_memory_cap_requires_free_margin_and_records_allocator_limit(monkeypatch, configured_device, allocation_device):
+    from few_step_diffusion.runtime import device_for
+    monkeypatch.setenv("FSD_MAX_GPU_MEMORY_GIB", "15")
+    monkeypatch.setattr(torch.cuda, "is_available", lambda: True)
+    monkeypatch.setattr(torch.cuda, "current_device", lambda: 0)
+    monkeypatch.setattr(torch.cuda, "mem_get_info", lambda device: (18*2**30, 140*2**30))
+    calls = []
+    monkeypatch.setattr(torch.cuda, "set_per_process_memory_fraction", lambda limit, device: calls.append((limit, device)))
+    assert device_for({"device": configured_device, "precision": "fp32"}).type == "cuda"
+    assert calls == [(15/140, allocation_device)]
+    monkeypatch.setattr(torch.cuda, "mem_get_info", lambda device: (15*2**30, 140*2**30))
+    with pytest.raises(RuntimeError, match="allocation cap"):
+        device_for({"device": configured_device, "precision": "fp32"})
+    assert len(calls) == 1
+
+
+def test_cpu_does_not_apply_cuda_allocation_cap(monkeypatch):
+    from few_step_diffusion.runtime import device_for
+    monkeypatch.setenv("FSD_MAX_GPU_MEMORY_GIB", "15")
+    monkeypatch.setattr(torch.cuda, "mem_get_info", lambda device: pytest.fail("CPU must not query GPU memory"))
+    assert device_for({"device": "cpu", "precision": "fp32"}).type == "cpu"
 
 
 def test_simultaneous_caption_manifest_writes_are_atomic(tmp_path):

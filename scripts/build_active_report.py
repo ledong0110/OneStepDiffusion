@@ -103,7 +103,7 @@ def verify_validation(root, record):
             "manifest_sha256": digest}
 
 
-def draw_samples(records, indices, target, *, selected=True, extra_demo=None):
+def draw_samples(records, indices, target, *, selected=True, extra_demo=None, display_labels=None):
     import textwrap
     first = records[0]
     for r in records:
@@ -140,9 +140,10 @@ def draw_samples(records, indices, target, *, selected=True, extra_demo=None):
         for column, r in enumerate(records):
             ax = fig.add_subplot(grid[0, column+1])
             ax.axis("off")
-            name = SHORT.get(r["method"], LABELS.get(r["method"], r["method"]))
+            name = ((display_labels or {}).get(r["method"]) or
+                    SHORT.get(r["method"], LABELS.get(r["method"], r["method"])))
             ax.text(.5, .76, name, ha="center", va="center", fontsize=9,
-                    weight="bold" if r["method"] == "dmd_perceptual_diversity" else "normal")
+                    weight="bold" if name.startswith("Ours") else "normal")
             detail = f"{r['sampling_steps']} step{'s' if r['sampling_steps'] > 1 else ''} / {r['nfe']} NFE"
             ax.text(.5, .39, detail, ha="center", va="center", fontsize=6.9)
             if r["method"] == "swiftbrush_lora":
@@ -216,23 +217,23 @@ def load_main_comparison(root, records, path):
                          "protocol_hash": digest, "pending_methods": pending}
 
 
-def draw_prompt_control(root, record, out):
+def draw_prompt_control(root, record, out, *, folder=None, selection=None):
     from few_step_diffusion.qualitative import ACTIONS, ANIMALS, load_qualitative
     import base64
     import io
     from PIL import Image
 
-    selection = json.loads((root/"configs/report_selection.json").read_text())
+    selection = selection or json.loads((root/"configs/report_selection.json").read_text())
     eval_seed = selection.get("prompt_control_eval_seed", 12345)
-    folder = root/"results/sd15/active_one_step/qualitative"/f"seed{eval_seed}"
+    folder = Path(folder) if folder is not None else root/"results/sd15/active_one_step/qualitative"/f"seed{eval_seed}"
     target = out/"prompt_control.tex"
     if not folder.exists():
         target.write_text("% New-proposal prompt-control samples are pending.\n")
         return None
     imported = load_qualitative(folder, [record])
     match = next((r for r in imported if r["method"] == record["method"]), None)
-    if not match or match.get("cumulative_training_updates") != 36000:
-        raise ValueError("Prompt-control figure requires the evaluated 36k proposal")
+    if not match or match.get("cumulative_training_updates") != record.get("cumulative_training_updates"):
+        raise ValueError("Prompt-control figure requires the same evaluated training budget")
     items = match["panels"]["control"]
     with plt.rc_context({"font.family": "DejaVu Sans", "pdf.fonttype": 42}):
         fig = plt.figure(figsize=(4.8, 3.6))
@@ -259,7 +260,7 @@ def draw_prompt_control(root, record, out):
         plt.close(fig)
     target.write_text("\\begin{figure}[t]\n\\centering\n"
         "\\includegraphics[width=\\linewidth]{generated/active_study/prompt_control.pdf}\n"
-        "\\caption{Selected compositional prompt-control grid from the 36,000-step proposal "
+        f"\\caption{{Selected compositional prompt-control grid from the evaluated {record['cumulative_training_updates']:,}-update model "
         "at one step / one NFE. Prompts follow `A DSLR photograph of a \\{animal\\} "
         "\\{action\\}, sitting at an outdoor cafe table.' All cells share initial noise "
         f"seed {items[0]['noise_seed']}. The displayed grid is manually selected for visual quality "
@@ -271,22 +272,24 @@ def draw_prompt_control(root, record, out):
             "prompts": [{k:v for k,v in i.items() if k != "png_base64"} for i in items]}
 
 
-def draw_interpolation(root, record, out):
+def draw_interpolation(root, record, out, *, path=None, selection=None):
     import base64
     import io
     from PIL import Image
-    path = root/"results/sd15/active_one_step/prompt_interpolation.json"
+    path = Path(path) if path is not None else root/"results/sd15/active_one_step/prompt_interpolation.json"
     target = out/"interpolation_figure.tex"
     if not path.exists():
         target.write_text("% Text-embedding interpolation samples are pending.\n")
         return None
     payload = json.loads(path.read_text())
     weights = [0, .25, .5, .75, 1]
-    if (payload["model_identity"] != record["model_identity"] or payload["weights"] != weights or
+    if (payload["model_identity"] != record["model_identity"] or payload.get("method") != record["method"] or
+            payload["weights"] != weights or
             payload["protocol"] != "linear-clip-hidden-state-v1" or
-            payload.get("cumulative_training_updates") != 36000 or payload["nfe"] != 1):
+            payload.get("cumulative_training_updates") != record.get("cumulative_training_updates") or
+            payload["nfe"] != 1 or payload.get("sampling_steps") != 1):
         raise ValueError("Interpolation checkpoint/protocol differs from the evaluated proposal")
-    selection = json.loads((root/"configs/report_selection.json").read_text())
+    selection = selection or json.loads((root/"configs/report_selection.json").read_text())
     seeds = selection.get("interpolation_noise_seeds", [12546, 12548])
     rows = {row["noise_seed"]: row for row in payload["rows"]}
     if any(seed not in rows for seed in seeds):
@@ -319,20 +322,21 @@ def draw_interpolation(root, record, out):
         plt.close(fig)
     target.write_text("\\begin{figure}[t]\n\\centering\n"
         "\\includegraphics[width=\\linewidth]{generated/active_study/prompt_interpolation.pdf}\n"
-        "\\caption{Text-embedding interpolation from dog to cat with the 36,000-step proposal "
+        f"\\caption{{Text-embedding interpolation from dog to cat with the evaluated {record['cumulative_training_updates']:,}-update model "
         "at one step / one NFE. Endpoint prompts use `A DSLR photograph of a \\{animal\\} "
         "reading an open book, sitting at an outdoor cafe table.' Columns linearly interpolate "
         "the CLIP hidden states at the labelled weights; each row keeps the same initial noise. "
-        "Two rows are selected from three candidate seeds.}\\label{fig:interpolation}\n\\end{figure}\n")
+        "Displayed rows use the recorded noise seeds.}\\label{fig:interpolation}\n\\end{figure}\n")
     return {"source_file": str(path), "noise_seeds": seeds, "weights": weights,
             "prompts": payload["prompts"], "model_identity": payload["model_identity"]}
 
 
-def quality_table(records, teacher):
-    displayed = [records[m] for m in PRIMARY_METHODS if m in records]
+def quality_table(records, teacher, *, methods=PRIMARY_METHODS, labels=None):
+    labels = labels or LABELS
+    displayed = [records[m] for m in methods if m in records]
     rows = [r"\begin{tabular}{lrrrr}", r"\toprule",
             r"Method (36k steps) & NFE & FID $\downarrow$ & IS $\uparrow$ & CLIP $\uparrow$ \\", r"\midrule"]
-    for method in PRIMARY_METHODS:
+    for method in methods:
         record = records.get(method)
         if record:
             values = []
@@ -340,9 +344,9 @@ def quality_table(records, teacher):
                 best = (min if key == "fid" else max)(r[key] for r in displayed)
                 value = f"{record[key]:.2f}"
                 values.append(r"\textbf{"+value+"}" if record[key] == best else value)
-            rows.append(f"{LABELS[method]} & 1 & "+" & ".join(values)+r" \\")
+            rows.append(f"{labels[method]} & 1 & "+" & ".join(values)+r" \\")
         else:
-            rows.append(f"{LABELS[method]} & 1 & "+r"\multicolumn{3}{c}{\emph{Pending}} \\")
+            rows.append(f"{labels[method]} & 1 & "+r"\multicolumn{3}{c}{\emph{Pending}} \\")
     rows += [r"\midrule", r"\multicolumn{5}{l}{\emph{Teacher reference: 64 steps, CFG 7.5}} \\",
         f"SD1.5 teacher & 128 & {teacher['fid']:.2f} & {teacher['inception_score_mean']:.2f} & {teacher['clip_score_mean']:.2f}"+r" \\",
         r"\bottomrule", r"\end{tabular}"]
@@ -510,8 +514,8 @@ def compile_report(root, max_pages=4):
     pages = int(next(line.split(":")[1] for line in info.splitlines() if line.startswith("Pages:")))
     if pages > max_pages:
         raise ValueError(f"Report has {pages} pages, exceeding the {max_pages}-page project limit")
-    published = root/"main_report.pdf"
-    temporary = root/".main_report.pdf.tmp"
+    published = root/"CE7454_main_report.pdf"
+    temporary = published.with_suffix(".pdf.tmp")
     try:
         shutil.copyfile(root/"report/build/main.pdf", temporary)
         os.replace(temporary, published)
@@ -613,7 +617,7 @@ def main(argv=None):
                     atomic_json(state_path, {"status": "watching" if args.watch else "complete",
                         "pid": os.getpid(), "updated_at": manifest["updated_at"],
                         "completed_experiments": manifest["completed"], "planned_experiments": 9,
-                        "pdf": "main_report.pdf", "build_pdf": "report/build/main.pdf"})
+                        "pdf": "CE7454_main_report.pdf", "build_pdf": "report/build/main.pdf"})
                     last = signature
             except Exception as exc:
                 atomic_json(state_path, {"status": "error", "pid": os.getpid(), "error": str(exc)})

@@ -5,6 +5,7 @@ new distribution divergence or a reproduction of those published recipes.
 """
 
 from copy import deepcopy
+import math
 from pathlib import Path
 
 import torch
@@ -35,6 +36,19 @@ def apply_variant(config, variant, cache_dir):
     result["wandb"]["group"] = "sd15-dmd-perceptual-diversity"
     result["dmd_study"] = {"policy": STUDY_POLICY, "variant": variant,
                             "pair_cache_dir": str(Path(cache_dir).resolve())}
+    return result
+
+
+def apply_weight_sweep(config, diversity_weight, cache_dir):
+    """Change only the diversity coefficient within the matched LPIPS study."""
+    if (isinstance(diversity_weight, bool) or not isinstance(diversity_weight, (int, float))
+            or not math.isfinite(diversity_weight) or diversity_weight < 0):
+        raise ValueError("Diversity sweep weight must be a finite nonnegative number")
+    result = apply_variant(config, "dmd_perceptual_diversity", cache_dir)
+    result["train"].update(dmd_diversity_weight=float(diversity_weight), dmd_regression_weight=.25)
+    result["dmd_weight_sweep"] = {"policy": "dmd-diversity-weight-v1",
+                                  "diversity_weight": float(diversity_weight)}
+    result["wandb"]["group"] = "sd15-dmd-diversity-weight-sweep"
     return result
 
 

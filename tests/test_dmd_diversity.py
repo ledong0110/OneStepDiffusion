@@ -129,7 +129,7 @@ def test_diversity_evaluation_uses_shared_seeds_and_held_out_prompts(tmp_path, m
     assert not torch.equal(calls[0][1][0], calls[0][1][1])
 
 
-@pytest.mark.parametrize("variant", list(dmd_diversity.VARIANTS))
+@pytest.mark.parametrize("variant", [*dmd_diversity.VARIANTS, "sweep_0p3"])
 def test_direct_dmd_variant_forks_parent_and_resumes_exactly(tmp_path, monkeypatch, variant):
     data = tmp_path/"data"
     annotations(data)
@@ -148,7 +148,10 @@ def test_direct_dmd_variant_forks_parent_and_resumes_exactly(tmp_path, monkeypat
     parent_sha = sha256(tmp_path/"parent/last.pt")
     cache = tmp_path/"shared_pairs"
     fresh = continuation_config(config, tmp_path/"parent", tmp_path/"continued", 2, 2, 2)
-    fresh = dmd_diversity.apply_variant(fresh, variant, cache)
+    if variant == "sweep_0p3":
+        fresh = dmd_diversity.apply_weight_sweep(fresh, .3, cache)
+    else:
+        fresh = dmd_diversity.apply_variant(fresh, variant, cache)
     fresh["continuation"]["parent_checkpoint_sha256"] = parent_sha
     validate(fresh)
     training.train(fresh)

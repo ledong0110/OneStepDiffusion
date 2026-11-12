@@ -48,7 +48,9 @@ def save_checkpoint(path, student, ema, optimizer, config, stage_index, stage_st
     tmp.replace(path)
 
 
-def train(config, resume=False):
+def train(config, resume=False, *, stop_after=None):
+    if stop_after is not None and not config.get("independent_training"):
+        raise ValueError("The independent preflight cannot alter another training pipeline")
     seed_everything(config["seed"])
     device = device_for(config)
     output = Path(config["output_dir"])
@@ -64,6 +66,9 @@ def train(config, resume=False):
         state = torch.load(checkpoint, map_location="cpu", weights_only=False)
         if experiment_config(state["config"]) != experiment_config(config):
             raise ValueError("Resume config differs from saved config; restore the original settings")
+    elif "dmd_refinement" in config:
+        from .dmd_conflict import initialize_refinement
+        state = initialize_refinement(config, output)
     elif "continuation" in config:
         from .continuation import initialize_continuation
         state = initialize_continuation(config, output)
@@ -73,12 +78,15 @@ def train(config, resume=False):
     with TrainingTracker(config, env, output, resume=resume) as tracker:
         from .config import is_stable_diffusion
         if is_stable_diffusion(config):
-            if config["train"].get("vsd_recipe") == "swiftbrush-source-v1":
+            if config["train"]["mode"] in ("dmd2", "f_distill"):
+                from .sd_recent_training import train_recent
+                train_recent(config, state, device, output, checkpoint, env, tracker)
+            elif config["train"].get("vsd_recipe") == "swiftbrush-source-v1":
                 from .sd_swiftbrush import train_swiftbrush_source
                 train_swiftbrush_source(config, state, device, output, checkpoint, env, tracker)
             else:
                 from .sd_training import train_sd
-                train_sd(config, state, device, output, checkpoint, env, tracker)
+                train_sd(config, state, device, output, checkpoint, env, tracker, stop_after=stop_after)
         elif config["train"]["mode"] == "vsd":
             from .vsd import train_vsd
             train_vsd(config, state, device, output, checkpoint, env, tracker)
