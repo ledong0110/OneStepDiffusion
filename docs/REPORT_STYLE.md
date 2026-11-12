@@ -21,7 +21,8 @@
   and a compact two-row dog-to-cat text-embedding interpolation figure.
 - Explain the resource and training-budget constraint with cited, method-specific
   published counts. Keep updates, sample exposure and teacher pretraining distinct.
-- Retain the four-page CVPR limit. Use verified complete full-validation results;
+- Retain four pages of main text in CVPR format; references do not count toward
+  that limit and start after all main-text figures. Use verified full-validation results;
   unfinished final measurements remain pending.
 - Use the official https://github.com/cvpr-org/author-kit.git template, in
   camera-ready mode so the provided author names are visible. Preserve its

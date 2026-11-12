@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 
@@ -80,6 +81,20 @@ def write_inputs(root):
             f"IS {control['inception_score_mean']:.2f} and CLIP {control['clip_score_mean']:.2f}. "
             "This pair shares initialization, data and teacher banks; it provides a single-seed estimate of the added loss's effect. ")
     (out/"findings.tex").write_text(findings+"\n")
+    teacher = records["teacher"]
+    reference_gap = reference["fid"]-teacher["fid"]
+    proposal_gap = ours["fid"]-teacher["fid"]
+    if reference_gap <= 0:
+        raise ValueError("Teacher-gap analysis requires a positive reference-to-teacher FID gap")
+    (out/"teacher_gap.tex").write_text(
+        f"Ours remains {proposal_gap:.2f} FID points above the teacher ({teacher['fid']:.2f}), "
+        f"compared with a {reference_gap:.2f}-point gap for the original DMD+LPIPS reference. "
+        f"The {fid_gain:.2f}-point difference between the two student recipes is "
+        f"{100*fid_gain/reference_gap:.2f}\\% of that reference gap.\n")
+    (out/"baseline_context.tex").write_text(
+        f"DMD+LPIPS is the strongest of the five standard pipelines in this evaluation "
+        f"(FID {reference['fid']:.2f}), ahead of SwiftBrush ({records['swiftbrush_lora']['fid']:.2f}) "
+        f"and progressive distillation ({records['baseline']['fid']:.2f}).\n")
     status = ("The matched zero-response control uses the same initialization, teacher banks and 36,000-update schedule."
               if control else "The matched independent zero-response control's final full-validation scores are pending.")
     conclusion = ("The matched independent control provides a single-seed comparison; repeated training seeds are needed to assess reliability."
@@ -88,11 +103,24 @@ def write_inputs(root):
                                 "\\newcommand{\\CEControlConclusion}{"+conclusion+"}\n")
     (out/"ablation.tex").unlink(missing_ok=True)
     (out/"provenance.json").write_text(json.dumps({"course": "CE7454", "project": 2,
-        "requirements_source": "docs/project_2_handout.docx", "max_pages_including_references": 4,
+        "requirements_source": "docs/project_2_handout.docx", "max_main_text_pages": 4,
+        "references_count_toward_limit": False,
+        "page_policy_source": "User clarification: references do not count toward the four-page main text",
         "evidence_policy": provenance["evidence_policy"],
         "table_metrics": [records[m] for m, _ in methods]+[records["teacher"]],
         "selected_model": selection, "metrics": records["response_scratch"],
         "figures": {k: provenance[k] for k in ("main", "prompt_control", "interpolation")}}, indent=2)+"\n")
+
+
+def check_page_budget(log, total_pages, max_pages=4):
+    """Count all scientific content before the flushed references boundary."""
+    markers = re.findall(r"^CE7454-MAIN-PAGES:\s*(\d+)\s*$", log, re.MULTILINE)
+    if len(markers) != 1 or not 1 <= int(markers[0]) < total_pages:
+        raise ValueError("Missing or invalid main-text/references page boundary; refusing publication")
+    main_pages = int(markers[0])
+    if main_pages > max_pages:
+        raise ValueError(f"CE7454 main text has {main_pages} pages, exceeding {max_pages}; references are excluded")
+    return main_pages, total_pages-main_pages
 
 
 def build(root=ROOT, *, refresh=True, compile_pdf=True, max_pages=4):
@@ -110,9 +138,8 @@ def build(root=ROOT, *, refresh=True, compile_pdf=True, max_pages=4):
         source = root/"report/build/main.pdf"
         info = subprocess.check_output(["pdfinfo", str(source)], text=True)
         pages = int(next(line.split(":", 1)[1] for line in info.splitlines() if line.startswith("Pages:")))
-        if pages != 4 or pages > max_pages:
-            raise ValueError(f"CE7454 requires a four-page report including references; compiled {pages} pages")
         log = (root/"report/build/main.log").read_text(errors="replace")
+        main_pages, reference_pages = check_page_budget(log, pages, max_pages)
         if "There were undefined references" in log:
             raise ValueError("CE7454 paper has unresolved references")
         aux = (root/"report/build/main.aux").read_text(errors="replace")
@@ -122,7 +149,11 @@ def build(root=ROOT, *, refresh=True, compile_pdf=True, max_pages=4):
         temporary = target.with_suffix(".pdf.tmp")
         shutil.copyfile(source, temporary)
         os.replace(temporary, target)
-        print(f"CE7454 report: {target} ({pages} pages, including references)", flush=True)
+        metadata_path = root/"report/generated/ce7454/provenance.json"
+        metadata = json.loads(metadata_path.read_text())
+        metadata["pages"] = {"main_text": main_pages, "references": reference_pages, "total": pages}
+        metadata_path.write_text(json.dumps(metadata, indent=2)+"\n")
+        print(f"CE7454 report: {target} ({main_pages} main + {reference_pages} references pages)", flush=True)
 
 
 def main(argv=None):

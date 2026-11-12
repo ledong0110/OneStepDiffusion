@@ -4,8 +4,10 @@ pinned at commit `291758547e923160eb4d37079b7b9f0dfce82355` (CVPR 2026 template)
 `cvpr.sty`, `ieeenat_fullname.bst` and `preamble.tex` are copied unchanged from
 that repository. The document follows its camera-ready setup, two-column
 letter-paper class, CVPR-blue links and bibliography style. Project content,
-figures and the provided author names replace the sample content; no layout
-or font-size overrides are applied to the upstream style.
+figures and the provided author names replace the sample content; no page-dimension
+or font-size changes are applied to the upstream style. The CE7454 document
+enables microtype and compact float/caption spacing, with ragged column bottoms,
+while retaining the upstream font sizes and page dimensions.
 
 The unmodified source template, preamble, style, bibliography style and README
 are retained in `third_party/cvpr_author_kit`, together with commit/file hashes.

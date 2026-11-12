@@ -507,6 +507,10 @@ def build(root=ROOT, *, study=None, selection=None):
 
 
 def compile_report(root, max_pages=4):
+    if (root/"report/generated/ce7454/provenance.json").exists():
+        from build_ce7454_report import build as build_ce7454
+        build_ce7454(root, refresh=False, max_pages=max_pages)
+        return
     for name in ("main", "qualitative"):
         subprocess.run(["latexmk", "-pdf", "-silent", "-halt-on-error", "-interaction=nonstopmode",
                         "-outdir=build", name+".tex"], cwd=root/"report", check=True)

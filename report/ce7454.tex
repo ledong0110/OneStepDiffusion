@@ -1,6 +1,13 @@
 \documentclass[10pt,twocolumn,letterpaper]{article}
 \usepackage{cvpr}
 \input{preamble}
+\usepackage{microtype}
+\usepackage{balance}
+\captionsetup{skip=5pt}
+\setlength{\textfloatsep}{10pt plus 1pt minus 1pt}
+\setlength{\dbltextfloatsep}{10pt plus 1pt minus 1pt}
+\setlength{\floatsep}{8pt plus 1pt minus 1pt}
+\setlength{\dblfloatsep}{8pt plus 1pt minus 1pt}
 \definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
 \usepackage[pagebackref,breaklinks,colorlinks,allcolors=cvprblue]{hyperref}
 \def\paperID{}
@@ -11,6 +18,7 @@
 \title{Direction Alignment for One-Step Text-to-Image Distillation}
 \author{Le Duc Dong \quad Nguyen Huu Thuat \quad Pham Viet Hoang \quad La Nguyen Gia Hy\\CE7454 Project 2}
 \begin{document}
+\raggedbottom
 \maketitle
 \begin{abstract}
 Compressing a diffusion teacher into one denoiser call is difficult under a
@@ -21,9 +29,8 @@ teacher displacement while retaining DMD's perceptual regression. A rank-32
 Stable Diffusion 1.5 student trained independently for 36,000 updates obtains
 FID \ASelectedFID{}, IS \ASelectedIS{} and CLIP \ASelectedCLIP{} on all 5,000
 COCO-2017 validation captions at one network function evaluation. The original
-DMD+LPIPS reference has FID 29.94, IS 34.12 and CLIP 31.10. The added
-constraint aligns the direction of paired latent changes without
-requiring their magnitudes to match. Different teacher banks and initialization histories limit
+DMD+LPIPS reference has FID 29.94, IS 34.12 and CLIP 31.10.
+Different teacher banks and initialization histories limit
 attribution of the main comparison to the added loss alone.
 \end{abstract}
 
@@ -123,8 +130,9 @@ image~\cite{chen2015coco}. Two disjoint pools of 50,000 and 68,287 captions
 cover the training split. All 5,000 validation images are held out from
 student training. Each final evaluation generates one $512\times512$ image
 per validation caption using the same noise stream, seed 12345, and the
-same resizing and center-cropping protocol. We report FID, Inception Score
-and CLIP ViT-B/32 similarity, defined as mean $100\max(\cos(I,c),0)$.
+same resizing and center-cropping protocol. We report FID~\cite{heusel2017fid},
+Inception Score~\cite{salimans2016improved} and CLIP ViT-B/32
+similarity~\cite{hessel2021clipscore}, defined as mean $100\max(\cos(I,c),0)$.
 
 \paragraph{Training and comparison.}
 Ours starts with pretrained SD1.5 and fresh rank-32 student/scorer adapters,
@@ -181,6 +189,24 @@ response direction is the desired constraint, but it does not force the
 correct amount of variation. Independent noise pairs define finite changes;
 they do not estimate a local Jacobian or establish improved diversity.
 
+\paragraph{Why pair within a caption?}
+Sharing $c$ makes both endpoints samples of the same conditional generator.
+Their difference isolates the model's response to noise rather than mixing
+noise changes with a change in the requested scene. Independent noises
+provide a finite response over the latent input space; nearby perturbations
+would instead target local sensitivity. A common translation of both
+student endpoints cancels from $d_S$, and positive rescaling leaves the
+cosine unchanged. The angular term consequently cannot fix the pair's
+midpoint or response magnitude. LPIPS anchors individual decoded outputs,
+while distribution matching supplies the broader image-distribution signal.
+
+The weights 0.25 and 0.298494 multiply losses in different spaces, so their
+values are not percentages of the generator update. In particular, the
+angular gradient depends on the current displacement norm even though its
+coefficient is constant. We retain DMD's LPIPS weight and use a fixed
+angular weight throughout this run; a 36,000-update weight sweep would be
+needed to assess sensitivity independently.
+
 \paragraph{Quality and text control.}
 Lower FID accompanies lower IS and CLIP, so the result is a trade-off in
 measured quality rather than a uniform improvement. FID compares marginal
@@ -189,6 +215,27 @@ The angular objective constrains noise response under a fixed caption;
 it does not explicitly supervise object counts or relations. These
 distinctions explain why the text-control figures are useful alongside
 the aggregate metrics.
+
+\paragraph{Gap to the multi-step teacher.}
+\input{generated/ce7454/teacher_gap.tex}
+This comparison keeps the validation set and image resolution fixed, but
+the teacher has a much larger inference budget. The remaining gap is
+consistent with a difficult compression problem: one conditional denoiser
+call must replace a guided trajectory using only rank-32 adapter updates.
+It does not identify which capacity or optimization change would close
+that gap.
+
+\paragraph{Coverage and training cost.}
+The two paired banks cover 5,000 captions, or 4.23\% of the 118,287-caption
+training pool. Score-based updates use the full caption stream, whereas
+LPIPS and angular alignment reuse these cached anchors. Thus access to the
+full caption pool does not imply paired supervision for every caption or
+every noise realization. Reusing the existing pairs adds latent-vector
+reductions and their gradients, with no additional teacher or student
+forward pass relative to the paired DMD update. Teacher-target preparation
+still costs 1,280,000 NFEs, and the learned scorer remains an additional
+training network. Equal student updates alone therefore do not measure
+total training efficiency.
 
 \begin{figure}[t]
 \centering
@@ -213,6 +260,26 @@ behavior of the same one-step model, rather than directly testing the
 angular constraint. All images are native outputs; the selected examples
 complement the full-set metrics.
 
+\paragraph{What the baseline ranking suggests.}
+\input{generated/ce7454/baseline_context.tex}
+This motivates extending the paired DMD recipe under our budget. The
+ranking also reflects how each local pipeline uses that budget: progressive
+distillation divides updates across compression stages, while SwiftBrush
+jointly optimizes a generator and scorer without fixed image targets.
+Its different teacher guidance and precision remain part of the recipe.
+The shared one-NFE test controls inference calls, while these supervision
+and optimization differences remain relevant to the quality comparison.
+
+\paragraph{Updates versus data exposure.}
+At effective batch 16, each 18,000-update phase samples 288,000 captions for
+distribution matching. This is 5.76 dataset-equivalent passes over the
+50,000-caption pool and 4.22 over the 68,287-caption pool. The first phase
+samples with replacement; the second uses shuffled epochs. These exposure
+counts therefore differ from unique-caption coverage. The separate paired
+stream revisits its smaller teacher bank. Reporting the full caption pool
+alongside that bank makes the available supervision more explicit than an
+update count alone.
+
 \section{Limitations and conclusion}
 Resource constraints limit each main student to 36,000 updates and one
 training seed. Published budgets differ substantially: SwiftBrush reports
@@ -229,6 +296,9 @@ reference, without adding inference calls or trainable parameters.
 \CEControlConclusion{} Dedicated latency measurements
 would also need isolated GPU workloads.
 
+\clearpage
+\typeout{CE7454-MAIN-PAGES:\the\numexpr\value{page}-1\relax}
+\balance
 {\small
 \bibliographystyle{ieeenat_fullname}
 \bibliography{assignment2_references}

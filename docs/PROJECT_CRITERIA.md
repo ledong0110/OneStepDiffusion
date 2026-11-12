@@ -14,9 +14,11 @@ late penalty is 5% per day for up to three days.
 | Novelty and difficulty | 25% | Direction-only alignment between independent same-caption latent displacements; relation to DMD and prior response matching; restricted rank-32, one-NFE setting |
 | Technical soundness | 25% | Normalized DMD direction, inherited LPIPS term, angular objective, numerical guards, frozen components, fresh-adapter initialization and explicit teacher-target costs |
 | Experimental analysis | 25% | Completed 5,000-image FID/IS/CLIP evaluations, five standard baselines, angular-gradient and vector-error analysis, native matched samples and conditioning probes |
-| Clarity | 25% | Official CVPR author-kit style, four named members, actual update budgets, concise interpretations and four pages including references |
+| Clarity | 25% | Official CVPR author-kit style, four named members, actual update budgets, concise interpretations and four main-text pages with references afterward |
 
-The four-page report is `CE7454_main_report.pdf`, with source `report/ce7454.tex`.
+The user clarified that references do not count toward the CE7454 page limit.
+The current PDF has four pages of main text, followed by references. The report
+is `CE7454_main_report.pdf`, with source `report/ce7454.tex`.
 Rebuild it with `make report`. The separate CE6190 report is
 `CE6190_group_11_report_project2.pdf`; its eight-page main-text limit does not apply
 to CE7454.
