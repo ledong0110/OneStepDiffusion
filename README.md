@@ -47,7 +47,7 @@ The team still needs to confirm that these methods were not used in Project 1.
 **[CE7454_main_report.pdf](CE7454_main_report.pdf)** is the current CE7454 Project 2 report:
 **four pages of main text, with references excluded**, using the official CVPR template. It
 contains the direction-alignment objective, full-validation comparison,
-gradient geometry and metric trade-offs, native matched samples, animal/action control,
+gradient geometry, metric-change and training-exposure tables, native samples, animal/action control,
 and dog-to-cat embedding interpolation. All Ours figures use the evaluated
 independent 36,000-update model.
 

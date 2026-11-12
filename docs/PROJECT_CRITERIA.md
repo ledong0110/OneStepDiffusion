@@ -13,7 +13,7 @@ late penalty is 5% per day for up to three days.
 | --- | --- | --- |
 | Novelty and difficulty | 25% | Direction-only alignment between independent same-caption latent displacements; relation to DMD and prior response matching; restricted rank-32, one-NFE setting |
 | Technical soundness | 25% | Normalized DMD direction, inherited LPIPS term, angular objective, numerical guards, frozen components, fresh-adapter initialization and explicit teacher-target costs |
-| Experimental analysis | 25% | Completed 5,000-image FID/IS/CLIP evaluations, five standard baselines, angular-gradient and vector-error analysis, native matched samples and conditioning probes |
+| Experimental analysis | 25% | Completed 5,000-image FID/IS/CLIP evaluations, five standard baselines, metric-change and exposure tables, angular-gradient analysis, native matched samples and conditioning probes |
 | Clarity | 25% | Official CVPR author-kit style, four named members, actual update budgets, concise interpretations and four main-text pages with references afterward |
 
 The user clarified that references do not count toward the CE7454 page limit.

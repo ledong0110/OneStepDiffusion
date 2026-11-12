@@ -109,7 +109,8 @@ assets requires the original evaluation JSONs or fresh evaluations.
 - Only completed full-validation evaluations receive metric rows. The matched
   independent zero-response control and recent baselines are not assigned
   invented final scores while evaluation is pending.
-- The CE7454 paper has one quality table and no regression-control Table 2.
+- The CE7454 paper has a quality comparison, signed metric changes and training
+  exposure tables; the earlier regression-control table remains excluded.
   The CE6190 paper retains its valid 36k regression ablation. Selected dog,
   teddy-bear and lighthouse examples use shared prompts and noise; all
   5,000 generated validation images enter the numerical evaluation.

@@ -163,6 +163,15 @@ local adapter recipes. Bold marks the best student metric.}
 \end{table}
 \input{generated/ce7454/findings.tex}
 
+\begin{table}[t]
+\centering\small
+\input{generated/ce7454/metric_changes.tex}
+\caption{Full-validation changes: Ours minus DMD+LPIPS. Negative FID favors
+Ours; negative IS and CLIP favor the reference. Teacher banks and
+initialization histories differ between these recipes.}
+\label{tab:metric_changes}
+\end{table}
+
 \paragraph{What the angular term changes.}
 Let $u=d_S/\|d_S\|$ and $v=d_T/\|d_T\|$. Above the norm guard,
 \begin{equation}
@@ -218,24 +227,27 @@ the aggregate metrics.
 
 \paragraph{Gap to the multi-step teacher.}
 \input{generated/ce7454/teacher_gap.tex}
-This comparison keeps the validation set and image resolution fixed, but
-the teacher has a much larger inference budget. The remaining gap is
-consistent with a difficult compression problem: one conditional denoiser
-call must replace a guided trajectory using only rank-32 adapter updates.
-It does not identify which capacity or optimization change would close
-that gap.
+This gap remains after compressing 128 teacher NFEs into one conditional
+call using rank-32 adapters. It does not identify the limiting component.
 
 \paragraph{Coverage and training cost.}
-The two paired banks cover 5,000 captions, or 4.23\% of the 118,287-caption
-training pool. Score-based updates use the full caption stream, whereas
-LPIPS and angular alignment reuse these cached anchors. Thus access to the
-full caption pool does not imply paired supervision for every caption or
-every noise realization. Reusing the existing pairs adds latent-vector
-reductions and their gradients, with no additional teacher or student
-forward pass relative to the paired DMD update. Teacher-target preparation
-still costs 1,280,000 NFEs, and the learned scorer remains an additional
-training network. Equal student updates alone therefore do not measure
-total training efficiency.
+Table~\ref{tab:exposure} distinguishes full-stream caption exposure from
+paired supervision. The two banks cover 5,000 captions, or 4.23\% of the
+training pool. LPIPS and angular alignment reuse these anchors, adding
+latent-vector reductions without extra teacher or student forward passes
+relative to paired DMD. Target preparation still costs 1,280,000 NFEs,
+and scorer optimization adds training work. Equal student updates therefore
+do not equalize total training cost.
+
+\begin{table}[t]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\input{generated/ce7454/training_exposure.tex}
+\caption{Recorded training exposure of Ours. Each phase has 18,000 student
+updates at effective batch 16. DM draws count sampled captions; teacher
+images are cached targets with two noises per paired caption.}
+\label{tab:exposure}
+\end{table}
 
 \begin{figure}[t]
 \centering
@@ -252,33 +264,24 @@ $0,0.25,0.5,0.75,1$. Each row fixes its initial noise. Images are native
 generator outputs rather than pixel blends.}
 \label{fig:interpolation}
 \end{figure}
-In Figure~\ref{fig:control}, animal identity and activity change while
-the cafe setting remains recognizable under fixed noise.
-Figure~\ref{fig:interpolation} varies text hidden states, a different input
-from the noise pairs used in training. It demonstrates conditioning
-behavior of the same one-step model, rather than directly testing the
-angular constraint. All images are native outputs; the selected examples
-complement the full-set metrics.
+Figure~\ref{fig:control} varies animal identity and activity under fixed
+noise; Figure~\ref{fig:interpolation} interpolates text hidden states with
+fixed noise within each row. These native outputs probe conditioning in
+the evaluated model, complementing full-set metrics rather than directly
+measuring the angular constraint.
 
 \paragraph{What the baseline ranking suggests.}
 \input{generated/ce7454/baseline_context.tex}
-This motivates extending the paired DMD recipe under our budget. The
-ranking also reflects how each local pipeline uses that budget: progressive
-distillation divides updates across compression stages, while SwiftBrush
-jointly optimizes a generator and scorer without fixed image targets.
-Its different teacher guidance and precision remain part of the recipe.
-The shared one-NFE test controls inference calls, while these supervision
-and optimization differences remain relevant to the quality comparison.
+Progressive distillation spreads updates across stages; SwiftBrush trains
+without fixed image targets, with different guidance and precision. The
+shared one-NFE evaluation therefore compares complete local recipes.
 
 \paragraph{Updates versus data exposure.}
-At effective batch 16, each 18,000-update phase samples 288,000 captions for
-distribution matching. This is 5.76 dataset-equivalent passes over the
-50,000-caption pool and 4.22 over the 68,287-caption pool. The first phase
-samples with replacement; the second uses shuffled epochs. These exposure
-counts therefore differ from unique-caption coverage. The separate paired
-stream revisits its smaller teacher bank. Reporting the full caption pool
-alongside that bank makes the available supervision more explicit than an
-update count alone.
+The DM draws in Table~\ref{tab:exposure} correspond to 5.76 dataset-equivalent
+passes over the first pool and 4.22 over the second. The first phase samples
+with replacement; the second uses shuffled epochs. Draw counts therefore
+differ from unique-caption coverage, while the separate paired stream
+revisits its smaller teacher bank.
 
 \section{Limitations and conclusion}
 Resource constraints limit each main student to 36,000 updates and one
